@@ -5,10 +5,11 @@ describe Prescription do
         patient: Patient.new(),
         medication: Medication.new(),
         dose: "5 mg",
-        recurrence: IceCube::Schedule.new(now),
-        start: DateTime.new(2015, 8, 4, 12),
-        end: DateTime.new(2015, 8, 18, 12)
+        start: Time.now(),
+        end: Time.new(2015, 10, 31)
     )
+
+
   end
 
   it "is valid with a patient, medication, dose, recurrence, start, and end" do
@@ -70,6 +71,22 @@ describe Prescription do
     expect(prescription).to_not be_valid
     prescription.valid?
     expect(prescription.errors[:end]).to include("Prescription end cannot be before start.")
+  end
+
+  it "returns today's scheduled doses" do
+    prescription = @valid_prescription
+    prescription.add_daily_recurrence_rule(1)
+
+    expect(prescription.today).to include(prescription.scheduled_doses.first)
+    expect(prescription.today.count).to eq(1)
+    expect(prescription.today).to_not include(prescription.scheduled_doses.last)
+  end
+
+  it "does not return tomorrow's scheduled dose for today's scheduled doses" do
+    prescription = @valid_prescription
+    prescription.add_daily_recurrence_rule(1)
+
+    expect(prescription.today).to_not include(prescription.scheduled_doses.last)
   end
 
 end

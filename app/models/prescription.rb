@@ -10,7 +10,7 @@ class Prescription < ActiveRecord::Base
     @recurrence ||= IceCube::Schedule.new(start = self.start, :end_time => self.end)
   end
 
-  def all_scheduled_doses
+  def build_scheduled_doses
     self.recurrence.occurrences(self.end).each do |occurrence|
       self.scheduled_doses.build(scheduled_time: occurrence)
     end
