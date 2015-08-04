@@ -20,6 +20,11 @@
     <%= f.text_field :last_name %><br>
   </div>
 
+  <div class="field">
+    <%= f.label :phone_number %><br>
+    <%= f.text_field :phone_number %><br>
+  </div>
+
    <div class="field">
     <%= f.label :email %><br>
     <%= f.text_field :email %><br>
@@ -27,13 +32,15 @@
 
   <div class="field">
     <%= f.label :password %><br>
-    <%= f.text_field :password %><br>
+    <%= f.password_field :password, autocomplete: "off" %><br>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br>
-    <%= f.text_field :password_confirmation %><br>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %><br>
   </div>
+
+
 
   <div class="actions">
     <%= f.submit %>

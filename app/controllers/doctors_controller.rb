@@ -1,9 +1,9 @@
-class DoctorController < ApplicationController
+class DoctorsController < ApplicationController
   before_action :set_doctor, only: [:show, :edit, :update, :destroy]
 
   def index
-    @doctors = Doctors.all # for the json extraction. Don't see why we would list it anywhere else, but we can access it them now.
-    @patients = @doctor.patients
+    @doctors = Doctor.all # for the json extraction. Don't see why we would list it anywhere else, but we can access it them now.
+    # @patients = @doctor.patients
   end
 
   def new
@@ -12,6 +12,7 @@ class DoctorController < ApplicationController
 
   def create
     @doctor = Doctor.new(doctor_params)
+    binding.pry
     respond_to do |format|
       if @doctor.save
         format.html { redirect_to @doctor, notice: 'Doctor was successfully created.' }
