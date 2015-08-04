@@ -1,7 +1,7 @@
 <h1>List of Patients:</h1>
 
 <% @patients.each do |patient| %>
-  <h2><%= patient.first_name %> <%= patient.last_name %></h2>
+  <h2><%= link_to("#{patient.first_name} #{patient.last_name}", patient_path(patient) )%> </h2>
   <ul>
     <li><%= patient.email %></li>
   </ul>
