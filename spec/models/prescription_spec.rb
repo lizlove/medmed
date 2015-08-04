@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Prescription do
 
-  describe 'validations: ' do
+  describe 'valid?' do
     before(:each) do
       @valid_prescription = Prescription.new(
           patient: Patient.new(),
@@ -95,8 +95,22 @@ describe Prescription do
     end
   end
 
+  describe 'recurrence' do
 
+    before(:each) do
+      @valid_prescription = Prescription.new(
+          patient: Patient.new(),
+          dose: "5 mg",
+          start: Time.now(),
+          end: Time.new(2015, 10, 31)
+      )
+    end
 
+    it "is an instance of IceCube::Schedule" do
+      prescription = @valid_prescription
+      expect(prescription.recurrence).to be_a(IceCube::Schedule)
+    end
+  end
 
 
 end
