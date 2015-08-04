@@ -10,6 +10,12 @@ class Prescription < ActiveRecord::Base
     @recurrence ||= IceCube::Schedule.new(start = self.start, :end_time => self.end)
   end
 
+  def all_scheduled_doses
+    self.recurrence.occurrences(self.end).each do |occurrence|
+      self.scheduled_doses.build(scheduled_time: occurrence)
+    end
+  end
+
   def add_daily_recurrence_rule(interval)
     self.recurrence.add_recurrence_rule IceCube::Rule.daily(interval)
   end
