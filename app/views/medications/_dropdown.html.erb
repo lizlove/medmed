@@ -1,6 +1,6 @@
 <div> 
   <%= form_for @medication, remote: true, url: "/search" do |f| %>
-    <%= f.collection_select :id, current_user.keywords.order(:name),:id,:name, include_blank: "Other" %>
+    <%= f.collection_select :rxcui, @medication.dropdown_hash(@keyword),:rxcui,:name, include_blank: "Other" %>
     <%= f.submit "Search for Medication"%>
   <% end %>
 </div>
