@@ -1,9 +1,17 @@
 <h2>Welcome to MedMed</h2>
 
+<% if !current_doctor && !current_patient %>
 <H3>DOCTOR LOGIN</H3>
 
 <%= link_to("Doctor, Please login.", new_doctor_session_path) %>
 
 <H3>PATIENT LOGIN</H3>
-
 <%= link_to("Patient, please log in!", new_patient_session_path) %>
+
+
+<% elsif current_doctor %>
+<%= link_to("Doctor, Please sign out", destroy_doctor_session_path, method: 'DELETE') %>
+<% elsif current_patient %>
+<%= link_to("Patient, Please sign out", destroy_patient_session_path, method: 'DELETE') %>
+<% end %>
+
