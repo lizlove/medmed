@@ -1,4 +1,4 @@
-require 'feature_helper'
+require 'rails_helper'
 
 feature 'Patient logs in from the homepage and' do
 
