@@ -8,14 +8,20 @@ class Prescription < ActiveRecord::Base
   validates :patient, :doctor, :rxcui, :medication_name, :start_datetime, :end_datetime, :presence => true
   validate :start_before_end
 
+  before_save :build_scheduled_doses, if: :recurrence_is_scheduled?
+
 
   def recurrence
     @recurrence ||= IceCube::Schedule.new(start = self.start_datetime, :end_time => self.end_datetime)
   end
 
-  def create_scheduled_doses
+  def recurrence_is_scheduled?
+    !self.recurrence.instance_variable_get("@all_recurrence_rules").empty?
+  end
+
+  def build_scheduled_doses
     self.recurrence.occurrences(self.end_datetime).each do |occurrence|
-      self.scheduled_doses.create(scheduled_time: occurrence)
+      self.scheduled_doses.build(scheduled_time: occurrence)
     end
   end
 

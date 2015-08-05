@@ -65,26 +65,27 @@ describe Prescription do
     end
   end
 
-  describe 'create_scheduled_doses' do
-    it "saves scheduled doses" do
-      prescription = build(:prescription)
-      prescription.add_monthly_recurrence_rule(1)
-      prescription.create_scheduled_doses
-
-      expect(prescription.scheduled_doses.count).to eq(3)
-    end
-  end
 
   describe 'callbacks' do
-    context 'after_save' do
-      it "creates scheduled doses" do
+    context 'before_save' do
+      it "builds scheduled doses" do
         prescription = build(:prescription)
         prescription.add_daily_recurrence_rule(1)
-        expect(prescription).to receive(:create_scheduled_doses)
+        expect(prescription).to receive(:build_scheduled_doses)
         prescription.save
       end
     end
-  end
 
+
+    context 'after_save' do
+      it "saves scheduled doses" do
+        prescription = build(:prescription)
+        prescription.add_monthly_recurrence_rule(1)
+        prescription.save
+
+        expect(prescription.scheduled_doses.count).to eq(3)
+      end
+    end
+  end
 
 end
