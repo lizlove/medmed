@@ -19,20 +19,47 @@ ActiveRecord::Schema.define(version: 20150805130006) do
   end
 
   create_table "doctors", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "password_digest"
-    t.string "phone_number"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone_number"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+  end
+
+  add_index "doctors", ["email"], name: "index_doctors_on_email", unique: true
+  add_index "doctors", ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
+
+  create_table "medications", force: :cascade do |t|
+    t.text    "name"
+    t.integer "rxcui"
   end
 
   create_table "patients", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "password_digest"
-    t.string "phone_number"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone_number"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "patients", ["email"], name: "index_patients_on_email", unique: true
+  add_index "patients", ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true
 
   create_table "prescriptions", force: :cascade do |t|
     t.integer  "patient_id"
@@ -49,6 +76,8 @@ ActiveRecord::Schema.define(version: 20150805130006) do
     t.datetime "taken_time"
     t.text     "side_effect"
     t.boolean  "was_taken"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
