@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
       patient_prescriptions_path(@patient)
     elsif resource.is_a? Doctor
       @doctor = Doctor.find(resource.id)
-      doctor_patients_path(@doctor)
+      doctors_dashboard_path
     else
       super
     end
