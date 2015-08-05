@@ -5,16 +5,16 @@ class Prescription < ActiveRecord::Base
   has_many :scheduled_doses
   serialize :recurrence, IceCube::Schedule
 
-  validates :patient, :dose, :start, :end, :presence => true
+  validates :patient, :dose, :start_datetime, :end_datetime, :presence => true
   validate :start_before_end
 
 
   def recurrence
-    @recurrence ||= IceCube::Schedule.new(start = self.start, :end_time => self.end)
+    @recurrence ||= IceCube::Schedule.new(start = self.start_datetime, :end_time => self.end_datetime)
   end
 
   def create_scheduled_doses
-    self.recurrence.occurrences(self.end).each do |occurrence|
+    self.recurrence.occurrences(self.end_datetime).each do |occurrence|
       self.scheduled_doses.create(scheduled_time: occurrence)
     end
   end
@@ -37,8 +37,8 @@ class Prescription < ActiveRecord::Base
 
   private
   def start_before_end
-    if self.start && self.end
-      errors.add(:start, "start date/time should be before end date/time") unless self.start < self.end
+    if self.start_datetime && self.end_datetime
+      errors.add(:start, "start date/time should be before end date/time") unless self.start_datetime < self.end_datetime
     end
   end
 
