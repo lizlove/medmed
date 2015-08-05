@@ -13,13 +13,25 @@ Patient.create!(first_name: "Bowser", last_name: "Koopa", phone_number: "804-596
 Doctor.create!(first_name: "Toad", last_name: "Mushroom", phone_number: "329-324-2393", email: "toad@nintendo.com", password: "toadrules", password_confirmation: "toadrules")
 
 #Prescription
-Prescription.create(patient_id: @patient1.id, rxcui: 541894, start_datetime: Time.now, end_datetime: Time.now + 5.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "Dextroamphetamine saccharate 2.5 MG")
+@prescrip1 = Prescription.new(patient_id: @patient1.id, rxcui: 541894, start_datetime: Time.now, end_datetime: Time.now + 5.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "Dextroamphetamine saccharate 2.5 MG")
 
-Prescription.create(patient_id: @patient1.id, rxcui: 617314, start_datetime: Time.now, end_datetime: Time.now + 15.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "atorvastatin 10 MG Oral Tablet [Lipitor]")
+@prescrip1.add_daily_recurrence_rule(1)
+@prescrip1.save
 
-Prescription.create(patient_id: @patient1.id, rxcui: 541894, start_datetime: Time.now, end_datetime: Time.now + 5.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "Dextroamphetamine saccharate 2.5 MG")
+@prescrip2 = Prescription.new(patient_id: @patient1.id, rxcui: 617314, start_datetime: Time.now, end_datetime: Time.now + 15.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "atorvastatin 10 MG Oral Tablet [Lipitor]")
 
-Prescription.create(patient_id: @patient1.id, rxcui: 617314, start_datetime: Time.now, end_datetime: Time.now + 14.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "atorvastatin 10 MG Oral Tablet [Lipitor]")
+@prescrip2.add_daily_recurrence_rule(1)
+@prescrip2.save
+
+@prescrip3 = Prescription.new(patient_id: @patient1.id, rxcui: 541894, start_datetime: Time.now, end_datetime: Time.now + 5.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "Dextroamphetamine saccharate 2.5 MG")
+
+@prescrip3.add_daily_recurrence_rule(1)
+@prescrip3.save
+
+@prescrip4 = Prescription.new(patient_id: @patient1.id, rxcui: 617314, start_datetime: Time.now, end_datetime: Time.now + 14.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "atorvastatin 10 MG Oral Tablet [Lipitor]")
+
+@prescrip4.add_daily_recurrence_rule(2)
+@prescrip4.save
 
 
 
