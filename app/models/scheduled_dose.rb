@@ -7,6 +7,20 @@ class ScheduledDose < ActiveRecord::Base
   #  @taken_time = nil 
   #  @side_effect = []
   #  @was_taken = false
-  # end 
+  # end
+
+  def was_taken?
+    was_taken
+  end
+
+  def panel_class
+    if !self.was_taken? && self.scheduled_time < Time.now
+      "danger"
+    elsif self.was_taken?
+      "default"
+    else
+      "primary"
+    end
+  end
 
 end
