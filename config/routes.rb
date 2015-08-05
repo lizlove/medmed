@@ -2,10 +2,13 @@ Rails.application.routes.draw do
   root 'welcome#index'
   devise_for :patients, controllers: {registrations: 'patients/registrations'}
   devise_for :doctors, controllers: {registrations: 'doctors/registrations'}
+  resources :doctors do 
+    resources :patients, only: [:index]
+  end 
 
-
-  # resources :doctors
-  # resources :patients
+  resources :patients do 
+    resources :prescriptions, only: [:index]
+  end 
 
  
   # The priority is based upon order of creation: first created -> highest priority.
