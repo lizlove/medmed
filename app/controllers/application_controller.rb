@@ -4,18 +4,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  protected
-
-
   def after_sign_in_path_for(resource)
-    if resource.class.is_a? Patient
-      redirect_to(patient_prescriptions_path)
-    elsif resource.class.is_a? Doctor
-      redirect_to(doctor_patients_path)
+    if resource.is_a? Patient
+      @patient = Patient.find(resource.id)
+      patient_prescriptions_path(@patient)
+    elsif resource.is_a? Doctor
+      @doctor = Doctor.find(resource.id)
+      doctor_patients_path(@doctor)
     else
       super
     end
   end
+
+  protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :phone_number, :email, :password, :password_confirmation) }
