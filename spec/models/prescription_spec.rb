@@ -4,95 +4,63 @@ describe Prescription do
 
   describe 'valid?' do
 
-    it "is valid with a patient, medication, dose, recurrence, start, and end" do
-      @valid_prescription = build(:prescription)
-      expect(@valid_prescription).to be_valid
+    it "is valid with a patient, doctor, medication_name, rxcuid, recurrence, start, and end" do
+      prescription = build(:prescription)
+      expect(prescription).to be_valid
+    end
+
+    it "is invalid without a doctor" do
+      prescription = build(:prescription)
+      prescription.doctor = nil
+      expect(prescription).to_not be_valid
     end
 
     it "is invalid without a patient" do
-      @valid_prescription = build(:prescription)
-      prescription = @valid_prescription
+      prescription = build(:prescription)
       prescription.patient = nil
       expect(prescription).to_not be_valid
-      # prescription.valid?
-      # expect(prescription.errors[:patient]).to include("Prescription must be assigned to a patient.")
     end
 
-    xit "is invalid without a medication" do
-      # prescription = @valid_prescription
-      # prescription.medication = nil
-      # expect(prescription).to_not be_valid
-      # prescription.valid?
-      # expect(prescription.errors[:medication]).to include("Prescription must have a medication.")
-    end
 
-    it "is invalid without a dose" do
-      @valid_prescription = build(:prescription)
-      prescription = @valid_prescription
-      prescription.dose = nil
+    it "is invalid without a rxcui" do
+      prescription = build(:prescription)
+      prescription.rxcui = nil
       expect(prescription).to_not be_valid
-      # prescription.valid?
-      # expect(prescription.errors[:dose]).to include("Prescription must have a dose.")
+    end
+
+    it "is invalid without a medication name" do
+      prescription = build(:prescription)
+      prescription.medication_name = nil
+      expect(prescription).to_not be_valid
     end
 
 
     it "is invalid without a start" do
-      @valid_prescription = build(:prescription)
-      prescription = @valid_prescription
+      prescription = build(:prescription)
       prescription.start_datetime = nil
       expect(prescription).to_not be_valid
-      # prescription.valid?
-      # expect(prescription.errors[:start]).to include("Prescription must have a start date/time.")
     end
 
     it "is invalid without an end" do
-      @valid_prescription = build(:prescription)
-      prescription = @valid_prescription
+      prescription = build(:prescription)
       prescription.end_datetime = nil
       expect(prescription).to_not be_valid
-      # prescription.valid?
-      # expect(prescription.errors[:start]).to include("Prescription must have an end date/time.")
     end
 
     it "is invalid if end is before start" do
-      @valid_prescription = build(:prescription)
-      prescription = @valid_prescription
+      prescription = build(:prescription)
       prescription.start_datetime = Time.new(2015, 10, 1)
       prescription.end_datetime = Time.new(2015, 8, 15)
       expect(prescription).to_not be_valid
-      # prescription.valid?
-      # expect(prescription.errors[:end]).to include("Prescription end cannot be before start.")
     end
 
 
-  end
-
-  describe 'today' do
-
-    it "returns today's scheduled doses" do
-      @valid_prescription = build(:prescription)
-      prescription = @valid_prescription
-      prescription.add_daily_recurrence_rule(1)
-
-      expect(prescription.today).to include(prescription.scheduled_doses.first)
-      expect(prescription.today.count).to eq(1)
-      expect(prescription.today).to_not include(prescription.scheduled_doses.last)
-    end
-
-    it "does not return tomorrow's scheduled dose for today's scheduled doses" do
-      @valid_prescription = build(:prescription)
-      prescription = @valid_prescription
-      prescription.add_daily_recurrence_rule(1)
-
-      expect(prescription.today).to_not include(prescription.scheduled_doses.last)
-    end
   end
 
   describe 'recurrence' do
 
     it "is an instance of IceCube::Schedule" do
-      @valid_prescription = build(:prescription)
-      prescription = @valid_prescription
+      prescription = build(:prescription)
       expect(prescription.recurrence).to be_a(IceCube::Schedule)
     end
   end

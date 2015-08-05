@@ -6,13 +6,13 @@ class ScheduledDosesController < ApplicationController
    end 
 
    def update
-    respond_to do |format|
-      if @dose.update(dose_params)
-        format.html { notice: 'Great work taking your pills!' }
-        self.taken_time = Time.now
-        self.was_taken = true
-      end
-    end
+    # respond_to do |format|
+    #   if @dose.update(dose_params)
+    #     format.html { notice: 'Great work taking your pills!' }
+    #     self.taken_time = Time.now
+    #     self.was_taken = true
+    #   end
+    # end
 
    end 
 

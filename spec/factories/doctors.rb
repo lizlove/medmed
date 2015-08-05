@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :doctor1 do
+  factory :doctor do
     first_name "Mario"
     last_name  "Mario"
     email "doctormario@nintendo.com"
