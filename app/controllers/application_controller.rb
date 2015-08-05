@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource)
-    if resource.class = Patient
+    if resource.class.is_a? Patient
       redirect_to(patient_prescriptions_path)
-    elsif resource.class = Doctor
+    elsif resource.class.is_a? Doctor
       redirect_to(doctor_patients_path)
     else
       super
