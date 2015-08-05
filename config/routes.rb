@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'welcome#index'
-  devise_for :patients
-  devise_for :doctors
+  devise_for :patients, controllers: {registrations: 'patients/registrations'}
+  devise_for :doctors, controllers: {registrations: 'doctors/registrations'}
+
+
   # resources :doctors
   # resources :patients
 
