@@ -9,11 +9,12 @@ class PrescriptionsController < ApplicationController
   end
 
   def create
+    binding.pry
     @prescription = Prescription.new(prescription_params)
     respond_to do |format|
       if @prescription.save
         current_doctor.prescriptions << @prescription
-        patient = Patient.find(1)
+        patient = Patient.find(params[:prescription][:patient_id])
         patient.prescriptions << @prescription
         format.html { redirect_to doctors_dashboard_path, notice: 'Prescription was successfully created.' }
         format.json { render action: 'show', status: :created, location: @prescription }

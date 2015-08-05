@@ -10,15 +10,40 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= f.label :patient %><br>
-    <%= f.collection_select :id, current_doctor.patients, :id, :name %><br>
+    <%= f.collection_select :patient_id, current_doctor.patients, :id, :name %><br>
   </div>
 
   <div class="field">
     <%= f.label :medication %><br>
     <%= f.text_field :medication_name %><br>
+  </div>
+
+  <div class="field">
+    <%= label_tag :repeat %>
+    <%= select_tag(:occurrence, options_for_select([["Daily"], ["Weekly"]]), {:class => "recurrence_option"}) %>
+  </div>
+
+  <div class="field_to_switch">
+    <% weekday_options = {hidden: true, class: "weekdays"} %>
+    <%= label_tag :every %>
+    <%= number_field_tag :days %>
+    <%= label_tag :time_units, "days" %><br>
+    <%= label_tag :S, "S", weekday_options %>
+    <%= check_box_tag :"weekdays[]", "sunday", false, weekday_options %>
+    <%= label_tag :M, "M", weekday_options %>
+    <%= check_box_tag :"weekdays[]", "monday", false, weekday_options %>
+    <%= label_tag :T, "T", weekday_options %>
+    <%= check_box_tag :"weekdays[]", "tuesday", false, weekday_options %>
+    <%= label_tag :W, "W", weekday_options %>
+    <%= check_box_tag :"weekdays[]", "wednesday", false, weekday_options %>
+    <%= label_tag :Th, "Th", weekday_options %>
+    <%= check_box_tag :"weekdays[]", "thursday", false, weekday_options %>
+    <%= label_tag :F, "F", weekday_options %>
+    <%= check_box_tag :"weekdays[]", "friday", false, weekday_options %>
+    <%= label_tag :Sa, "Sa", weekday_options %>
+    <%= check_box_tag :"weekdays[]", "saturday", false, weekday_options %>
   </div>
 
   <div class="field">

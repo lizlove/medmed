@@ -38,7 +38,7 @@ class Prescription < ActiveRecord::Base
   end
 
   def add_weekly_recurrence_rule_with_days(interval, days)
-    self.recurrence.add_recurrence_rule IceCube::Rule.weekly(interval).day()
+    self.recurrence.add_recurrence_rule IceCube::Rule.weekly(interval).day(days)
   end
 
   private
