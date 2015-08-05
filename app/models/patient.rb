@@ -13,4 +13,8 @@ has_many :scheduled_doses, through: :prescriptions
     "#{self.first_name} #{self.last_name}"
   end
 
+  def scheduled_doses_by_time
+    self.scheduled_doses.order(:scheduled_time)
+  end
+
 end

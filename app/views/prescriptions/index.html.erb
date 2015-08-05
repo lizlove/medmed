@@ -1,27 +1,26 @@
 <h1>List of Prescriptions for Today:</h1>
-  <% @sd = @patient.scheduled_doses.to_a %>
-   <% @sd.sort_by! do |sd| %>
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <div class="row">
-            <div class="col-lg-6">
-            <%= sd.prescription.medication_name %>
-            </div>
-            <div class="col-lg-6">
-                <div class="checkbox">
-                    <label>
-                      <input type="checkbox"> Taken
-                    </label>
-                </div>
-            </div>
-          </div> 
+<% @patient.scheduled_doses_by_time.each do |sd| %>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-lg-6">
+        <%= sd.prescription.medication_name %>
         </div>
-        <div class="panel-body">
-          <img src="<%= sd.prescription.image_url %>" alt="pillz">
-          <%= sd.scheduled_time %>
+        <div class="col-lg-6">
+            <div class="checkbox">
+                <label>
+                  <input type="checkbox"> Taken
+                </label>
+            </div>
         </div>
       </div>
-   <% end %>
+    </div>
+    <div class="panel-body">
+      <img src="<%= sd.prescription.image_url %>" alt="pillz">
+      <%= sd.scheduled_time %>
+    </div>
+  </div>
+<% end %>
 
 
 

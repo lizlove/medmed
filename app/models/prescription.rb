@@ -5,10 +5,10 @@ class Prescription < ActiveRecord::Base
   has_many :scheduled_doses
   serialize :recurrence, IceCube::Schedule
 
-  # validates :patient, :doctor, :rxcui, :medication_name, :start_datetime, :end_datetime, :presence => true
-  # validate :start_before_end
+  validates :patient, :doctor, :rxcui, :medication_name, :start_datetime, :end_datetime, :presence => true
+  validate :start_before_end
 
-  # before_save :build_scheduled_doses, if: :recurrence_is_scheduled?
+  before_save :build_scheduled_doses, if: :recurrence_is_scheduled?
 
 
   def recurrence
