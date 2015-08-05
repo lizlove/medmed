@@ -5,6 +5,8 @@ class Doctor < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 has_many :doctor_patients
 has_many :patients, through: :doctor_patients
+has_many :prescriptions
+has_many :scheduled_doses, through: :prescriptions
 
 
 end

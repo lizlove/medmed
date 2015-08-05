@@ -1,7 +1,7 @@
 class Prescription < ActiveRecord::Base
   include IceCube
   belongs_to :patient
-  belongs_to :medication
+  belongs_to :doctor
   has_many :scheduled_doses
   serialize :recurrence, IceCube::Schedule
 

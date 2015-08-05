@@ -1,6 +1,5 @@
 class ScheduledDose < ActiveRecord::Base
   belongs_to :prescription
-  belongs_to :medication, through :prescription
 
   validates :scheduled_time, :prescription_id, presence: true
 
