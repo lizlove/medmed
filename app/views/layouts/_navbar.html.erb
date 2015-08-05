@@ -1,0 +1,21 @@
+ <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">MedMed</a>
+    </div>
+      <ul class="nav navbar-nav">
+        <li><a href="#">My Account</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_doctor %>
+          <li><a href="#">Hello, <strong>Dr. <%= current_doctor.last_name %></strong></a></li>
+          <li><% binding.pry %></li>
+        <% elsif current_patient? %>
+          <li><a>Hello,<strong><%= current_patient.first_name %></a></strong>
+        <% else %>
+          <li><%= link_to "Sign up", new_user_registration_path %></li>
+          <li><%= link_to "Login", new_user_session_path %></li>
+        <% end %>
+
+      </ul>
+    </div>
+</nav>
