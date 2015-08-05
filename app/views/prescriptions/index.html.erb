@@ -1,5 +1,5 @@
 <h1>List of Prescriptions for Today:</h1>
-<% @patient.scheduled_doses_by_time.each do |sd| %>
+<% @patient.scheduled_doses_for_today.each do |sd| %>
   <div class="panel panel-primary">
     <div class="panel-heading">
       <div class="row">
