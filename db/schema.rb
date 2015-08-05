@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150805130006) do
+ActiveRecord::Schema.define(version: 20150805134907) do
 
   create_table "doctor_patients", force: :cascade do |t|
     t.integer "doctor_id"
@@ -37,11 +37,6 @@ ActiveRecord::Schema.define(version: 20150805130006) do
   add_index "doctors", ["email"], name: "index_doctors_on_email", unique: true
   add_index "doctors", ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
 
-  create_table "medications", force: :cascade do |t|
-    t.text    "name"
-    t.integer "rxcui"
-  end
-
   create_table "patients", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -63,11 +58,14 @@ ActiveRecord::Schema.define(version: 20150805130006) do
 
   create_table "prescriptions", force: :cascade do |t|
     t.integer  "patient_id"
-    t.integer  "medication_id"
-    t.string   "dose"
+    t.integer  "rxcui"
     t.text     "recurrence"
     t.datetime "start_datetime"
     t.datetime "end_datetime"
+    t.integer  "doctor_id"
+    t.text     "side_effects"
+    t.string   "image_url"
+    t.string   "medication_name"
   end
 
   create_table "scheduled_doses", force: :cascade do |t|
