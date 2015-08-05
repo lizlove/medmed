@@ -1,1 +1,9 @@
 <h1>List of Prescriptions for Today:</h1>
+  <ul>
+   <% @patient.scheduled_doses.each do |sd| %>
+      <li><%= sd.prescription.medication_name %>, <%= sd.scheduled_time %></li>
+   <% end %>
+  </ul>
+
+ 
+    
