@@ -2,9 +2,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
   devise_for :patients, controllers: {registrations: 'patients/registrations'}
   devise_for :doctors, controllers: {registrations: 'doctors/registrations'}
-  resources :doctors do 
-    resources :patients, only: [:index]
-  end 
+  get 'doctors/dashboard' => 'doctors#dashboard'
+  resources :prescriptions, only: [:new, :create]
 
   resources :patients do 
     resources :prescriptions, only: [:index]
