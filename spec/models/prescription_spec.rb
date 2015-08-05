@@ -2,20 +2,15 @@ require 'rails_helper'
 
 describe Prescription do
 
-  describe 'validations: ' do
-    before(:each) do
-      @valid_prescription = Prescription.new(
-          patient: Patient.new(),
-          dose: "5 mg",
-          start: Time.now(),
-          end: Time.new(2015, 10, 31))
-    end
+  describe 'valid?' do
 
     it "is valid with a patient, medication, dose, recurrence, start, and end" do
+      @valid_prescription = build(:prescription)
       expect(@valid_prescription).to be_valid
     end
 
     it "is invalid without a patient" do
+      @valid_prescription = build(:prescription)
       prescription = @valid_prescription
       prescription.patient = nil
       expect(prescription).to_not be_valid
@@ -32,6 +27,7 @@ describe Prescription do
     end
 
     it "is invalid without a dose" do
+      @valid_prescription = build(:prescription)
       prescription = @valid_prescription
       prescription.dose = nil
       expect(prescription).to_not be_valid
@@ -41,25 +37,28 @@ describe Prescription do
 
 
     it "is invalid without a start" do
+      @valid_prescription = build(:prescription)
       prescription = @valid_prescription
-      prescription.start = nil
+      prescription.start_datetime = nil
       expect(prescription).to_not be_valid
       # prescription.valid?
       # expect(prescription.errors[:start]).to include("Prescription must have a start date/time.")
     end
 
     it "is invalid without an end" do
+      @valid_prescription = build(:prescription)
       prescription = @valid_prescription
-      prescription.end = nil
+      prescription.end_datetime = nil
       expect(prescription).to_not be_valid
       # prescription.valid?
       # expect(prescription.errors[:start]).to include("Prescription must have an end date/time.")
     end
 
     it "is invalid if end is before start" do
+      @valid_prescription = build(:prescription)
       prescription = @valid_prescription
-      prescription.start = DateTime.new(2015, 10, 1)
-      prescription.end = DateTime.new(2015, 8, 15)
+      prescription.start_datetime = Time.new(2015, 10, 1)
+      prescription.end_datetime = Time.new(2015, 8, 15)
       expect(prescription).to_not be_valid
       # prescription.valid?
       # expect(prescription.errors[:end]).to include("Prescription end cannot be before start.")
@@ -69,16 +68,9 @@ describe Prescription do
   end
 
   describe 'today' do
-    before(:each) do
-      @valid_prescription = Prescription.new(
-          patient: Patient.new(),
-          dose: "5 mg",
-          start: Time.now(),
-          end: Time.new(2015, 10, 31)
-      )
-    end
 
     it "returns today's scheduled doses" do
+      @valid_prescription = build(:prescription)
       prescription = @valid_prescription
       prescription.add_daily_recurrence_rule(1)
 
@@ -88,6 +80,7 @@ describe Prescription do
     end
 
     it "does not return tomorrow's scheduled dose for today's scheduled doses" do
+      @valid_prescription = build(:prescription)
       prescription = @valid_prescription
       prescription.add_daily_recurrence_rule(1)
 
@@ -95,8 +88,14 @@ describe Prescription do
     end
   end
 
+  describe 'recurrence' do
 
-
+    it "is an instance of IceCube::Schedule" do
+      @valid_prescription = build(:prescription)
+      prescription = @valid_prescription
+      expect(prescription.recurrence).to be_a(IceCube::Schedule)
+    end
+  end
 
 
 end

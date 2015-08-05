@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804193511) do
+ActiveRecord::Schema.define(version: 20150805130006) do
 
   create_table "doctor_patients", force: :cascade do |t|
     t.integer "doctor_id"
@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 20150804193511) do
     t.integer  "medication_id"
     t.string   "dose"
     t.text     "recurrence"
-    t.datetime "start"
-    t.datetime "end"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
   end
 
   create_table "scheduled_doses", force: :cascade do |t|
