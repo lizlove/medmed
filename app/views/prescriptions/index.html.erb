@@ -1,9 +1,30 @@
 <h1>List of Prescriptions for Today:</h1>
-  <ul>
-   <% @patient.scheduled_doses.each do |sd| %>
-      <li><%= sd.prescription.medication_name %>, <%= sd.scheduled_time %></li>
-   <% end %>
-  </ul>
 
- 
+   <% @patient.scheduled_doses.each do |sd| %>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-lg-6">
+            <%= sd.prescription.medication_name %>
+            </div>
+            <div class="col-lg-6">
+                <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> Taken
+                    </label>
+                </div>
+            </div>
+          </div> 
+        </div>
+        <div class="panel-body">
+          <img src="<%= sd.prescription.image_url %>" alt="pillz">
+          <%= sd.scheduled_time %>
+        </div>
+      </div>
+   <% end %>
+
+
+
+
+
     
