@@ -1,13 +1,21 @@
 <h2>Welcome to MedMed</h2>
 
 <% if !current_doctor && !current_patient %>
-<H3>DOCTOR LOGIN</H3>
 
-<%= link_to("Doctor, Please login.", new_doctor_session_path) %>
-
-<H3>PATIENT LOGIN</H3>
-<%= link_to("Patient, please log in!", new_patient_session_path) %>
-
+<div class="row">
+  <div class="col-lg-6">
+    <div class="well">
+    <H3>DOCTOR LOGIN</H3>
+    <%= link_to("Doctor, Please click to login.", new_doctor_session_path) %>
+    </div>
+  </div>
+  <div class="col-lg-6">
+  <div class="well">
+  <H3>PATIENT LOGIN</H3>
+  <%= link_to("Patient, please click to login.", new_patient_session_path) %>
+  </div>
+  </div>
+</div>
 
 <% elsif current_doctor %>
 <%= link_to("Doctor, Please sign out", destroy_doctor_session_path, method: 'DELETE') %>
