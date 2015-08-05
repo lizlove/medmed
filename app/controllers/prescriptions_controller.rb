@@ -12,7 +12,7 @@ class PrescriptionsController < ApplicationController
     respond_to do |format|
       if @prescription.save
         current_doctor.prescriptions << @prescription
-        patient = Patient.find(params[:prescription][:patient_id])
+        patient = Patient.find(1)
         patient.prescriptions << @prescription
         format.html { redirect_to doctors_dashboard_path, notice: 'Prescription was successfully created.' }
         format.json { render action: 'show', status: :created, location: @prescription }
@@ -44,14 +44,13 @@ class PrescriptionsController < ApplicationController
   #     format.html { redirect_to prescriptions_url }
   #     format.json { head :no_content }
   #   end
-
-  end
+  # end
 
   private
 
   def set_prescription
-      @prescription = Prescription.find(params[:id])
-    end
+    @prescription = Prescription.find(params[:id])
+  end
 # do we need to have password_confirmation here?
   def prescription_params
     params.require(:prescription).permit(:rxcui, :recurrence, :start_datetime, :end_datetime, :side_effects, :image_url, :medication_name)

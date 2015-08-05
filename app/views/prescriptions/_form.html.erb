@@ -12,32 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %><br>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %><br>
+    <%= f.label :patient %><br>
+    <%= f.collection_select :id, current_doctor.patients, :id, :name %><br>
   </div>
 
   <div class="field">
-    <%= f.label :medication_name %><br>
+    <%= f.label :medication %><br>
     <%= f.text_field :medication_name %><br>
-  </div>
-
-   <div class="field">
-    <%= f.label :recurrence %><br>
-    <%= f.text_field :recurrence %><br>
   </div>
 
   <div class="field">
     <%= f.label :start_date %><br>
-    <%= f.text_field :start_date %><br>
+    <%= f.datetime_select :start_datetime, :ampm => true %><br>
   </div>
 
   <div class="field">
     <%= f.label :end_date %><br>
-    <%= f.text_field :end_date %><br>
+    <%= f.datetime_select :end_datetime, :ampm => true %><br>
   </div>
 
   <div class="actions">
