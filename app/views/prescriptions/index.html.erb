@@ -1,6 +1,6 @@
 <h1>List of Prescriptions for Today:</h1>
-
-   <% @patient.scheduled_doses.each do |sd| %>
+  <% @sd = @patient.scheduled_doses.to_a %>
+   <% @sd.sort_by! do |sd| %>
       <div class="panel panel-primary">
         <div class="panel-heading">
           <div class="row">
