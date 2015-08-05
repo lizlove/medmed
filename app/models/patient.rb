@@ -13,4 +13,12 @@ has_many :scheduled_doses, through: :prescriptions
     "#{self.first_name} #{self.last_name}"
   end
 
+  def scheduled_doses_by_time
+    self.scheduled_doses.order(:scheduled_time)
+  end
+
+  def scheduled_doses_for_today
+    self.scheduled_doses_by_time.where({scheduled_time: DateTime.now.midnight..(DateTime.now.midnight + 1.day)})
+  end
+
 end
