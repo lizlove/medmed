@@ -16,7 +16,8 @@ class Prescription < ActiveRecord::Base
   end
 
   def recurrence_is_scheduled?
-    !self.recurrence.instance_variable_get("@all_recurrence_rules").empty?
+    # self.recurrence
+    self.recurrence.rrules.any?
   end
 
   def build_scheduled_doses
@@ -29,12 +30,19 @@ class Prescription < ActiveRecord::Base
     self.recurrence.add_recurrence_rule IceCube::Rule.daily(interval)
   end
 
-  def add_weekly_recurrence_rule(interval)
-    self.recurrence.add_recurrence_rule IceCube::Rule.weekly(interval)
+  def add_hourly_recurrence_rule(interval)
+    self.recurrence.add_recurrence_rule IceCube::Rule.hourly(interval)
   end
 
-  def add_monthly_recurrence_rule(interval)
-    self.recurrence.add_recurrence_rule IceCube::Rule.monthly(interval)
+  def add_recurrence_rule(interval, type, days=[])
+    type = type.downcase
+    if type == "weekly"
+      self.add_weekly_recurrence_rule_with_days(interval, days)
+    elsif type == "hourly"
+      self.add_hourly_recurrence_rule(interval)
+    else
+      self.add_daily_recurrence_rule(interval) 
+    end
   end
 
   def add_weekly_recurrence_rule_with_days(interval, days)

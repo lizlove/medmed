@@ -10,13 +10,19 @@ class PrescriptionsController < ApplicationController
   end
 
   def create
-    binding.pry
     @prescription = Prescription.new(prescription_params)
+    @prescription.medication_name = Medication.find_name_by_rxcui(params[:rxcui]) if params[:rxcui]
+    @prescription.rxcui = params[:rxcui]
+    current_doctor.prescriptions << @prescription
+    patient = Patient.find(params[:prescription][:patient_id])
+    patient.prescriptions << @prescription
+    if params[:days]
+      @prescription.add_recurrence_rule(params[:interval], params[:occurrence], params[:days])
+    else
+      @prescription.add_recurrence_rule(params[:interval], params[:occurrence])
+    end
     respond_to do |format|
       if @prescription.save
-        current_doctor.prescriptions << @prescription
-        patient = Patient.find(params[:prescription][:patient_id])
-        patient.prescriptions << @prescription
         format.html { redirect_to doctors_dashboard_path, notice: 'Prescription was successfully created.' }
         format.json { render action: 'show', status: :created, location: @prescription }
       else
@@ -67,7 +73,7 @@ class PrescriptionsController < ApplicationController
   end
 # do we need to have password_confirmation here?
   def prescription_params
-    params.require(:prescription).permit(:rxcui, :recurrence, :start_datetime, :end_datetime, :side_effects, :image_url, :medication_name)
+    params.require(:prescription).permit(:start_datetime, :end_datetime)
   end
 
 end
