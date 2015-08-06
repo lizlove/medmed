@@ -1,0 +1,34 @@
+<div class="panel panel-<%= sd.panel_class %>" id="sd-<%= sd.id %>">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-lg-6">
+        <%= sd.prescription.medication_name %>
+      </div>
+      <div class="col-lg-6">
+        <div class="checkbox">
+          <label for="">
+            <%= form_for(sd, remote: true) do |f| %>
+                <%= f.hidden_field :prescription_id, value: sd.prescription.id %>
+                <%= f.check_box :was_taken %>
+            <% end %>
+            Taken
+          </label>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-6">
+        <img src="<%= sd.prescription.image_url %>" alt="pillz">
+        <%= sd.scheduled_time %>
+      </div>
+      <div class="col-lg-6">
+        <form action="">
+          <textarea class="form-control" rows="3" id="textArea">Side Effects</textarea>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

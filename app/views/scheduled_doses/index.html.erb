@@ -7,43 +7,13 @@
 <% end %>
 
 <h1>List of Scheduled Doses for <%= @patient.name %> Today:</h1>
-<% @patient.scheduled_doses_for_today.each do |sd| %>
-  <div class="panel panel-<%= sd.panel_class %>">
-    <div class="panel-heading">
-      <div class="row">
-        <div class="col-lg-6">
-        <%= sd.prescription.medication_name %>
-        </div>
-        <div class="col-lg-6">
-            <div class="checkbox">
-              <labeldose for="">
-                  <%= form_for(sd) do |f| %>
-                        <%= f.hidden_field :prescription_id, value: sd.prescription.id %>
-                        <%= f.check_box :was_taken %>
-                        <%= f.submit "Submit" %>
-                  <% end %>
-                    Taken
-              </labeldose>
 
-            </div>
-        </div>
-      </div>
-    </div>
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-lg-6">
-          <img src="<%= sd.prescription.image_url %>" alt="pillz">
-          <%= sd.scheduled_time %>
-        </div>
-        <div class="col-lg-6">
-          <form action="">
-            <textarea class="form-control" rows="3" id="textArea">Side Effects</textarea>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
+<div class="scheduled_doses">
+  <% @patient.scheduled_doses_for_today.each do |sd| %>
+    <%= render partial: "scheduled_dose", locals: {:sd => sd} %>
+  <% end %>
+</div>
+
 
 
 
