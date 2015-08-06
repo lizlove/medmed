@@ -6,13 +6,15 @@ class ScheduledDosesController < ApplicationController
    end 
 
    def update
-    # respond_to do |format|
-    #   if @dose.update(dose_params)
-    #     format.html { notice: 'Great work taking your pills!' }
-    #     self.taken_time = Time.now
-    #     self.was_taken = true
-    #   end
-    # end
+   @patient = Prescription.find(dose_params[:prescription_id]).patient
+
+    respond_to do |format|
+      if @dose.update(dose_params)
+        format.html { redirect_to patient_scheduled_doses_path(@patient) }
+        # self.taken_time = Time.now
+        # self.was_taken = true
+      end
+    end
 
    end 
 
