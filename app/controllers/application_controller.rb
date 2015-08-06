@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if resource.is_a? Patient
       @patient = Patient.find(resource.id)
-      patient_prescriptions_path(@patient)
+      patient_scheduled_doses_path(@patient)
     elsif resource.is_a? Doctor
       @doctor = Doctor.find(resource.id)
       doctors_dashboard_path

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :prescriptions, only: [:new, :create]
 
   resources :patients do 
-    resources :prescriptions, only: [:index]
+    resources :scheduled_doses, only: [:index]
   end 
 
  
