@@ -1,7 +1,6 @@
 class PrescriptionsController < ApplicationController
   # before_action :set_prescription, only: [:edit, :update, :destroy]
   def index 
-    @patient = Patient.find(params[:patient_id])
 
   end 
 
