@@ -1,10 +1,6 @@
 class DoctorsController < ApplicationController
   before_action :set_doctor, only: [:show, :edit, :update, :destroy]
 
-  def dashboard
-    @doctor = current_doctor
-  end
-
   def index
     @doctors = Doctor.all # for the json extraction. Don't see why we would list it anywhere else, but we can access it them now.
     # @patients = @doctor.patients
