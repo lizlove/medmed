@@ -1,8 +1,16 @@
 <% if doctor_signed_in? %>
   <li>
+  <% @doctor = Doctor.find_by(params[:doctor_id])%>
+  <a href="">Hello, <strong><%= @doctor.first_name %></strong></a>
+  </li>
+  <li>
   <%= link_to('Logout', destroy_doctor_session_path, :method => :delete) %>        
   </li>
-<% if patient_signed_in? %>
+<% elsif patient_signed_in? %>
+  <li>
+  <% @patient = Patient.find_by(params[:patient_id])%>
+  <a href="">Hello, <strong><%= @patient.first_name %></strong></a>
+  </li>
   <li>
   <%= link_to('Logout', destroy_patient_session_path, :method => :delete) %>        
   </li>
