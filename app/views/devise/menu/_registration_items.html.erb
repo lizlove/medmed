@@ -3,6 +3,7 @@
   <% @doctor = Doctor.find_by(params[:doctor_id])%>
   <a href="">Hello, <strong><%= @doctor.first_name %></strong></a>
   </li>
+  <li><a href="/doctors/edit">My Account</a></li>
   <li>
   <%= link_to('Logout', destroy_doctor_session_path, :method => :delete) %>        
   </li>
@@ -11,6 +12,7 @@
   <% @patient = Patient.find_by(params[:patient_id])%>
   <a href="">Hello, <strong><%= @patient.first_name %></strong></a>
   </li>
+  <li><a href="/patients/edit">My Account</a></li>
   <li>
   <%= link_to('Logout', destroy_patient_session_path, :method => :delete) %>        
   </li>

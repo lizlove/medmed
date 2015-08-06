@@ -4,7 +4,7 @@
   <%= submit_tag "Search Medications"%><br> 
 </form>
 
-<%= form_for(@prescription) do |f| %>
+<%= form_for(@prescription, url: doctor_prescriptions_path) do |f| %>
   <% if @prescription.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@prescription.errors.count, "error") %> prohibited this prescription from being saved:</h2>
