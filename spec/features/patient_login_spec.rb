@@ -7,7 +7,7 @@ feature 'Patient logs in from the homepage and' do
 
 
   scenario 'they log in successfully' do
-    visit patient_login_path
+    visit new_patient_session
 
     fill_in 'Email', with: patient.email
     fill_in 'Password', with: patient.password
@@ -19,7 +19,7 @@ feature 'Patient logs in from the homepage and' do
   end
 
   scenario 'they enter the wrong password' do
-    visit patient_login_path
+    visit new_patient_session
 
     fill_in 'Email', with: patient.email
     fill_in 'Password', with: 'password1234blahafasf'
@@ -31,7 +31,7 @@ feature 'Patient logs in from the homepage and' do
   end
 
   scenario 'they are not a valid user' do
-    visit patient_login_path
+    visit new_patient_session
 
     fill_in 'Email', with: 'doctorwario@nintendo.com'
     fill_in 'Password', with: 'password1234blah'
@@ -43,7 +43,7 @@ feature 'Patient logs in from the homepage and' do
   end
 
   scenario 'they are not able to log in if they are a doctor' do
-    visit patient_login_path
+    visit new_patient_session
 
     fill_in 'Email', with: doctor.email
     fill_in 'Password', with: doctor.password
@@ -53,5 +53,30 @@ feature 'Patient logs in from the homepage and' do
     expect(page.current_path).to eq patient_login_path
     expect(page).to have_content("Invalid email or password.")
   end
+
+  scenario 'they missed one of yesterdays doses' do
+    visit new_patient_session
+
+    fill_in 'Email', with: patient_missed_dose.email
+    fill_in 'Password', with: 'password'
+
+    click_button 'Sign In'
+
+    expect(page.current_path).to eq patient_login_path
+    expect(page).to have_content("Warning")
+  end
+
+  scenario 'they did not miss one of yesterdays doses' do
+    visit new_patient_session
+
+    fill_in 'Email', with: patient_no_missed_doses.email
+    fill_in 'Password', with: 'password'
+
+    click_button 'Sign In'
+
+    expect(page.current_path).to eq patient_login_path
+    expect(page).to_not have_content("Warning")
+  end
+
 
 end
