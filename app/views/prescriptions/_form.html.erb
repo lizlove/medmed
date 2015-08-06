@@ -1,3 +1,4 @@
+ <%= render 'dropdown' %>
 <%= form_for(@prescription) do |f| %>
   <% if @prescription.errors.any? %>
     <div id="error_explanation">
@@ -13,11 +14,6 @@
   <div class="field">
     <%= f.label :patient %><br>
     <%= f.collection_select :patient_id, current_doctor.patients, :id, :name %><br>
-  </div>
-
-  <div class="field">
-    <%= f.label :medication %><br>
-    <%= f.text_field :medication_name %><br>
   </div>
 
   <div class="field">

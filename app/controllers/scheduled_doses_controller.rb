@@ -2,7 +2,7 @@ class ScheduledDosesController < ApplicationController
    before_action :set_dose, only: [:update]
 
    def index
-      # @doses = ScheduledDoses.all
+      @patient = Patient.find(params[:patient_id])
    end 
 
    def update
