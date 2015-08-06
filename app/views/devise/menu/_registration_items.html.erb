@@ -1,0 +1,13 @@
+<% if doctor_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_doctor_session_path, :method => :delete) %>        
+  </li>
+<% if patient_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_patient_session_path, :method => :delete) %>        
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', root_path)  %>  
+  </li>
+<% end %>
