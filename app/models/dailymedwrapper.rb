@@ -1,5 +1,0 @@
-class DailyMedWrapper
-
-
-
-end
