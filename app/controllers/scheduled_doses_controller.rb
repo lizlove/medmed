@@ -12,8 +12,6 @@ class ScheduledDosesController < ApplicationController
       if @dose.update(dose_params)
         format.html { redirect_to patient_scheduled_doses_path(@patient) }
         format.js
-        # self.taken_time = Time.now
-        # self.was_taken = true
       end
     end
 

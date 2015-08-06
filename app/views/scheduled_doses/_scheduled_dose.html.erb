@@ -25,9 +25,17 @@
         <%= sd.scheduled_time %>
       </div>
       <div class="col-lg-6">
-        <form action="">
-          <textarea class="form-control" rows="3" id="textArea">Side Effects</textarea>
-        </form>
+        <%= form_for(sd, remote: true) do |f| %>
+            <%= f.hidden_field :prescription_id, value: sd.prescription.id %>
+            <%= f.text_area :side_effect, class: "form-control", rows: "3" %>
+            <br/>
+            <%= f.submit "Record Side Effects", class: "btn btn-default"   %>
+        <% end %>
+        <!--<form action="">-->
+          <!--<textarea class="form-control" rows="3" id="textArea">Side Effects</textarea>-->
+          <!--<br/>-->
+          <!--<a href="#" class="btn btn-default">Record Side Effects</a>-->
+        <!--</form>-->
       </div>
     </div>
   </div>
