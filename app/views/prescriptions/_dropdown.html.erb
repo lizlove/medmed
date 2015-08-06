@@ -1,0 +1,7 @@
+    <form action="/medication_search" method="post" data-remote="true">
+      <input name="authenticity_token" value="<%=form_authenticity_token%>" type="hidden">
+    <%= text_field_tag :keyword %>
+    <%= submit_tag "Search Medications"%><br>
+    <div id="med_dropdown">
+  </div>
+    </form>

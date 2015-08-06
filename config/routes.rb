@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :doctors, controllers: {registrations: 'doctors/registrations'}
   get 'doctors/dashboard' => 'doctors#dashboard'
   resources :prescriptions, only: [:new, :create]
+  post 'medication_search' => 'prescriptions#medication_search'
 
   resources :patients do 
     resources :prescriptions, only: [:index]
