@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
   root 'welcome#index'
-  devise_for :patients, controllers: {registrations: 'patients/registrations'}
-  devise_for :doctors, controllers: {registrations: 'doctors/registrations'}
-  get 'doctors/dashboard' => 'doctors#dashboard'
-  resources :prescriptions, only: [:new, :create]
+  devise_for :patients
+  devise_for :doctors
+  # get 'doctors/patients' => 'doctors#dashboard'
   post 'medication_search' => 'prescriptions#medication_search'
 
-  resources :patients do 
+  resources :doctors, only: [] do
+    resources :prescriptions, only: [:new, :create]
+    resources :patients, only: [:index, :show]
+  end
+
+  resources :patients, only: [] do 
     resources :scheduled_doses, only: [:index]
   end
 

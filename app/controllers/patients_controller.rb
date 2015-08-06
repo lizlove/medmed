@@ -2,8 +2,7 @@ class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
 
   def index
-    @patients = Patient.all # for the json extraction. Don't see why we would list it anywhere else, but we can access it them now.
-    # @doctors = @patient.doctors
+    @doctor = current_doctor
   end
 
   def new

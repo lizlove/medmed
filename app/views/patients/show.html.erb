@@ -2,7 +2,7 @@
 
 <p>
   <h3>Name:</h3>
-  <%= @patient.first_name %> <%= @patient.last_name %>
+  <%= @patient.name %>
 </p>
 
 <p>
@@ -14,9 +14,3 @@
   <h3>Phone Number:</h3>
   <%= @patient.phone_number %>
 </p>
-
-
-
-
-<%= link_to 'Edit', edit_patient_path(@patient) %> |
-<%= link_to 'Back', patients_path %>
