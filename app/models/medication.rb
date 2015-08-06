@@ -1,5 +1,5 @@
-class Medication < ActiveRecord::Base
-  def dropdown_name_list(search_term)
+class Medication
+  def self.dropdown_name_list(search_term)
     xml = RestClient.get("https://rxnav.nlm.nih.gov/REST/drugs?name=#{search_term}")
     json = Crack::XML.parse(xml)
     if json['rxnormdata']['drugGroup']['conceptGroup']
@@ -14,7 +14,7 @@ class Medication < ActiveRecord::Base
       []
     end
   end
-  def dropdown_hash(search_term)
+  def self.dropdown_hash(search_term)
     xml = RestClient.get("https://rxnav.nlm.nih.gov/REST/drugs?name=#{search_term}")
     json = Crack::XML.parse(xml)
     drug_hash = {}

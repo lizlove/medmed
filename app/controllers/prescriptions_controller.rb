@@ -6,6 +6,7 @@ class PrescriptionsController < ApplicationController
 
   def new
     @prescription = Prescription.new
+    @medication = Medication.new
   end
 
   def create
@@ -47,6 +48,17 @@ class PrescriptionsController < ApplicationController
   #     format.json { head :no_content }
   #   end
   # end
+
+  def medication_search
+    keyword = params[:keyword]
+
+    @medication_list = Medication.dropdown_hash(keyword).to_a
+
+    respond_to do |format|
+      format.js
+    end
+
+  end
 
   private
 
