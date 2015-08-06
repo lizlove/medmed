@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   resources :patients do 
     resources :scheduled_doses, only: [:index]
-  end 
+  end
+
+  resources :scheduled_doses, only: [:update]
 
  
   # The priority is based upon order of creation: first created -> highest priority.
