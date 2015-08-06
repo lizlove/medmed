@@ -8,6 +8,20 @@
   <%= analytics_init if Rails.env.production? %>
 </head>
 <body>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+      <a class="navbar-brand" href='<%=link_to(root_path)%>'>MedMed</a>
+    </div>
+      <ul class="nav navbar-nav">
+        <li><a href="#">My Account</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      <%= render 'devise/menu/registration_items' %>
+      </ul>
+    </div>
+</nav>
+
   <div class="container"> 
 
   <%= yield %>

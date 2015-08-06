@@ -1,0 +1,25 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+      <a class="navbar-brand" href='<%=link_to(root_path)%>'>MedMed</a>
+    </div>
+      <ul class="nav navbar-nav">
+        <li><a href="#">My Account</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <%= binding.pry %>
+        <% if current_doctor? %>
+          <li>Hello, <strong>Dr. <%= current_doctor.last_name %></strong></li>
+          <li><a href= <%= link_to('Edit profile', edit_doctor_registration_path)%></a></li> 
+          <li><a href=<%= link_to("Logout", destroy_doctor_session_path, method: 'DELETE') %></a></li>
+        <% elsif current_patient? %>
+          <li><a>Hello,<strong><%= current_patient.first_name %></a></strong>
+          <li><%= link_to('Edit profile', edit_patient_registration_path) %><li>
+          <li><%= link_to("Logout", destroy_patient_session_path, method: 'DELETE') %></li>
+        <% else %>
+          <li><%= link_to "Sign up", new_user_registration_path %></li>
+          <li><%= link_to "Login", new_user_session_path %></li>
+        <% end %>
+
+      </ul>
+    </div>
+</nav>
