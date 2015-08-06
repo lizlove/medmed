@@ -6,7 +6,7 @@
     </div>
 <% end %>
 
-<h1>List of Prescriptions for <%= @patient.name %> Today:</h1>
+<h1>List of Scheduled Doses for <%= @patient.name %> Today:</h1>
 <% @patient.scheduled_doses_for_today.each do |sd| %>
   <div class="panel panel-<%= sd.panel_class %>">
     <div class="panel-heading">
