@@ -5,3 +5,17 @@ $(function(){
     })
 })
 
+
+function ScheduledDose(id) {
+    this.id = id;
+}
+
+ScheduledDose.prototype.update = function(html, sdClass){
+    $('#sd-' + this.id).find('.text-success').html(html);
+    $('#sd-' + this.id).attr('class', sdClass);
+}
+
+
+
+
+

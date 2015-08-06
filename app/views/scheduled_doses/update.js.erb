@@ -1,11 +1,11 @@
 
 var sdClass = "panel panel-<%= @dose.panel_class %>"
 
-$('#sd-<%= @dose.id %>').attr('class', sdClass);
-
-
-<% if @dose.side_effect == "" || @dose.side_effect.nil? %>
-    $('#sd-<%= @dose.id %>').find('.text-success').html('');
+var html = <% if @dose.side_effect == "" || @dose.side_effect.nil? %>
+    ''
 <% else %>
-    $('#sd-<%= @dose.id %>').find('.text-success').html('Side Effects Recorded');
+    'Side Effects Recorded'
 <% end %>
+
+var sd = new ScheduledDose(<%= @dose.id %>);
+sd.update(html, sdClass);
