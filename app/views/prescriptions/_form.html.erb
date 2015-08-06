@@ -1,4 +1,9 @@
- <%= render 'dropdown' %>
+<form action="/medication_search" method="post" data-remote="true">
+  <input name="authenticity_token" value="<%=form_authenticity_token%>" type="hidden">
+  <%= text_field_tag :keyword %>
+  <%= submit_tag "Search Medications"%><br> 
+</form>
+
 <%= form_for(@prescription) do |f| %>
   <% if @prescription.errors.any? %>
     <div id="error_explanation">
@@ -11,6 +16,8 @@
       </ul>
     </div>
   <% end %>
+  <div class="field" id="med_dropdown">
+  </div>
   <div class="field">
     <%= f.label :patient %><br>
     <%= f.collection_select :patient_id, current_doctor.patients, :id, :name %><br>
@@ -24,7 +31,7 @@
   <div class="field_to_switch">
     <% weekday_options = {hidden: true, class: "weekdays"} %>
     <%= label_tag :every %>
-    <%= number_field_tag :days %>
+    <%= number_field_tag :interval %>
     <%= label_tag :time_units, "days" %><br>
     <%= label_tag :S, "S", weekday_options %>
     <%= check_box_tag :"weekdays[]", "sunday", false, weekday_options %>
@@ -51,7 +58,6 @@
     <%= f.label :end_date %><br>
     <%= f.datetime_select :end_datetime, :ampm => true %><br>
   </div>
-
   <div class="actions">
     <%= f.submit "Prescribe" %>
   </div>
