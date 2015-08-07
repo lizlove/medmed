@@ -49,6 +49,16 @@ class Prescription < ActiveRecord::Base
     self.recurrence.add_recurrence_rule IceCube::Rule.weekly(interval).day(days)
   end
 
+  def get_script_label
+    FdaWrapper.parse_label
+  end 
+
+  def get_disclaimer
+    rxstr = self.rxcui.to_s
+    FdaWrapper.request(rxstr)
+    FdaWrapper.parse_disclaimer
+  end 
+
   private
   def start_before_end
     if self.start_datetime && self.end_datetime

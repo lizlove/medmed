@@ -2,7 +2,8 @@
   <div class="panel-heading">
     <div class="row">
       <div class="col-lg-6">
-        <%= sd.prescription.medication_name %>
+        <% @prescription = sd.prescription %>
+        <%= link_to("#{sd.prescription.medication_name}", prescription_path(@prescription))%>
       </div>
       <div class="col-lg-6">
         <div class="checkbox">
@@ -21,7 +22,7 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-lg-6">
-        <img src="<%= sd.prescription.image_url %>" alt="pillz">
+        <img src="<%= sd.prescription.image_url %>" alt="pills">
         <%= sd.scheduled_time %>
       </div>
       <div class="col-lg-6">

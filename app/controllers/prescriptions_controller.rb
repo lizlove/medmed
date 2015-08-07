@@ -1,5 +1,10 @@
 class PrescriptionsController < ApplicationController
   # before_action :set_prescription, only: [:edit, :update, :destroy]
+  
+  def show
+    @prescription = Prescription.find(params[:id])
+  end 
+
   def index 
 
   end 
@@ -30,6 +35,8 @@ class PrescriptionsController < ApplicationController
         format.json { render json: @prescription.errors, status: :unprocessable_entity }
       end
     end
+
+
   end
 
   # def edit
@@ -73,7 +80,7 @@ class PrescriptionsController < ApplicationController
   end
 # do we need to have password_confirmation here?
   def prescription_params
-    params.require(:prescription).permit(:start_datetime, :end_datetime)
+    params.require(:prescription).permit(:start_datetime, :end_datetime, :medication_name, :image_url, :doctor_id, :rxcui)
   end
 
 end
