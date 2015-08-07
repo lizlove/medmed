@@ -296,6 +296,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   json
+  nokogiri
   pg
   pry
   rails (= 4.2.0)

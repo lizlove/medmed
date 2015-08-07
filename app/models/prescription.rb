@@ -17,7 +17,7 @@ class Prescription < ActiveRecord::Base
 
   def recurrence_is_scheduled?
     # self.recurrence
-    self.recurrence.rrules.any?
+    self.recurrence.rules.any?
   end
 
   def build_scheduled_doses
@@ -57,6 +57,11 @@ class Prescription < ActiveRecord::Base
     rxstr = self.rxcui.to_s
     FdaWrapper.request(rxstr)
     FdaWrapper.parse_disclaimer
+  end 
+
+  def get_image
+    rxstr = self.rxcui.to_s
+    PillboxWrapper.request(rxstr)
   end 
 
   private
