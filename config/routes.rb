@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   # get 'doctors/patients' => 'doctors#dashboard'
   post 'medication_search' => 'prescriptions#medication_search'
 
-  resources :doctors, only: [] do
+  resources :doctors, only: [:show] do
     resources :prescriptions, only: [:new, :create, :destroy]
     resources :patients, only: [:index, :show, :new, :create, :destroy]
   end
 
-  resources :patients, only: [] do 
+  resources :patients, only: [:show] do
     resources :scheduled_doses, only: [:index]
   end
 
