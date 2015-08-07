@@ -35,12 +35,9 @@ class PatientsController < ApplicationController
   end
 
   def destroy
-    @patient.destroy
-    respond_to do |format|
-      format.html { redirect_to patients_url }
-      format.json { head :no_content }
-    end
-
+    @patient = Patient.find(params[:id])
+    current_doctor.patients.destroy(@patient)
+    redirect_to doctor_patients_path
   end
 
   private
