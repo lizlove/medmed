@@ -19,7 +19,7 @@ class PillboxWrapper
 
   def self.get_image_uri(image_id)
     if image_id == ""
-      "/public/no_image.jpg"
+      "/no_image.jpg"
     else 
       "http://pillbox.nlm.nih.gov/assets/small/" + image_id + ".jpg"
     end 

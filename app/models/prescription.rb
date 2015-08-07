@@ -17,7 +17,7 @@ class Prescription < ActiveRecord::Base
 
   def recurrence_is_scheduled?
     # self.recurrence
-    self.recurrence.rules.any?
+    self.recurrence.rrules.any?
   end
 
   def build_scheduled_doses
