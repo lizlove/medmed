@@ -1,7 +1,6 @@
 <% if doctor_signed_in? %>
   <li>
-  <% @doctor = Doctor.find_by(params[:doctor_id])%>
-  <a href="">Hello, <strong><%= @doctor.first_name %></strong></a>
+  <a href="">Hello, <strong><%= current_doctor.first_name %></strong></a>
   </li>
   <li><a href="/doctors/edit">My Account</a></li>
   <li>
@@ -9,8 +8,7 @@
   </li>
 <% elsif patient_signed_in? %>
   <li>
-  <% @patient = Patient.find_by(params[:patient_id])%>
-  <a href="">Hello, <strong><%= @patient.first_name %></strong></a>
+  <a href="">Hello, <strong><%= current_patient.first_name %></strong></a>
   </li>
   <li><a href="/patients/edit">My Account</a></li>
   <li>

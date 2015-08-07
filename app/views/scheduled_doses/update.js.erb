@@ -1,5 +1,6 @@
 
-var sdClass = "panel panel-<%= @dose.panel_class %>"
+
+var sd = new ScheduledDose(<%= @scheduled_dose.id %>);
+sd.update("<%= j render partial: "scheduled_dose", locals: {sd: @scheduled_dose} %>");
 
 
-$('#sd-<%= @dose.id %>').attr('class', sdClass);

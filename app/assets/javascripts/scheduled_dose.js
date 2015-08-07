@@ -5,3 +5,16 @@ $(function(){
     })
 })
 
+
+function ScheduledDose(id) {
+    this.id = id;
+}
+
+ScheduledDose.prototype.update = function(html){
+    $('div.panel[data-id=' + this.id + ']').replaceWith(html);
+}
+
+
+
+
+
