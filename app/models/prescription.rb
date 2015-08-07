@@ -59,6 +59,11 @@ class Prescription < ActiveRecord::Base
     FdaWrapper.parse_disclaimer
   end 
 
+  def get_image
+    rxstr = self.rxcui.to_s
+    PillboxWrapper.request(rxstr)
+  end 
+
   private
   def start_before_end
     if self.start_datetime && self.end_datetime
