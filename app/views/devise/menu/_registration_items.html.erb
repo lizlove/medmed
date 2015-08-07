@@ -11,6 +11,9 @@
   <a href="<%= patient_scheduled_doses_path(current_patient.id) %>">Hello, <strong><%= current_patient.first_name.capitalize %></strong></a>
   </li>
   <li><%= link_to('My Account', patient_path(current_patient)) %></li>
+    <li>
+      <%= link_to('My Scheduled Doses', patient_scheduled_doses_path(current_patient)) %>
+    </li>
   <li>
   <%= link_to('Logout', destroy_patient_session_path, :method => :delete) %>        
   </li>
