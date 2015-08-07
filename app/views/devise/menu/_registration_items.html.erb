@@ -8,7 +8,7 @@
   </li>
 <% elsif patient_signed_in? %>
   <li>
-  <a href="<%= patient_scheduled_doses_path %>">Hello, <strong><%= current_patient.first_name.capitalize %></strong></a>
+  <a href="<%= patient_scheduled_doses_path(current_patient.id) %>">Hello, <strong><%= current_patient.first_name.capitalize %></strong></a>
   </li>
   <li><a href="/patients/edit">My Account</a></li>
   <li>
