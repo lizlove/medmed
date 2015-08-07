@@ -50,8 +50,13 @@ class Prescription < ActiveRecord::Base
   end
 
   def get_script_label
+    FdaWrapper.parse_label
+  end 
+
+  def get_disclaimer
     rxstr = self.rxcui.to_s
     FdaWrapper.request(rxstr)
+    FdaWrapper.parse_disclaimer
   end 
 
   private

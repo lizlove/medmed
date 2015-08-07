@@ -5,6 +5,9 @@
             <h1><%= @prescription.medication_name %></h1>
           </div>
           <div class="body">
+            <h2>Disclaimer</h2>
+            <p><%= @prescription.get_disclaimer %></p>
+            <h2>Standard Prescription Label</h2>
             <p><%= @prescription.get_script_label %></p>
           </div>
         </div>

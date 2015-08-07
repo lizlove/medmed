@@ -2,8 +2,8 @@
   <div class="panel-heading">
     <div class="row">
       <div class="col-lg-6">
-        <%= link_to("sd.prescription.medication_name", )%>
-        <!-- put linkto here for the prescription show page -->
+        <% @prescription = sd.prescription %>
+        <%= link_to("#{sd.prescription.medication_name}", prescription_path(@prescription))%>
       </div>
       <div class="col-lg-6">
         <div class="checkbox">
