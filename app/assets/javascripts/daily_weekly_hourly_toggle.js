@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
   $('select.recurrence_option').on('change', function(){
     if ("Daily" == $(this).val()){
       $(".field_to_switch :nth-child(3)").text("days")
