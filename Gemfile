@@ -20,7 +20,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'ice_cube'
-
+gem 'nokogiri'
 gem 'figaro'
 
 # Use ActiveModel has_secure_password

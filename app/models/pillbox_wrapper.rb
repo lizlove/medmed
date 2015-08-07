@@ -1,35 +1,28 @@
 class PillboxWrapper
+  require 'nokogiri'
 
-  PB_KEY = ENV["pillbox_key"]
+  PB_KEY = ENV["pb_key"]
+
+  def self.nokogiri_parse(xml)
+    image_id = Nokogiri::XML(xml).xpath("//image_id").text
+    self.get_image_uri(image_id)
+  end 
 
   def self.request(rxcui)
-    binding.pry
     base_url = "http://pillbox.nlm.nih.gov/PHP/pillboxAPIService.php?key=" + PB_KEY
-    binding.pry
     search_url = "&rxcui=" 
     total_url = base_url + search_url + rxcui
     api_request = URI(URI.encode(total_url))
-    @api_response = Net::HTTP.get(api_request) 
-    JSON.parse(@api_response)
+    api_response = Net::HTTP.get(api_request) 
+    self.nokogiri_parse(api_response)
   end
 
-  # def self.image
-      #XML image_id
-  #   result = self.request(self.perscriptions.medication_id)
-  #   result.collect do |side_affects|
-  #     location["geometry"]["location"]["lat"],location["geometry"]["location"]["lng"],4)
-  #   end
-  # end
-
-  # def image_call
-  #   if results["image_id"] = nil 
-
-  #   %3cimage_id%3e
-  # end 
-
-  # def get_image_uri
-  #   base_uri = "http://pillbox.nlm.nih.gov/assets/small/" + @image_id + ".jpg"
-
-  # end 
+  def self.get_image_uri(image_id)
+    if image_id == ""
+      "/public/no_image.jpg"
+    else 
+      "http://pillbox.nlm.nih.gov/assets/small/" + image_id + ".jpg"
+    end 
+  end 
 
 end
