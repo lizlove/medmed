@@ -1,8 +1,18 @@
 <% if doctor_signed_in? %>
   <li>
-  <a href="<%= doctor_patients_path %>">Hello, <strong><%= current_doctor.first_name.capitalize %></strong></a>
+  <a href="<%= doctor_patients_path(current_doctor) %>">Hello, <strong><%= current_doctor.first_name.capitalize %></strong></a>
   </li>
-  <li><a href="/doctors/edit">My Account</a></li>
+
+  <li><%= link_to('My Account', doctor_path(current_doctor)) %></li>
+    <li>
+      <%= link_to('Patients', doctor_patients_path(current_doctor)) %>
+    </li>
+    <li>
+        <%= link_to('Add A Patient', new_doctor_patient_path(current_doctor)) %>
+    </li>
+    <li>
+      <%= link_to('Prescribe Medication', new_doctor_prescription_path(current_doctor)) %>
+    </li>
   <li>
   <%= link_to('Logout', destroy_doctor_session_path, :method => :delete) %>        
   </li>
