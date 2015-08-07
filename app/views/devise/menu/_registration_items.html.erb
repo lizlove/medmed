@@ -1,6 +1,6 @@
 <% if doctor_signed_in? %>
   <li>
-  <a href="">Hello, <strong><%= current_doctor.first_name %></strong></a>
+  <a href="<%= doctor_patients_path %>">Hello, <strong><%= current_doctor.first_name.capitalize %></strong></a>
   </li>
   <li><a href="/doctors/edit">My Account</a></li>
   <li>
@@ -8,7 +8,7 @@
   </li>
 <% elsif patient_signed_in? %>
   <li>
-  <a href="">Hello, <strong><%= current_patient.first_name %></strong></a>
+  <a href="<%= patient_scheduled_doses_path %>">Hello, <strong><%= current_patient.first_name.capitalize %></strong></a>
   </li>
   <li><a href="/patients/edit">My Account</a></li>
   <li>
