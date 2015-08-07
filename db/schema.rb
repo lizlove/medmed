@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150806174751) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "time_zone"
   end
 
   add_index "patients", ["email"], name: "index_patients_on_email", unique: true
@@ -66,7 +67,6 @@ ActiveRecord::Schema.define(version: 20150806174751) do
     t.text     "side_effects"
     t.string   "image_url"
     t.string   "medication_name"
-    t.text     "label"
   end
 
   create_table "scheduled_doses", force: :cascade do |t|
