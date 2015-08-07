@@ -1,3 +1,7 @@
+
+# Ignore application configuration
+/config/application.yml
+
 # Logs and databases #
 ######################
 *.log
@@ -31,5 +35,3 @@ config/secrets.yml
 
 
 
-# Ignore application configuration
-/config/application.yml
