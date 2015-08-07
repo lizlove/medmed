@@ -60,6 +60,7 @@ class Prescription < ActiveRecord::Base
   end 
 
   def get_image
+    binding.pry
     rxstr = self.rxcui.to_s
     PillboxWrapper.request(rxstr)
   end 
