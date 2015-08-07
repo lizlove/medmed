@@ -1,11 +1,6 @@
 
-var sdClass = "panel panel-<%= @dose.panel_class %>"
 
-var html = <% if @dose.side_effect == "" || @dose.side_effect.nil? %>
-    ''
-<% else %>
-    'Side Effects Recorded'
-<% end %>
+var sd = new ScheduledDose(<%= @scheduled_dose.id %>);
+sd.update("<%= j render partial: "scheduled_dose", locals: {sd: @scheduled_dose} %>");
 
-var sd = new ScheduledDose(<%= @dose.id %>);
-sd.update(html, sdClass);
+

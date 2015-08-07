@@ -10,9 +10,8 @@ function ScheduledDose(id) {
     this.id = id;
 }
 
-ScheduledDose.prototype.update = function(html, sdClass){
-    $('#sd-' + this.id).find('.text-success').html(html);
-    $('#sd-' + this.id).attr('class', sdClass);
+ScheduledDose.prototype.update = function(html){
+    $('div.panel[data-id=' + this.id + ']').replaceWith(html);
 }
 
 

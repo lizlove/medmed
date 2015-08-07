@@ -13,11 +13,15 @@ class ScheduledDose < ActiveRecord::Base
     was_taken
   end
 
+  def side_effect_present?
+    !(self.side_effect == "" || self.side_effect.nil?)
+  end
+
   def panel_class
     if !self.was_taken? && self.scheduled_time < Time.now
       "danger"
     elsif self.was_taken?
-      "default"
+      "success"
     else
       "primary"
     end

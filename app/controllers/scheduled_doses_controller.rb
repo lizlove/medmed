@@ -9,7 +9,7 @@ class ScheduledDosesController < ApplicationController
    @patient = Prescription.find(dose_params[:prescription_id]).patient
 
     respond_to do |format|
-      if @dose.update(dose_params)
+      if @scheduled_dose.update(dose_params)
         format.html { redirect_to patient_scheduled_doses_path(@patient) }
         format.js
       end
@@ -21,7 +21,7 @@ end
 
 private
    def set_dose
-      @dose = ScheduledDose.find(params[:id])
+     @scheduled_dose = ScheduledDose.find(params[:id])
    end
 
    def dose_params
