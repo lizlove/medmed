@@ -3,11 +3,11 @@
 <br><br>
 <div class="page-header">
   <div class="bs-component">
-    <%= link_to "Prescribe a medication", new_doctor_prescription_path, {method: :get, class: "btn btn-primary"} %>
-    <%= link_to "Add a patient", new_doctor_patient_path, {method: :get, class: "btn btn-success"} %>
+    <%= link_to "Prescribe a medication", new_doctor_prescription_path, {style: "color: #FFF", class: "btn btn-primary"} %>
+    <%= link_to "Add a patient", new_doctor_patient_path, {style: "color: #FFF", class: "btn btn-success"} %>
     <div class="btn-group">
-      <a href="#" class="btn btn-danger">Drop a patient</a>
-      <a href="#" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+      <a href="#" class="btn btn-danger" style="color: #FFF">Drop a patient</a>
+      <a href="#" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="color: #FFF"><span class="caret"></span></a>
       <ul class="dropdown-menu">
         <% @doctor.patients.order(:last_name).each do |patient| %>
         <li><a href="<%= doctor_patient_path(id: patient.id) %>" data-method="DELETE"><%= patient.name %></a></li>
