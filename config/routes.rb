@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post 'medication_search' => 'prescriptions#medication_search'
 
   resources :doctors, only: [] do
-    resources :prescriptions, only: [:new, :create]
+    resources :prescriptions, only: [:new, :create, :destroy]
     resources :patients, only: [:index, :show, :new, :create]
   end
 
