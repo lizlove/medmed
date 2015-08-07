@@ -31,7 +31,7 @@
   </thead>
   <tbody>
     <% @doctor.patients.order(:last_name).each do |patient| %>
-      <% patient.prescriptions.each do |prescription| %>
+      <% (@doctor.prescriptions & patient.prescriptions).each do |prescription| %>
         <tr>
           <td><%= link_to patient.name, doctor_patient_path(@doctor, patient) %></td>
           <td><%= prescription.medication_name %></td>
