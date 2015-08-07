@@ -73,6 +73,16 @@ class PrescriptionsController < ApplicationController
 
   end
 
+  def destroy
+    @prescription = Prescription.find(params[:id])
+    @scheduled_doses = @prescription.scheduled_doses
+    @scheduled_doses.each do |dose|
+      dose.destroy
+    end
+    @prescription.destroy
+    redirect_to doctor_patients_path
+  end
+
   private
 
   def set_prescription

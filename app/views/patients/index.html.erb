@@ -30,7 +30,7 @@
           <td><%= prescription.start_datetime.to_date %></td>
           <td><%= prescription.end_datetime.to_date %></td>
           <td><%= prescription.scheduled_doses.where(was_taken: true).length %>/<%= prescription.scheduled_doses.where(scheduled_time: (100.years.ago)..(Time.now)).length %></td>
-          <td>X</td>
+          <td><%= link_to('X', doctor_prescription_path(id: prescription.id), method: "DELETE") %></td>
         </tr>
       <% end %>
     <% end %>
