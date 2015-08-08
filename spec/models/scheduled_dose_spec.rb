@@ -19,9 +19,14 @@ describe ScheduledDose do
   describe 'formatted_time' do
     it 'returns the properly formatted scheduled time' do
 
-      @sd = ScheduledDose.create(scheduled_time: Time.now)
+      @patient = Patient.new
+      @patient.time_zone = "Europe/Minsk"
+      @prescription = create(:prescription, patient: @patient)
+      @prescription.add_daily_recurrence_rule(1)
+      @prescription.save
+      @sd = @prescription.scheduled_doses.first
 
-      expect(@sd.formatted_time).to match(/\d\d:\d\d\s[p|a]m/)
+      expect(@sd.formatted_time).to match(/\d\d:\d\d\s[P|A]M/)
     end
   end
 

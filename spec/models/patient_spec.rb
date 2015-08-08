@@ -10,6 +10,9 @@ describe Patient do
       expect(patient).to_not be_valid
     end
 
+  end
+
+
   describe 'missed_scheduled_dose?' do
     it 'returns true if patient missed a dose yesterday' do
       patient = create(:patient)
@@ -24,11 +27,12 @@ describe Patient do
     end
   end
 
-  describe 'time_zone' do
-    it 'returns the patients time zone' do
+  describe 'translated_time_zone' do
+    it 'returns the patients time zone as an ActiveSupport::TimeZone object' do
       @patient = Patient.create(time_zone: "Pacific/Midway")
 
-      expect(@patient.time_zone).to eq("Pacific/Midway")
+      expect(@patient.translated_time_zone).to be_a(ActiveSupport::TimeZone)
+      expect(@patient.translated_time_zone.name).to eq("Pacific/Midway")
     end
   end
 
