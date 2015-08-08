@@ -27,4 +27,12 @@ class ScheduledDose < ActiveRecord::Base
     end
   end
 
+  def local_scheduled_time
+    # Time.now.in_time_zone(@t).time_zone.name
+  end
+
+  def formatted_time
+    self.scheduled_time.strftime("at %I:%M%p")
+  end
+
 end

@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 describe Patient do
+
+  describe 'valid?' do
+
+    it 'is invalid without a timezone' do
+      patient = build(:patient)
+      patient.time_zone = nil
+      expect(patient).to_not be_valid
+    end
+
   describe 'missed_scheduled_dose?' do
     it 'returns true if patient missed a dose yesterday' do
       patient = create(:patient)
@@ -22,4 +31,6 @@ describe Patient do
       expect(@patient.time_zone).to eq("Pacific/Midway")
     end
   end
+
+
 end
