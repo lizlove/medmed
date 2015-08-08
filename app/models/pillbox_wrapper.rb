@@ -1,6 +1,7 @@
 class PillboxWrapper
   require 'nokogiri'
 
+
   PB_KEY = ENV["pb_key"]
 
   def self.nokogiri_parse(xml)

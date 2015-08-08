@@ -14,4 +14,12 @@ describe Patient do
       expect(patient.missed_scheduled_dose?).to eq(false)
     end
   end
+
+  describe 'time_zone' do
+    it 'returns the patients time zone' do
+      @patient = Patient.create(time_zone: "Pacific/Midway")
+
+      expect(@patient.time_zone).to eq("Pacific/Midway")
+    end
+  end
 end
