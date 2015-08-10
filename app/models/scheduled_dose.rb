@@ -2,12 +2,8 @@ class ScheduledDose < ActiveRecord::Base
   belongs_to :prescription
   validates :scheduled_time, :prescription_id, presence: true
 
-  # def goodbye!(scheduled_time)
-  #  @scheduled_time = scheduled_time
-  #  @taken_time = nil 
-  #  @side_effect = []
-  #  @was_taken = false
-  # end
+  before_save :empty_side_effect, unless: :was_taken?
+
 
   def was_taken?
     was_taken
@@ -17,14 +13,8 @@ class ScheduledDose < ActiveRecord::Base
     !(self.side_effect == "" || self.side_effect.nil?)
   end
 
-  def panel_class
-    if !self.was_taken? && self.scheduled_time < Time.now
-      "danger"
-    elsif self.was_taken?
-      "success"
-    else
-      "primary"
-    end
+  def missed?
+    !self.was_taken? && self.scheduled_time < Time.now
   end
 
   def time_zone
@@ -35,8 +25,11 @@ class ScheduledDose < ActiveRecord::Base
     self.scheduled_time.in_time_zone(self.time_zone)
   end
 
-  def formatted_time
-    self.local_scheduled_time.strftime("%I:%M %p")
+  private
+  def empty_side_effect
+    self.side_effect = nil
   end
+
+
 
 end

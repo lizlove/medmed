@@ -13,7 +13,7 @@ describe ScheduledDose do
       expect(@sd.scheduled_time.time_zone.name).to eq("UTC")
     end
 
-    it 'does not return the scheuled time of the dose in the patients time zone' do
+    it 'does not return the scheduled time of the dose in the patients time zone' do
       @patient = Patient.new
       @patient.time_zone = "Europe/Minsk"
       @prescription = create(:prescription, patient: @patient)
@@ -40,17 +40,23 @@ describe ScheduledDose do
 
   end
 
-  describe 'formatted_time' do
-    it 'returns the properly formatted scheduled time' do
+
+  describe 'empty_side_effect' do
+    it 'does not save side effects if the dose hasnt been taken' do
 
       @patient = Patient.new
-      @patient.time_zone = "Europe/Minsk"
       @prescription = create(:prescription, patient: @patient)
       @prescription.add_daily_recurrence_rule(1)
       @prescription.save
       @sd = @prescription.scheduled_doses.first
 
-      expect(@sd.formatted_time).to match(/\d\d:\d\d\s[P|A]M/)
+      @sd.side_effect = "Headaches, soreness, and dizziness"
+      @sd.was_taken = false
+
+      @sd.save
+
+      expect(@sd.side_effect).to eq(nil)
+
     end
   end
 

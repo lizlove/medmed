@@ -1,4 +1,5 @@
-<div class="panel panel-<%= sd.panel_class %>" data-id="<%= sd.id %>">
+<% sd_view = ScheduledDoseView.new(sd) %>
+<div class="panel panel-<%= sd_view.panel_class %>" data-id="<%= sd.id %>">
   <div class="panel-heading">
     <div class="row">
       <div class="col-lg-6">
@@ -23,7 +24,7 @@
     <div class="row">
       <div class="col-lg-6">
         <img src=<%= sd.prescription.get_image %> alt="pill_image">
-        <%= sd.formatted_time %>
+        <%= sd_view.formatted_time %>
       </div>
       <div class="col-lg-6">
         <%= form_for(sd, remote: true) do |f| %>
@@ -33,9 +34,7 @@
             <%= f.submit "Record Side Effects", class: "btn btn-default", :disabled => !sd.was_taken? %>
             <div class="side_effect_notice">
               <h5 class="text-success">
-                <% if sd.side_effect_present? %>
-                    Side Effects Recorded
-                <% end %>
+                <%= sd_view.side_effect_text %>
               </h5>
             </div>
         <% end %>
