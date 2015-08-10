@@ -4,6 +4,8 @@ class Patient < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :first_name, :last_name, :phone_number, :email, presence: true
+
   has_many :doctor_patients
   has_many :doctors, through: :doctor_patients
   has_many :prescriptions
