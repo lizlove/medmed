@@ -34,14 +34,14 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group" id="time_check">
     <%= f.check_box :local, {checked: true} %>
     <%= f.label "Set current time zone automatically using current location" %>
   </div>
 
   <div class="form-group">
       <label for="select" class="col-lg-2 control-label">Set time zone</label>
-      <div class="col-lg-4">
+      <div class="col-lg-4" id="time_zoner">
         <%= select_tag(:time_zone, options_for_select(TimeZoneView.get_options_for_select, "Eastern Time (US & Canada)"), class:"form-control") %>
       </div>
       </br>
