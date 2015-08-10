@@ -24,6 +24,10 @@ class ScheduledDose < ActiveRecord::Base
     self.scheduled_time.in_time_zone(self.translated_time_zone)
   end
 
+  def reminder
+    TwilioWrapper.send_message(self.patient, self)
+  end
+
 
   private
   def empty_side_effect
