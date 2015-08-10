@@ -1,0 +1,11 @@
+<h3>Your Conversations</h3>
+
+<% if doctor_signed_in? %>
+  <p><%= link_to 'Start conversation', new_doctor_message_path(current_doctor), class: 'btn btn-lg btn-primary' %></p>
+<% elsif patient_signed_in? %>
+  <p><%= link_to 'Start conversation', new_patient_message_path(current_patient), class: 'btn btn-lg btn-primary' %></p>
+<% end %>
+
+<ul class="list-group">
+  <%= render partial: 'conversations/conversation', collection: @conversations %>
+</ul>

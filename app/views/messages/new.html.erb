@@ -1,0 +1,40 @@
+<h3>Start Conversation</h3>
+<% if doctor_signed_in? %>
+  <%= form_tag doctor_messages_path(current_doctor), method: :post do %>
+    <div class="form-group">
+      <%= label_tag 'message[subject]', 'Subject' %>
+      <%= text_field_tag 'message[subject]', nil, class: 'form-control', required: true %>
+    </div>
+   
+    <div class="form-group">
+      <%= label_tag 'message[body]', 'Message' %>
+      <%= text_area_tag 'message[body]', nil, cols: 3, class: 'form-control', required: true %>
+    </div>
+   
+    <div class="form-group">
+      <%= label_tag 'recipients', 'Choose recipients' %>
+      <%= select_tag 'recipients', recipients_options, multiple: true, class: 'form-control' %>
+    </div>
+   
+    <%= submit_tag 'Send', class: 'btn btn-primary' %>
+  <% end %>
+<% elsif patient_signed_in? %>
+  <%= form_tag patient_messages_path(current_patient), method: :post do %>
+    <div class="form-group">
+      <%= label_tag 'message[subject]', 'Subject' %>
+      <%= text_field_tag 'message[subject]', nil, class: 'form-control', required: true %>
+    </div>
+   
+    <div class="form-group">
+      <%= label_tag 'message[body]', 'Message' %>
+      <%= text_area_tag 'message[body]', nil, cols: 3, class: 'form-control', required: true %>
+    </div>
+   
+    <div class="form-group">
+      <%= label_tag 'recipients', 'Choose recipients' %>
+      <%= select_tag 'recipients', recipients_options, multiple: true, class: 'form-control' %>
+    </div>
+   
+    <%= submit_tag 'Send', class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
