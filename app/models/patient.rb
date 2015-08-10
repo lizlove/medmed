@@ -41,8 +41,6 @@ class Patient < ActiveRecord::Base
   end
 
   def missed_scheduled_dose?
-    #find patient's scheduled doses between midnight of last night and midnight today
-    #and was_taken equals false
     self.missed_doses_for_yesterday.any?
   end
 

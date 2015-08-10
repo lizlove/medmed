@@ -1,7 +1,5 @@
 class FdaWrapper
 
-  FDA_KEY = ENV['fda_key']
-
   def self.request(rxcui)
     base_url = "https://api.fda.gov/drug/label.json?" + "search=rxcui:" 
     api_request = URI(URI.encode(base_url + rxcui))
