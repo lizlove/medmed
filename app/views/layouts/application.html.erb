@@ -16,6 +16,11 @@
       <!-- <ul class="nav navbar-nav">
         
       </ul> -->
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to('About Page', about_path) %></li>
+    <li>
+
+      </ul>
       <ul class="nav navbar-nav navbar-right">
       <%= render 'devise/menu/registration_items' %>
       </ul>
@@ -27,5 +32,6 @@
   <%= yield %>
   
   </div>
+
 </body>
 </html>

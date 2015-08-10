@@ -5,8 +5,8 @@ ScheduledDose.destroy_all
 
 
 # Patients
-@patient1 = Patient.create!(first_name: "Princess", last_name: "Peach", phone_number: "804-596-0982", email: "peach@nintendo.com", password: "marioh0t", password_confirmation: "marioh0t")
-@patient2 = Patient.create!(first_name: "Bowser", last_name: "Koopa", phone_number: "804-596-0952", email: "koopa@nintendo.com", password: "kooparules", password_confirmation: "kooparules")
+@patient1 = Patient.create!(first_name: "Princess", last_name: "Peach", phone_number: "804-596-0982", email: "peach@nintendo.com", password: "marioh0t", password_confirmation: "marioh0t", time_zone: "Eastern Time (US & Canada)")
+@patient2 = Patient.create!(first_name: "Bowser", last_name: "Koopa", phone_number: "804-596-0952", email: "koopa@nintendo.com", password: "kooparules", password_confirmation: "kooparules", time_zone: "Eastern Time (US & Canada)")
 
 # Doctors
 @doctor1 = Doctor.create!(first_name: "Jumpman", last_name: "Mario", phone_number: "329-324-2343", email: "drmario@nintendo.com", password: "wariosux", password_confirmation: "wariosux")
