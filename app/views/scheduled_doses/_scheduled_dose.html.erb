@@ -24,7 +24,7 @@
     <div class="row">
       <div class="col-lg-6">
         <img src=<%= sd.prescription.get_image %> alt="pill_image">
-        <%= sd.scheduled_time %>
+        <%= sd.formatted_time %>
       </div>
       <div class="col-lg-6">
         <%= form_for(sd, remote: true) do |f| %>

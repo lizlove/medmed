@@ -13,6 +13,10 @@ class Patient < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
 
+  def translated_time_zone
+    ActiveSupport::TimeZone.new(self.time_zone)
+  end
+
   def scheduled_doses_by_time
     self.scheduled_doses.order(:scheduled_time)
   end
