@@ -47,7 +47,7 @@ class PatientsController < ApplicationController
     end
 # do we need to have password_confirmation here?
   def patient_params
-    params.require(:patient).permit(:first_name, :last_name, :email, :password, :password_confirmation, :phone_number )
+    params.require(:patient).permit(:first_name, :last_name, :email, :password, :password_confirmation, :phone_number, :time_zone )
   end
 end
 

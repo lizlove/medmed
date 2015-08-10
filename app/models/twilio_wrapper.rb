@@ -9,12 +9,11 @@ class TwilioWrapper
     # set up a client to talk to the Twilio REST API
     @@client = Twilio::REST::Client.new ACCOUNT_SID, AUTH_TOKEN
 
-    def self.send_message(patient, scheduled_dose)
+    def self.send_message(phone_number, body)
       @@client.account.messages.create({
           :from => FROM_PHONE,
-          :to => patient.phone_number,
-          :body => "Hi #{patient.name}, this is a reminder from MedMed to take your scheduled dose of #{scheduled_dose.medication_name} at #{scheduled_dose.local_scheduled_time} today."
-          ,
+          :to => phone_number,
+          :body => body
       })
     end
 
