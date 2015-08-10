@@ -19,4 +19,8 @@ class ScheduledDoseView
     scheduled_dose.side_effect_present? ? "Side Effects Recorded" : nil
   end
 
+  def formatted_time
+    scheduled_dose.local_scheduled_time.strftime("%I:%M %p")
+  end
+
 end
