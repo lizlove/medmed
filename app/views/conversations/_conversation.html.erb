@@ -1,7 +1,7 @@
 <li class="list-group-item clearfix">
   <% if doctor_signed_in? %>
-  <%= link_to conversation.subject, doctor_conversation_path(current_doctor, conversation) %>
+    <%= link_to conversation.subject, doctor_conversation_path(current_doctor, conversation) %>
   <% elsif patient_signed_in? %>
-  <%= link_to conversation.subject, patient_conversation_path(current_patient, conversation) %>
+    <%= link_to conversation.subject, patient_conversation_path(current_patient, conversation) %>
   <% end %>
 </li>

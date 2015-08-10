@@ -20,7 +20,7 @@ class ConversationsController < ApplicationController
   end
  
   def index
-    @conversations = @mailbox.inbox
+    @conversations = (@mailbox.inbox | @mailbox.sentbox).sort_by{|convo|convo.updated_at}.reverse
   end
 
   def reply
