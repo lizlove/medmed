@@ -25,7 +25,6 @@ class ScheduledDose < ActiveRecord::Base
   end
 
 
-
   private
   def empty_side_effect
     self.side_effect = nil
