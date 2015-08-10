@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#index'
+  get '/about' => 'welcome#show', as: 'about'
   devise_for :patients
   devise_for :doctors
   # get 'doctors/patients' => 'doctors#dashboard'
