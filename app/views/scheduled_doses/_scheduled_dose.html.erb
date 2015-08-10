@@ -33,9 +33,7 @@
             <%= f.submit "Record Side Effects", class: "btn btn-default", :disabled => !sd.was_taken? %>
             <div class="side_effect_notice">
               <h5 class="text-success">
-                <% if sd.side_effect_present? %>
-                    Side Effects Recorded
-                <% end %>
+                <%= sd.side_effect_text %>
               </h5>
             </div>
         <% end %>

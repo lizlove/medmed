@@ -13,6 +13,10 @@ class ScheduledDose < ActiveRecord::Base
     was_taken
   end
 
+  def side_effect_text
+    self.side_effect_present? ? "Side Effects Recorded" : nil
+  end
+
   def side_effect_present?
     !(self.side_effect == "" || self.side_effect.nil?)
   end
