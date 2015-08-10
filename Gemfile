@@ -19,8 +19,16 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+
 #Adds Twilio SMS integration
 gem 'twilio-ruby', '~> 4.2.1'
+
+# Use delayed job for running background jobs
+gem 'delayed_job_active_record'
+
+# Need daemons to start delayed_job
+gem 'daemons'
+
 gem 'ice_cube'
 gem 'nokogiri'
 gem 'figaro'
