@@ -6,6 +6,7 @@ class ScheduledDose < ActiveRecord::Base
 
   before_save :empty_side_effect, unless: :was_taken?
 
+  @@REMINDER_TIME = 15.minutes # minutes before scheduled dose
 
   def was_taken?
     was_taken
