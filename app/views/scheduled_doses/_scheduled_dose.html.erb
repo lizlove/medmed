@@ -3,14 +3,13 @@
   <div class="panel-heading">
     <div class="row">
       <div class="col-lg-6">
-        <% @prescription = sd.prescription %>
-        <%= link_to("#{sd.prescription.medication_name}", prescription_path(@prescription), class: "script_link")%>
+        <%= link_to("#{sd.medication_name}", prescription_path(sd.prescription), class: "script_link")%>
       </div>
       <div class="col-lg-6">
         <div class="checkbox">
           <label for="">
             <%= form_for(sd, remote: true) do |f| %>
-                <%= f.hidden_field :prescription_id, value: sd.prescription.id %>
+                <%= f.hidden_field :prescription_id, value: sd.prescription_id %>
                 <%= f.check_box :was_taken %>
             <% end %>
             Taken

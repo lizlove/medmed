@@ -1,5 +1,7 @@
 class ScheduledDose < ActiveRecord::Base
   belongs_to :prescription
+  delegate :medication_name, :patient, :to => :prescription
+  delegate :translated_time_zone, :to => :patient
   validates :scheduled_time, :prescription_id, presence: true
 
   before_save :empty_side_effect, unless: :was_taken?
@@ -17,19 +19,17 @@ class ScheduledDose < ActiveRecord::Base
     !self.was_taken? && self.scheduled_time < Time.now
   end
 
-  def time_zone
-    self.prescription.patient.translated_time_zone
-  end
 
   def local_scheduled_time
-    self.scheduled_time.in_time_zone(self.time_zone)
+    self.scheduled_time.in_time_zone(self.translated_time_zone)
   end
+
+
 
   private
   def empty_side_effect
     self.side_effect = nil
   end
-
 
 
 end
