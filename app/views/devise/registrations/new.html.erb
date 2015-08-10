@@ -42,7 +42,7 @@
   <div class="form-group">
       <label for="select" class="col-lg-2 control-label">Set time zone</label>
       <div class="col-lg-4" id="time_zoner">
-        <%= select_tag(:time_zone, options_for_select(TimeZoneView.get_options_for_select, "Eastern Time (US & Canada)"), class:"form-control") %>
+        <%= f.select(:time_zone, options_for_select(TimeZoneView.get_options_for_select, "Eastern Time (US & Canada)"), class:"form-control") %>
       </div>
       </br>
   </div>
