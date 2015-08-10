@@ -27,4 +27,16 @@ class ScheduledDose < ActiveRecord::Base
     end
   end
 
+  def time_zone
+    self.prescription.patient.translated_time_zone
+  end
+
+  def local_scheduled_time
+    self.scheduled_time.in_time_zone(self.time_zone)
+  end
+
+  def formatted_time
+    self.local_scheduled_time.strftime("%I:%M %p")
+  end
+
 end

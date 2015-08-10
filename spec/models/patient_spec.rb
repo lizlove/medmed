@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 describe Patient do
+
+  describe 'valid?' do
+
+    it 'is invalid without a timezone' do
+      patient = build(:patient)
+      patient.time_zone = nil
+      expect(patient).to_not be_valid
+    end
+
+  end
+
+
   describe 'missed_scheduled_dose?' do
     it 'returns true if patient missed a dose yesterday' do
       patient = create(:patient)
@@ -14,4 +26,15 @@ describe Patient do
       expect(patient.missed_scheduled_dose?).to eq(false)
     end
   end
+
+  describe 'translated_time_zone' do
+    it 'returns the patients time zone as an ActiveSupport::TimeZone object' do
+      @patient = Patient.create(time_zone: "Pacific/Midway")
+
+      expect(@patient.translated_time_zone).to be_a(ActiveSupport::TimeZone)
+      expect(@patient.translated_time_zone.name).to eq("Pacific/Midway")
+    end
+  end
+
+
 end
