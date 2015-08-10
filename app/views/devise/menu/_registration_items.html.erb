@@ -2,7 +2,7 @@
   <li>
   <a href="<%= doctor_patients_path(current_doctor) %>">Hello, <strong><%= current_doctor.first_name.capitalize %></strong></a>
   </li>
-
+  <li><%= link_to('Inbox', doctor_conversations_path(current_doctor)) %></li>
   <li><%= link_to('My Account', doctor_path(current_doctor)) %></li>
     <li>
       <%= link_to('Patients', doctor_patients_path(current_doctor)) %>
@@ -20,6 +20,7 @@
   <li>
   <a href="<%= patient_scheduled_doses_path(current_patient.id) %>">Hello, <strong><%= current_patient.first_name.capitalize %></strong></a>
   </li>
+  <li><%= link_to('Inbox', patient_conversations_path(current_patient)) %></li>
   <li><%= link_to('My Account', patient_path(current_patient)) %></li>
     <li>
       <%= link_to('My Scheduled Doses', patient_scheduled_doses_path(current_patient)) %>
