@@ -8,11 +8,23 @@ Rails.application.routes.draw do
 
   resources :doctors, only: [:show] do
     resources :prescriptions, only: [:new, :create, :destroy]
-    resources :patients, only: [:index, :show, :new, :create, :destroy]
+    resources :patients, only: [:index, :show, :new, :create, :destroy] do
+      member do
+        post :reply
+      end
+    end
+    resources :conversations, only: [:index, :show, :destroy]
+    resources :messages, only: [:new, :create]
   end
 
   resources :patients, only: [:show] do
     resources :scheduled_doses, only: [:index]
+    resources :conversations, only: [:index, :show, :destroy] do
+      member do
+        post :reply
+      end
+    end
+    resources :messages, only: [:new, :create]
   end
 
   resources :scheduled_doses, only: [:update]

@@ -1,0 +1,43 @@
+<h3>Conversation</h3>
+ 
+<div class="panel panel-default">
+  <div class="panel-heading"><%= @conversation.subject %></div>
+ 
+  <div class="panel-body">
+    <div class="messages">
+    <% if doctor_signed_in? %>
+      <% @conversation.receipts_for(current_doctor).each do |receipt| %>
+        <% message = receipt.message %>
+ 
+        <%= message.sender.name %>
+          says at <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %><br>
+        &nbsp;&nbsp;&nbsp;&nbsp; <%= message.body %>
+        <br><br>
+      <% end %>
+      <br>
+      <%= form_tag reply_doctor_conversation_path(current_doctor, @conversation), method: :post do %>
+        <div class="form-group">
+          <%= text_area_tag 'body', nil, cols: 3, class: 'form-control', placeholder: 'Type something...', required: true %>
+        </div>
+        <%= submit_tag "Send Message", class: 'btn btn-primary' %>
+      <% end %>
+    <% elsif patient_signed_in? %>
+      <% @conversation.receipts_for(current_patient).each do |receipt| %>
+        <% message = receipt.message %>
+ 
+        <%= message.sender.name %>
+          says at <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %><br>
+        &nbsp;&nbsp;&nbsp;&nbsp; <%= message.body %>
+        <br><br>
+      <% end %>
+      <br>
+      <%= form_tag reply_patient_conversation_path(current_patient, @conversation), method: :post do %>
+        <div class="form-group">
+          <%= text_area_tag 'body', nil, cols: 3, class: 'form-control', placeholder: 'Type something...', required: true %>
+        </div>
+        <%= submit_tag "Reply", class: 'btn btn-primary' %>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+</div>
