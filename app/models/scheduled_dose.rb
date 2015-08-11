@@ -4,13 +4,12 @@ class ScheduledDose < ActiveRecord::Base
 
   before_save :empty_side_effect, unless: :was_taken?
 
-
   def was_taken?
-    was_taken
+    self.was_taken
   end
 
   def side_effect_present?
-    !(self.side_effect == "" || self.side_effect.nil?)
+    self.side_effect != "" && self.side_effect
   end
 
   def missed?
@@ -26,10 +25,8 @@ class ScheduledDose < ActiveRecord::Base
   end
 
   private
+
   def empty_side_effect
     self.side_effect = nil
   end
-
-
-
 end

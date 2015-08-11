@@ -16,11 +16,10 @@ class ScheduledDoseView
   end
 
   def side_effect_text
-    scheduled_dose.side_effect_present? ? "Side Effects Recorded" : nil
+    "Side Effects Recorded" if scheduled_dose.side_effect_present?
   end
 
   def formatted_time
     scheduled_dose.local_scheduled_time.strftime("%I:%M %p")
   end
-
 end

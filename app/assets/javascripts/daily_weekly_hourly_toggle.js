@@ -9,6 +9,6 @@ $(function(){
     } else if("Weekly" == $(this).val()){
       $(".field_to_switch :nth-child(3)").text("weeks")
       $(".weekdays").show()
-    }
-  })
-})
+    };
+  });
+});
