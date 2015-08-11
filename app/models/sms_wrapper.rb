@@ -11,8 +11,8 @@ class SmsWrapper
     end
 
 
-    def send_message(phone_number, body)
-        @client.account.messages.create({:from => FROM_PHONE, :to => phone_number, :body => body})
+    def send_message(user, view_object)
+        @client.account.messages.create({:from => FROM_PHONE, :to => user.phone_number, :body => view_object.text_body})
     end
 
 end
