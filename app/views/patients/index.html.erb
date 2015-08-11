@@ -17,10 +17,6 @@
   </div>
 </div>
 <br><br>
-<div class="dashboard">
-<canvas id="barchart" width="400" height="400"></canvas>
-</div>
-
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
@@ -47,6 +43,11 @@
     <% end %>
   </tbody>
 </table>
+
+<% @labels = DoctorDash.patients_per_doctor(@doctor.id)%>
+<div class="col-lg-6" id="bardiv" data-labels=<%=@labels%> >
+  <canvas id="barchart" width="200" height="200"></canvas>
+</div>
 <% else %>
 <h4>You're not signed in!</h4>
 <% end %>

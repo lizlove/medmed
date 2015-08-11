@@ -63,6 +63,8 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    chart-js-rails (0.0.9)
+      railties (> 3.1)
     childprocess (0.5.6)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
@@ -297,6 +299,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.1.1)
   byebug
   capybara
+  chart-js-rails
   coffee-rails (~> 4.1.0)
   crack
   database_cleaner

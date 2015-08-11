@@ -1,9 +1,9 @@
 $(function(){
 var data = {
-    labels: <%= DoctorDash.patients_per_doctor(@doctor) %>,
+    labels: $('#bardiv').data("labels"),
     datasets: [
         {
-            label: "My First dataset",
+            label: "Current Patient Total Compliance",
             fillColor: "rgba(220,220,220,0.5)",
             strokeColor: "rgba(220,220,220,0.8)",
             highlightFill: "rgba(220,220,220,0.75)",
@@ -13,6 +13,5 @@ var data = {
     ]
 };
 
-patientsBarChart = new Chart($("#barchart").get(0).getContext("2d")).Line(data)
-
-};// BarChart
+patientsBarChart = new Chart($("#barchart").get(0).getContext("2d")).Bar(data)
+});// BarChart
