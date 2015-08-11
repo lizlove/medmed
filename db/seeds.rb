@@ -16,7 +16,7 @@ ScheduledDose.destroy_all
 @doctor2 = Doctor.create!(first_name: "Toad", last_name: "Mushroom", phone_number: "329-324-2393", email: "toad@nintendo.com", password: "toadrules", password_confirmation: "toadrules")
 
 #Prescription
-@prescrip1 = Prescription.new(patient_id: @patient1.id, rxcui: 861007, start_datetime: Time.now - 60.days, end_datetime: Time.now + 2.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/00093-1048-98_C029E06F.jpg", medication_name: "Glucophage 500 MG Oral Tablet")
+@prescrip1 = Prescription.new(patient_id: @patient1.id, rxcui: 861007, start_datetime: Time.now - 60.days, end_datetime: Time.now + 12.hours, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/00093-1048-98_C029E06F.jpg", medication_name: "Glucophage 500 MG Oral Tablet")
 
 @prescrip1.add_daily_recurrence_rule(1)
 @prescrip1.save
@@ -29,7 +29,7 @@ end
 @sd1.last.was_taken = false
 @sd1.last.save
 
-@prescrip2 = Prescription.new(patient_id: @patient1.id, rxcui: 617314, start_datetime: Time.now - 25.days, end_datetime: Time.now + 1.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "atorvastatin 10 MG Oral Tablet [Lipitor]")
+@prescrip2 = Prescription.new(patient_id: @patient1.id, rxcui: 617314, start_datetime: Time.now - 25.days, end_datetime: Time.now + 12.hours, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "atorvastatin 10 MG Oral Tablet [Lipitor]")
 
 @prescrip2.add_daily_recurrence_rule(1)
 @prescrip2.save
@@ -48,7 +48,7 @@ end
 @sd2.last.was_taken = false
 @sd2.last.save
 
-@prescrip3 = Prescription.new(patient_id: @patient1.id, rxcui: 261442, start_datetime: Time.now - 40.days, end_datetime: Time.now + 1.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/647640301.jpg", medication_name: "pioglitazone 15 MG [Actos]")
+@prescrip3 = Prescription.new(patient_id: @patient1.id, rxcui: 261442, start_datetime: Time.now - 40.days, end_datetime: Time.now + 12.hours, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/647640301.jpg", medication_name: "pioglitazone 15 MG [Actos]")
 
 @prescrip3.add_daily_recurrence_rule(1)
 @prescrip3.save
@@ -66,7 +66,7 @@ end
 @sd3.fifth.side_effect = "cough"
 @sd3.fifth.save
 
-@prescrip4 = Prescription.new(patient_id: @patient2.id, rxcui: 617314, start_datetime: Time.now - 11.days , end_datetime: Time.now + 1.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "atorvastatin 10 MG Oral Tablet [Lipitor]")
+@prescrip4 = Prescription.new(patient_id: @patient2.id, rxcui: 617314, start_datetime: Time.now - 11.days , end_datetime: Time.now + 12.hours, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "atorvastatin 10 MG Oral Tablet [Lipitor]")
 
 @prescrip4.add_daily_recurrence_rule(2)
 @prescrip4.save
@@ -77,7 +77,7 @@ end
     dose.save
 end 
 
-@prescrip5 = Prescription.new(patient_id: @patient3.id, rxcui: 565420, start_datetime: Time.now - 11.days , end_datetime: Time.now + 1.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/000060711.jpg", medication_name: "Singulair 4 MG Chewable Tablet")
+@prescrip5 = Prescription.new(patient_id: @patient3.id, rxcui: 565420, start_datetime: Time.now - 11.days , end_datetime: Time.now + 12.hours, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/000060711.jpg", medication_name: "Singulair 4 MG Chewable Tablet")
 
 @prescrip5.add_daily_recurrence_rule(2)
 @prescrip5.save
@@ -88,7 +88,7 @@ end
     dose.save
 end 
 
-@prescrip6 = Prescription.new(patient_id: @patient4.id, rxcui: 566660, start_datetime: Time.now - 21.days , end_datetime: Time.now + 1.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/001439928.jpg", medication_name: "Ciprofloxacin (as ciprofloxacin hydrochloride) 500 MG Oral Tablet")
+@prescrip6 = Prescription.new(patient_id: @patient4.id, rxcui: 566660, start_datetime: Time.now - 21.days , end_datetime: Time.now + 12.hours, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/001439928.jpg", medication_name: "Ciprofloxacin (as ciprofloxacin hydrochloride) 500 MG Oral Tablet")
 
 @prescrip6.add_daily_recurrence_rule(2)
 @prescrip6.save
