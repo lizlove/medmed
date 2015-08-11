@@ -7,7 +7,6 @@ class CreatePrescriptions < ActiveRecord::Migration
       t.text :recurrence
       t.datetime :start
       t.datetime  :end
-
     end
   end
 end

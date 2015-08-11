@@ -1,8 +1,10 @@
 class ConversationsController < ApplicationController
+  
   def authenticate_user!
     return if doctor_signed_in?
     return if patient_signed_in?
   end
+
   before_action :authenticate_user!
   before_action :get_mailbox
   before_action :get_conversation, except: [:index]
@@ -20,19 +22,15 @@ class ConversationsController < ApplicationController
   end
  
   def index
-    @conversations = (@mailbox.inbox | @mailbox.sentbox).sort_by{|convo|convo.updated_at}.reverse
+    @conversations = (@mailbox.inbox | @mailbox.sentbox).sort_by{ |convo| convo.updated_at }.reverse
   end
 
   def reply
-    if doctor_signed_in?
-      current_doctor.reply_to_conversation(@conversation, params[:body])
-      flash[:success] = 'Reply sent'
-      redirect_to doctor_conversation_path(current_doctor, @conversation)
-    elsif patient_signed_in?
-      current_patient.reply_to_conversation(@conversation, params[:body])
-      flash[:success] = 'Reply sent'
-      redirect_to patient_conversation_path(current_patient, @conversation)
-    end
+    umn = user_model_name
+    send("current_#{umn}.reply_to_conversation(@conversation, params[:body])")
+    redir_url = send("#{umn}_conversation_path(current_#{umn}, @conversation)")
+    flash[:success] = 'Reply sent'
+    redirect_to redir_url
   end
  
   private
@@ -42,10 +40,15 @@ class ConversationsController < ApplicationController
   end
  
   def get_mailbox
+    umn = user_model_name
+    @mailbox = send("current_#{umn}.mailbox")
+  end
+
+  def user_model_name
     if doctor_signed_in?
-      @mailbox = current_doctor.mailbox
+      "doctor"
     elsif patient_signed_in?
-      @mailbox = current_patient.mailbox
+      "patient"
     end
   end
 end

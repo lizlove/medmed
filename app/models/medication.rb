@@ -1,8 +1,7 @@
 class Medication
   
   def self.dropdown_hash(search_term)
-    xml = RestClient.get("https://rxnav.nlm.nih.gov/REST/drugs?name=#{search_term}")
-    json = Crack::XML.parse(xml)
+    json = json_from_api("https://rxnav.nlm.nih.gov/REST/drugs?name=#{search_term}")
     drug_hash = {}
     if json['rxnormdata']['drugGroup']['conceptGroup']
       json['rxnormdata']['drugGroup']['conceptGroup'].each do |conceptGroup|
@@ -19,11 +18,17 @@ class Medication
   end
 
   def self.find_name_by_rxcui(rxcui)
-    xml = RestClient.get("https://rxnav.nlm.nih.gov/REST/rxcui/#{rxcui}/properties")
-    json = Crack::XML.parse(xml)
+    json = json_from_api("https://rxnav.nlm.nih.gov/REST/rxcui/#{rxcui}/properties")
     if json['rxnormdata']['properties']
       drug = json['rxnormdata']['properties']
       drug['synonym'] ? drug['synonym'] : drug['name']
     end
+  end
+
+  private
+
+  def json_from_api(url)
+    xml = RestClient.get(url)
+    Crack::XML.parse(xml)
   end
 end
