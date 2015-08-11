@@ -34,7 +34,7 @@
       <% (@doctor.prescriptions & patient.prescriptions).each do |prescription| %>
         <tr>
           <td><%= link_to patient.name, doctor_patient_path(@doctor, patient), class: "btn btn-default btn-xs" %></td>
-          <td><%= prescription.medication_name %></td>
+          <td><%= link_to("#{prescription.medication_name}", prescription_path(prescription))%></td>
           <td><%= prescription.start_datetime.to_date %></td>
           <td><%= prescription.end_datetime.to_date %></td>
           <td><%= prescription.scheduled_doses.where(was_taken: true).length %>/<%= prescription.scheduled_doses.where(scheduled_time: (100.years.ago)..(Time.now)).length %></td>
