@@ -30,7 +30,9 @@ gem 'daemons'
 gem 'font-awesome-rails'
 
 gem 'ice_cube'
+
 gem 'nokogiri'
+
 gem 'figaro'
 
 # Use ActiveModel has_secure_password

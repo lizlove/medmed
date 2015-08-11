@@ -7,13 +7,12 @@ class ScheduledDose < ActiveRecord::Base
   before_save :empty_side_effect, unless: :was_taken?
   after_create :reminder
 
-
   def was_taken?
-    was_taken
+    self.was_taken
   end
 
   def side_effect_present?
-    !(self.side_effect == "" || self.side_effect.nil?)
+    self.side_effect != "" && self.side_effect
   end
 
   def missed?
@@ -41,9 +40,9 @@ class ScheduledDose < ActiveRecord::Base
   handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_remind }
 
   private
+
   def empty_side_effect
     self.side_effect = nil
   end
-
 
 end

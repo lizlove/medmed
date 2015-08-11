@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get '/about' => 'welcome#show', as: 'about'
   devise_for :patients
   devise_for :doctors
-  # get 'doctors/patients' => 'doctors#dashboard'
   post 'medication_search' => 'prescriptions#medication_search'
 
   resources :doctors, only: [:show] do

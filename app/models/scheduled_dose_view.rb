@@ -16,7 +16,7 @@ class ScheduledDoseView
   end
 
   def side_effect_text
-    scheduled_dose.side_effect_present? ? "Side Effects Recorded" : nil
+    "Side Effects Recorded" if scheduled_dose.side_effect_present?
   end
 
   def formatted_time
@@ -28,3 +28,4 @@ class ScheduledDoseView
   end
 
 end
+

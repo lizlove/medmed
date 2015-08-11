@@ -1,4 +1,5 @@
 module MessagesHelper
+  
   def recipients_options
     s = ''
     if doctor_signed_in?
