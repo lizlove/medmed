@@ -25,7 +25,7 @@ class ScheduledDose < ActiveRecord::Base
   end
 
   def reminder
-    #run only if
+    #run only if the patient has a valid phone number
     SmsWrapper.new.send_message(self.patient, ScheduledDoseView.new(self))
   end
 
