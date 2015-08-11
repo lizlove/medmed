@@ -26,7 +26,7 @@ class ScheduledDose < ActiveRecord::Base
   end
 
   def reminder
-    TwilioWrapper.send_message(self.patient_phone_number, ScheduledDoseView.new(self).text_body)
+    SmsWrapper.new.send_message(self.patient_phone_number, ScheduledDoseView.new(self).text_body)
   end
 
   def patient_phone_number
