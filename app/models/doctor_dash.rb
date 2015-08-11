@@ -18,4 +18,9 @@ class DoctorDash
     patient = Patient.find(patient_id)
   end 
 
+  def self.patients_per_doctor(@doctor)
+    @doctor.patients.collect{|patient| "#{patient.first_name} #{patient.last_name}"}
+  end 
+
+
 end 
