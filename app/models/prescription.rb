@@ -10,26 +10,30 @@ class Prescription < ActiveRecord::Base
 
   before_save :build_scheduled_doses, if: :recurrence_is_scheduled?
 
-  def recurrence
-    @recurrence ||= IceCube::Schedule.new(start = self.start_datetime.utc, :end_time => self.end_datetime.utc)
+  def schedule
+    if recurrence.nil?
+      self.recurrence = IceCube::Schedule.new(start = self.start_datetime.utc, :end_time => self.end_datetime.utc)
+    else
+      self.recurrence
+    end
   end
 
   def recurrence_is_scheduled?
-    self.recurrence.rrules.any?
+    self.schedule.rrules.any?
   end
 
   def build_scheduled_doses
-    self.recurrence.occurrences(self.end_datetime).each do |occurrence|
+    self.schedule.occurrences(self.end_datetime).each do |occurrence|
       self.scheduled_doses.build(scheduled_time: occurrence)
     end
   end
 
   def add_daily_recurrence_rule(interval)
-    self.recurrence.add_recurrence_rule IceCube::Rule.daily(interval)
+    self.schedule.add_recurrence_rule IceCube::Rule.daily(interval)
   end
 
   def add_hourly_recurrence_rule(interval)
-    self.recurrence.add_recurrence_rule IceCube::Rule.hourly(interval)
+    self.schedule.add_recurrence_rule IceCube::Rule.hourly(interval)
   end
 
   def add_recurrence_rule(interval, type, days)
@@ -40,12 +44,12 @@ class Prescription < ActiveRecord::Base
     elsif type == "hourly"
       self.add_hourly_recurrence_rule(interval)
     else
-      self.add_daily_recurrence_rule(interval) 
+      self.add_daily_recurrence_rule(interval)
     end
   end
 
   def add_weekly_recurrence_rule_with_days(interval, days)
-    self.recurrence.add_recurrence_rule IceCube::Rule.weekly(interval).day(days)
+    self.schedule.add_recurrence_rule IceCube::Rule.weekly(interval).day(days)
   end
 
   def get_script_label
