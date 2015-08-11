@@ -53,9 +53,9 @@ class DoctorsController < ApplicationController
   private
 
   def set_doctor
-      @doctor = Doctor.find(params[:id])
-    end
-# do we need to have password_confirmation here?
+    @doctor = Doctor.find(params[:id])
+  end
+
   def doctor_params
     params.require(:doctor).permit(:first_name, :last_name, :email, :password, :password_confirmation, :phone_number )
   end
