@@ -34,7 +34,7 @@ class ScheduledDose < ActiveRecord::Base
   end
 
   def when_to_remind
-    Time.now.utc + 15.minutes
+    scheduled_time - 15.minutes
   end
 
 
