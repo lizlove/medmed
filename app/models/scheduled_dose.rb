@@ -5,8 +5,8 @@ class ScheduledDose < ActiveRecord::Base
   validates :scheduled_time, :prescription_id, presence: true
 
   before_save :empty_side_effect, unless: :was_taken?
+  after_create :reminder
 
-  @@REMINDER_TIME = 15.minutes # minutes before scheduled dose
 
   def was_taken?
     was_taken
@@ -33,6 +33,12 @@ class ScheduledDose < ActiveRecord::Base
     self.patient.phone_number
   end
 
+  def when_to_remind
+    Time.now.utc + 15.minutes
+  end
+
+
+  handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_remind }
 
   private
   def empty_side_effect
