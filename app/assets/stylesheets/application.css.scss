@@ -20,6 +20,7 @@
  */
 @import "bootstrap";
 /* Some Style from the Bootstrap Default Theme */
+@import "font-awesome";
 body {
   padding-top: 70px;
   padding-bottom: 30px;
@@ -35,3 +36,9 @@ body {
   margin: 5px 0;
 }
 
+.messages {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}

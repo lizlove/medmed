@@ -1,4 +1,5 @@
 class Patient < ActiveRecord::Base
+  acts_as_messageable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -13,6 +14,16 @@ class Patient < ActiveRecord::Base
 
   def name
     "#{self.first_name} #{self.last_name}"
+  end
+
+  def mailboxer_email(object)
+    #Check if an email should be sent for that object
+    #if true
+    if [].include?(object)
+      self.email
+    end
+    #if false
+    #return nil
   end
 
   def translated_time_zone
@@ -32,8 +43,6 @@ class Patient < ActiveRecord::Base
   end
 
   def missed_scheduled_dose?
-    #find patient's scheduled doses between midnight of last night and midnight today
-    #and was_taken equals false
     self.missed_doses_for_yesterday.any?
   end
 

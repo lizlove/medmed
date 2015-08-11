@@ -1,1 +1,74 @@
-<h1>This is our about page!</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+
+<body>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Introduction Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">About Us
+                    <small>We're Team MedMed!</small>
+                </h1>
+                <p class="lead">MedMed is an awesome application that allows doctors and patients to manage complicated prescription regimens. A doctor can add a patient, assign them a prescription, and monitor their patient's compliance. A patient can see what scheduled medication they have to take, report any side effects they might have, and receive text reminders.</p>
+            </div>
+        </div>
+
+        <!-- Team Members Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">The Team</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12 text-center">
+                <%= image_tag("ben", class: "img-circle img-responsive img-center") %>
+                <h3>Ben Brattain<br/>
+                    <small>Coding Boo</small>
+                </h3>
+                <p>I'm super sneaky. As soon as you've looked away I've built something else!</p>
+                <a href="https://github.com/benbrattain"><%= fa_icon "github 3x" %></a>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12 text-center">
+               <%= image_tag("joe", class: "img-circle img-responsive img-center") %>
+                <h3>Joe Sutker<br/>
+                    <small>Koopagrammer</small>
+                </h3>
+                <p>I love programming in my awesome shell!</p>
+                <a href="https://github.com/jsutker"><%= fa_icon "github 3x" %></a>
+            </div>
+        </div>
+        <br/><br/>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12 text-center">
+                <%= image_tag("liz", class: "img-circle img-responsive img-center") %>
+                <h3>Elizabeth Lovero<br/>
+                    <small>Bob-omb Engineer</small>
+                </h3>
+                <p>If my code doesn't compile I blow up!</p>
+                <a href="https://github.com/lizlove"><%= fa_icon "github 3x" %></a>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12 text-center">
+                <%= image_tag("lia", class: "img-circle img-responsive img-center") %>
+                <h3>Lia Skalkos<br/>
+                    <small>Shy Guy Developer</small>
+                </h3>
+                <p>I'm really humble about how good of a developer I am.</p>
+                <a href="https://github.com/lskalkos"><%= fa_icon "github 3x" %></a>
+            </div>
+        </div>
+
+        <hr>
+
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+
+</body>
+
+</html>
