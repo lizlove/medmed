@@ -20,11 +20,10 @@ class ScheduledDoseView
   end
 
   def formatted_time
-    byebug
     scheduled_dose.local_scheduled_time.strftime("%I:%M %p")
   end
 
-  def text_body
+  def sms
     "Hi #{scheduled_dose.patient.name}, this is a reminder from MedMed to take your scheduled dose of #{scheduled_dose.medication_name} at #{self.formatted_time} today."
   end
 
