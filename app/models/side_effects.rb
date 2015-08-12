@@ -1,6 +1,7 @@
 class SideEffects
 
-Order.having('SUM(price) > 30').group('user_id')
-
+  def self.get_current_effects
+    Prescriptions.having(:side_effects != nil).group(:side_effects)
+  end
 
 end 
