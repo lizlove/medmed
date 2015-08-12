@@ -13,10 +13,9 @@ class Prescription < ActiveRecord::Base
   def schedule
     if recurrence.nil?
       self.recurrence = IceCube::Schedule.new(start = self.start_datetime.utc, :end_time => self.end_datetime.utc)
-      self.recurrence
-    else
-      self.recurrence
     end
+
+    self.recurrence
   end
 
   def recurrence_is_scheduled?
