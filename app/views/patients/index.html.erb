@@ -136,10 +136,11 @@
         <h5>Percent Compliance by Patient</h5>
       </div>
           <div id="barlabel" style="display: none">
-            <%= DoctorDash.patients_per_doctor(@doctor.id).join(", ")%>
+          <% @comply = DoctorComplianceData.new(@doctor) %>
+            <%= @comply.patients_labelmaker.join(", ")%>
           </div>
           <div id="bardata" style="display:none">
-            <%= DoctorDash.total_compliance(@doctor.id).join(", ") %>
+            <%= @comply.all_doctor_patients_compliance_array.join(", ") %>
           </div>
           <canvas id="barchart" width="400" height="400"></canvas>
     </div>
@@ -150,7 +151,7 @@
   <div class="col-lg-6" id="donutdiv">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h5>Total Compliance: <%= @taken = DoctorDash.compliance_all_patients(@doctor.id)%>% taken within 4 hours of scheduled dose</h5>
+        <h5>Total Compliance: <%= @taken = @comply.total_doctor_patients_compliance_figure %>% taken within 4 hours of scheduled dose</h5>
       </div>
         <div class="panel-body text-center">       
               <!--Start Donut Chart-->
