@@ -16,7 +16,6 @@ class SmsWrapper
         rescue Twilio::REST::RequestError
             puts "Something went wrong with the request"
         end
-
     end
 
 end
