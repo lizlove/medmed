@@ -8,9 +8,9 @@ $(function(){
             datasets: [
         {
             label: "Current Patient Total Compliance",
-            fillColor: "rgba(175,210,240,0.5)",
+            fillColor: "rgba(23,123,187,0.75)",
             strokeColor: "rgba(220,220,220,0.8)",
-            highlightFill: "rgba(23,123,187,0.75)",
+            highlightFill: "rgba(175,210,240,0.5)",
             highlightStroke: "rgba(220,220,220,1)",
             data: $datas
             }

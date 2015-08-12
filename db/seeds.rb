@@ -48,7 +48,8 @@ end
 @prescrip3.save
 @sd3 = @prescrip3.scheduled_doses
 @sd3.each do |dose|
-  dose.was_taken = true 
+  dose.was_taken = true
+  dose.save
   dose.taken_time = dose.scheduled_time + 30.minutes
   dose.side_effect = "sore throat"
   dose.save

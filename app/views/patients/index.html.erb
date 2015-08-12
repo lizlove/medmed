@@ -135,10 +135,10 @@
     </table>
 
   <!-- panel barchart -->
-  <div class="col-lg-8" id="bardiv">
+  <div class="col-lg-6" id="bardiv">
     <div class="panel panel-default">
       <div class="panel-heading">
-        Percent Compliance by Patient
+        <h5>Percent Compliance by Patient</h5>
       </div>
           <div id="barlabel" style="display: none">
             <%= DoctorDash.patients_per_doctor(@doctor.id).join(", ")%>
@@ -146,22 +146,22 @@
           <div id="bardata" style="display:none">
             <%= DoctorDash.total_compliance(@doctor.id).join(", ") %>
           </div>
-          <canvas id="barchart" width="200" height="200"></canvas>
+          <canvas id="barchart" width="400" height="400"></canvas>
     </div>
   </div>
   <!-- /panel barchart -->
 
   <!-- /panel donut -->
-  <div class="col-lg-4" id="donutdiv">
+  <div class="col-lg-6" id="donutdiv">
     <div class="panel panel-default">
       <div class="panel-heading">
-        Total Compliance
+        <h5>Total Compliance: <%= @taken = DoctorDash.compliance_all_patients(@doctor.id)%>% taken within 4 hours of scheduled dose</h5>
       </div>
         <div class="panel-body text-center">       
               <!--Start Donut Chart-->
               <!--===================================================-->
               <div id="taken" style="display: none">
-                <%= @taken = DoctorDash.compliance_all_patients(@doctor.id)%>
+                <%= @taken %>
               </div>
               <div id="missed" style="display:none">
                 <%= 100 - @taken %>
@@ -176,9 +176,48 @@
   </div>
   <!-- /panel donut -->
 
+  <div class="col-sm-6">
+
+  <!--Danger Panel-->
+  <!--===================================================-->
+  <div class="panel panel-bordered panel-danger">
+    <div class="panel-heading">
+      <h3 class="panel-title">Reported Side Effects</h3>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th style="width:4ex"></th>
+                          <th>Name</th>
+                          <th>Medication</th>
+                          <th class="text-center">Effect Reported</th>
+                          <th class="text-right">Contact Patient</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><a href="#" class="btn-link">NY531</a></td>
+                          <td>Steve N. Horton</td>
+                          <td>$24.98</td>
+                          <td class="text-center"><span class="label label-table label-success">Enterprise</span></td>
+                          <td class="text-right">
+                            <a class="btn btn-xs btn-default add-tooltip" data-toggle="tooltip" href="<%= new_doctor_message_path(@doctor)%>" data-original-title="Edit" data-container="body"><i class="fa fa-pencil"></i></a>
 
 
+                          </td>
+                        </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+    </div>
+  </div>
+  <!--===================================================-->
+  <!--End Danger Panel-->
 
+</div>
 
 
 
