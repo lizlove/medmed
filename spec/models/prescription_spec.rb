@@ -74,18 +74,16 @@ describe Prescription do
         expect(prescription).to receive(:build_scheduled_doses)
         prescription.save
       end
-    end
 
-
-    context 'after_save' do
       it "saves scheduled doses" do
         prescription = build(:prescription)
-        prescription.add_monthly_recurrence_rule(1)
+        prescription.add_daily_recurrence_rule(1)
         prescription.save
 
         expect(prescription.scheduled_doses.count).to eq(3)
       end
     end
+
   end
 
 end

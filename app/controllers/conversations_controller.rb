@@ -28,7 +28,7 @@ class ConversationsController < ApplicationController
   def reply
     umn = user_model_name
     send("current_#{umn}").reply_to_conversation(@conversation, params[:body])
-    redir_url = send("#{umn}_conversation_path")
+    redir_url = send("#{umn}_conversation_path", send("current_#{umn}"), @conversation)
     flash[:success] = 'Reply sent'
     redirect_to redir_url
   end
