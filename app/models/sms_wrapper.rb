@@ -17,7 +17,7 @@ class SmsWrapper
         begin
             sms_client.account.messages.create({:from => FROM_PHONE, :to => phone_number, :body => message_object.sms})
         rescue => e
-            Rails.logger.error { "#{e.message} #{e.backtrace.join("\n")}"
+            Rails.logger.error { "#{e.message} #{e.backtrace.join("\n")}" }
             false
         end
     end
@@ -33,7 +33,7 @@ class SmsWrapper
                 puts "Something went wrong with the request"
             end
 
-            Rails.logger.error { "#{e.message} #{e.backtrace.join("\n")}"
+            Rails.logger.error { "#{e.message} #{e.backtrace.join("\n")}" }
         end
     end
 
