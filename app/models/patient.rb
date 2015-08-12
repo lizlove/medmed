@@ -7,6 +7,7 @@ class Patient < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :first_name, :last_name, :phone_number, :email, presence: true
+  validate :phone_number_is_valid_mobile
 
   has_many :doctor_patients
   has_many :doctors, through: :doctor_patients
@@ -31,5 +32,10 @@ class Patient < ActiveRecord::Base
 
   def missed_scheduled_dose?
     self.missed_doses_for_yesterday.any?
+  end
+
+  private
+  def phone_number_is_valid_mobile
+
   end
 end

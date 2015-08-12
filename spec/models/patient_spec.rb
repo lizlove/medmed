@@ -18,7 +18,7 @@ describe Patient do
 
     it 'is valid with a valid Twilio mobile number' do
       patient = build(:patient)
-      patient.phone_number = '55-11-5525-6325'
+      patient.phone_number = '773-600-2167' #this is a landline. change to mobile.
       expect(patient).to be_valid
     end
 
