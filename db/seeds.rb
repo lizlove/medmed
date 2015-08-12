@@ -16,11 +16,7 @@ ScheduledDose.destroy_all
 @doctor2 = Doctor.create!(first_name: "Toad", last_name: "Mushroom", phone_number: "329-324-2393", email: "toad@nintendo.com", password: "toadrules", password_confirmation: "toadrules")
 
 #Prescription
-<<<<<<< HEAD
 @prescrip1 = Prescription.new(patient_id: @patient1.id, rxcui: 861007, start_datetime: Time.now - 60.days, end_datetime: Time.now + 12.hours, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/00093-1048-98_C029E06F.jpg", medication_name: "Glucophage 500 MG Oral Tablet")
-=======
-@prescrip1 = Prescription.new(patient_id: @patient1.id, rxcui: 541894, start_datetime: Time.now + 16.minutes, end_datetime: Time.now + 5.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "Dextroamphetamine saccharate 2.5 MG")
->>>>>>> c2d987907516dc4b1ec3d0c883a77a654bfd9aa0
 
 @prescrip1.add_daily_recurrence_rule(1)
 @prescrip1.save
@@ -33,11 +29,7 @@ end
 @sd1.last.was_taken = false
 @sd1.last.save
 
-<<<<<<< HEAD
 @prescrip2 = Prescription.new(patient_id: @patient1.id, rxcui: 617314, start_datetime: Time.now - 25.days, end_datetime: Time.now + 12.hours, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "atorvastatin 10 MG Oral Tablet [Lipitor]")
-=======
-@prescrip2 = Prescription.new(patient_id: @patient1.id, rxcui: 617314, start_datetime: Time.now - 15.minutes, end_datetime: Time.now + 15.days, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "atorvastatin 10 MG Oral Tablet [Lipitor]")
->>>>>>> c2d987907516dc4b1ec3d0c883a77a654bfd9aa0
 
 @prescrip2.add_daily_recurrence_rule(1)
 @prescrip2.save
