@@ -7,7 +7,11 @@ class DoctorDash
         denom = prescription.scheduled_doses.where(scheduled_time: (100.years.ago)..(Time.now)).length 
         (num.to_f)/(denom.to_f)
       end 
-      ((comply_array.inject{ |sum, el| sum + el }.to_f / comply_array.size) * 100).to_i
+        if comply_array.any?
+            ((comply_array.inject(:+).to_f / comply_array.size) * 100).to_i
+        else
+          0
+        end 
   end
 
   def self.total_compliance(doctor_id)
@@ -28,7 +32,11 @@ class DoctorDash
 
   def self.compliance_all_patients(doctor_id)
     arr = DoctorDash.total_compliance(doctor_id)
-    (arr.inject{|sum, el| sum + el}.to_f / arr.size).to_i
+    if arr.any? 
+      (arr.inject(:+).to_f / arr.size).to_i
+    else
+      0
+    end 
   end 
 
 end 
