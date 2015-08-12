@@ -1,10 +1,10 @@
 <h1>Drop one of your patients</h1>
 
-<%= form_for(@patient, url: doctor_patient_path(id: 1), method:"DELETE") do |f| %>
+<%= form_for(@patient, url: doctor_patient_path(id: 0), method:"DELETE") do |f| %>
 
   <div class="field">
     <%= f.label :patient %><br>
-    <%= f.collection_select :id, @doctor.patients, :id, :name %><br>
+    <%= f.collection_select :id, @doctor.patients, :id, :name, include_blank: "Select a patient" %><br>
   </div>
 
   <div class="actions">
