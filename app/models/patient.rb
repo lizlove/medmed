@@ -7,6 +7,7 @@ class Patient < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :first_name, :last_name, :phone_number, :email, presence: true
+  validate :phone_number_is_valid_mobile
 
   has_many :doctor_patients
   has_many :doctors, through: :doctor_patients
@@ -17,19 +18,27 @@ class Patient < ActiveRecord::Base
     ActiveSupport::TimeZone.new(self.time_zone)
   end
 
-  def scheduled_doses_by_time
-    self.scheduled_doses.order(:scheduled_time)
-  end
-
   def scheduled_doses_for_today
-    self.scheduled_doses_by_time.where({scheduled_time: Time.now.midnight..(Time.now.midnight + 1.day)})
+    scheduled_doses_by_time.where({scheduled_time: Time.now.midnight..(Time.now.midnight + 1.day)})
   end
 
   def missed_doses_for_yesterday
-    self.scheduled_doses_by_time.where({scheduled_time: (Time.now.midnight-1.day)..(Time.now.midnight), was_taken: false})
+    scheduled_doses_by_time.where({scheduled_time: (Time.now.midnight-1.day)..(Time.now.midnight), was_taken: false})
   end
 
   def missed_scheduled_dose?
     self.missed_doses_for_yesterday.any?
   end
+
+  private
+  def phone_number_is_valid_mobile
+    if !(SmsWrapper.new(self).valid_phone_number?)
+      errors.add(:phone_number, "is not a valid cell phone number")
+    end
+  end
+
+  def scheduled_doses_by_time
+    self.scheduled_doses.order(:scheduled_time)
+  end
+
 end
