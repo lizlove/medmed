@@ -29,7 +29,7 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'font-awesome-rails'
 gem 'chart-js-rails'
-gem 'ice_cube'
+gem 'ice_cube', '~> 0.12.0'
 
 gem 'nokogiri'
 

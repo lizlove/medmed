@@ -1,6 +1,6 @@
 class DoctorDash
 
-   def self.compliance_by_patient(patient_id)
+  def self.compliance_by_patient(patient_id)
     patient = Patient.find(patient_id)
     comply_array = patient.prescriptions.collect do |prescription| 
         num = prescription.scheduled_doses.where(was_taken: true).length 
@@ -8,9 +8,11 @@ class DoctorDash
         (num.to_f)/(denom.to_f)
       end 
       comply_array
+      # comply_array.inject{ |sum, el| sum + el }.to_f / comply_array.size
   end
 
-  def self.total_compliance
+  def self.total_compliance(doctor_id)
+    DoctorDash.patients_per_doctor(doctor_id)
 
   end 
 

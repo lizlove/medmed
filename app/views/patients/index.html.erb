@@ -1,7 +1,7 @@
 <% if @doctor %>
-<h2>Hello Dr. <%= @doctor.last_name %></h2>
+<h1>Hello Dr. <%= @doctor.last_name %> <i class="fa fa-user-md fa-2x"></i></h1>
 <br><br>
-    <!-- /.row -->
+    <!-- panel row -->
     <div class="row">
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-primary">
@@ -33,8 +33,8 @@
                             <i class="fa fa-tasks fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">12</div>
-                            <div>Medications</div>
+                            <div class="huge"><%= @doctor.prescriptions.count %></div>
+                            <div>Prescriptions</div>
                         </div>
                     </div>
                 </div>
@@ -52,17 +52,17 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-shopping-cart fa-5x"></i>
+                            <i class="fa fa-user-plus fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">124</div>
-                            <div>New Orders!</div>
+                            <div class="huge"><%= @doctor.patients.count %></div>
+                            <div>Patients</div>
                         </div>
                     </div>
                 </div>
                 <a href="#">
                     <div class="panel-footer">
-                        <span class="pull-left">View Details</span>
+                        <span class="pull-left"> <%= link_to "Add a patient", new_doctor_patient_path%></span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>
@@ -74,74 +74,79 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-support fa-5x"></i>
+                            <i class="fa fa-exclamation-circle fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">13</div>
-                            <div>Support Tickets!</div>
+                            <div class="huge">-</div>
+                            <div>Drop Patients</div>
                         </div>
                     </div>
                 </div>
                 <a href="#">
                     <div class="panel-footer">
-                        <span class="pull-left">View Details</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <span class="pull-left">Drop a patient</span>
+                          <a data-toggle="dropdown"><span class="pull-right"><i class="fa fa-arrow-circle-down"></i></span></a>
+                          <ul class="dropdown-menu">
+                            <% @doctor.patients.order(:last_name).each do |patient| %>
+                            <li><%= link_to(patient.name, doctor_patient_path(id: patient.id), data: {method: "DELETE", confirm: "Are you sure?"}) %></li>
+                            <% end %>
+                          </ul>
                         <div class="clearfix"></div>
                     </div>
                 </a>
             </div>
         </div>
     </div>
-    <!-- /.row -->
-
-
-<div class="page-header">
-  <div class="bs-component">
-    <%= link_to "Prescribe a medication", new_doctor_prescription_path, {style: "color: #FFF", class: "btn btn-primary"} %>
-    <%= link_to "Add a patient", new_doctor_patient_path, {style: "color: #FFF", class: "btn btn-success"} %>
-    <div class="btn-group">
-      <a class="btn btn-danger" style="color: #FFF">Drop a patient</a>
-      <a class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="color: #FFF"><span class="caret"></span></a>
-      <ul class="dropdown-menu">
-        <% @doctor.patients.order(:last_name).each do |patient| %>
-        <li><%= link_to(patient.name, doctor_patient_path(id: patient.id), data: {method: "DELETE", confirm: "Are you sure?"}) %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-</div>
+    <!-- panel row -->
 <br><br>
-<table class="table table-striped table-hover ">
-  <thead>
-    <tr>
-      <th>Patient Name</th>
-      <th>Prescription</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Compliance</th>
-      <th>Delete?</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @doctor.patients.order(:last_name).each do |patient| %>
-      <% (@doctor.prescriptions & patient.prescriptions).each do |prescription| %>
+  <div class="row">
+      <div class="col-lg-12">
+          <h1 class="page-header">Active Precriptions</h1>
+      </div>
+      <!-- /.col-lg-12 -->
+  </div>
+    <table class="table table-striped table-hover ">
+      <thead>
         <tr>
-          <td><%= link_to patient.name, doctor_patient_path(@doctor, patient), class: "btn btn-default btn-xs" %></td>
-          <td><%= link_to("#{prescription.medication_name}", prescription_path(prescription))%></td>
-          <td><%= prescription.start_datetime.to_date %></td>
-          <td><%= prescription.end_datetime.to_date %></td>
-          <td><%= prescription.scheduled_doses.where(was_taken: true).length %>/<%= prescription.scheduled_doses.where(scheduled_time: (100.years.ago)..(Time.now)).length %></td>
-          <td><%= link_to('Delete', doctor_prescription_path(id: prescription.id), method: "DELETE", class: "btn btn-danger btn-xs", data: {confirm: "Are you sure?"}) %></td>
+          <th>Patient Name</th>
+          <th>Prescription</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Compliance</th>
+          <th>Delete?</th>
         </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+      </thead>
+      <tbody>
+        <% @doctor.patients.order(:last_name).each do |patient| %>
+          <% (@doctor.prescriptions & patient.prescriptions).each do |prescription| %>
+            <tr>
+              <td><%= link_to patient.name, doctor_patient_path(@doctor, patient), class: "btn btn-default btn-xs" %></td>
+              <td><%= link_to("#{prescription.medication_name}", prescription_path(prescription))%></td>
+              <td><%= prescription.start_datetime.to_date %></td>
+              <td><%= prescription.end_datetime.to_date %></td>
+              <td><%= prescription.scheduled_doses.where(was_taken: true).length %>/<%= prescription.scheduled_doses.where(scheduled_time: (100.years.ago)..(Time.now)).length %></td>
+              <td><%= link_to('Delete', doctor_prescription_path(id: prescription.id), method: "DELETE", class: "btn btn-danger btn-xs", data: {confirm: "Are you sure?"}) %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
 
-<% @labels = DoctorDash.patients_per_doctor(@doctor.id)%>
-<div class="col-lg-6" id="bardiv" data-labels=<%=@labels%> >
-  <canvas id="barchart" width="200" height="200"></canvas>
-</div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Patient Compliance
+    </div>
+    <!-- panel barchart -->
+      <div class="col-lg-6" id="bardiv">
+        <div id="barlabel" style="display: none;">
+        <%= DoctorDash.patients_per_doctor(@doctor.id).join(", ")%></div>
+        <canvas id="barchart" width="200" height="200"></canvas>
+      </div>
+    <!-- /panel barchart -->
+  </div>
+
+
+
 <% else %>
 <h4>You're not signed in!</h4>
 <% end %>

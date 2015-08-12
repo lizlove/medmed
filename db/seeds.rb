@@ -26,8 +26,6 @@ ScheduledDose.destroy_all
   dose.taken_time = dose.scheduled_time - 2.hours
   dose.save
 end 
-@sd1.last.was_taken = false
-@sd1.last.save
 
 @prescrip2 = Prescription.new(patient_id: @patient1.id, rxcui: 617314, start_datetime: Time.now - 25.days, end_datetime: Time.now + 12.hours, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "atorvastatin 10 MG Oral Tablet [Lipitor]")
 
@@ -39,14 +37,6 @@ end
     dose.taken_time = dose.scheduled_time + 4.hours
     dose.save
 end 
-@sd2.first.was_taken = false
-@sd2.first.save
-@sd2.second.was_taken = false
-@sd2.second.save
-@sd2.third.was_taken = false
-@sd2.third.save
-@sd2.last.was_taken = false
-@sd2.last.save
 
 @prescrip3 = Prescription.new(patient_id: @patient1.id, rxcui: 261442, start_datetime: Time.now - 40.days, end_datetime: Time.now + 12.hours, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/647640301.jpg", medication_name: "pioglitazone 15 MG [Actos]")
 
@@ -59,12 +49,7 @@ end
   dose.side_effect = "sore throat"
   dose.save
 end 
-@sd3.third.side_effect = "cough"
-@sd3.third.save
-@sd3.fourth.side_effect = "cough"
-@sd3.fourth.save
-@sd3.fifth.side_effect = "cough"
-@sd3.fifth.save
+
 
 @prescrip4 = Prescription.new(patient_id: @patient2.id, rxcui: 617314, start_datetime: Time.now - 11.days , end_datetime: Time.now + 12.hours, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg", medication_name: "atorvastatin 10 MG Oral Tablet [Lipitor]")
 
