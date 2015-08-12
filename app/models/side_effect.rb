@@ -4,9 +4,5 @@ class SideEffect
     ScheduledDose.all.select { |m| m.side_effect != nil && m.taken_time > (Time.now - 7.days)}
   end
 
-  def self.get_
-
-  end 
-
 
 end 
