@@ -27,7 +27,7 @@ class Medication
 
   private
 
-  def json_from_api(url)
+  def self.json_from_api(url)
     xml = RestClient.get(url)
     Crack::XML.parse(xml)
   end
