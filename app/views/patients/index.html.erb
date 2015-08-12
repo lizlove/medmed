@@ -87,12 +87,7 @@
                 <a href="#">
                     <div class="panel-footer">
                         <span class="pull-left">Drop a patient</span>
-                          <a data-toggle="dropdown"><span class="pull-right"><i class="fa fa-arrow-circle-down"></i></span></a>
-                          <ul class="dropdown-menu">
-                            <% @doctor.patients.order(:last_name).each do |patient| %>
-                            <li><%= link_to(patient.name, doctor_patient_path(id: patient.id), data: {method: "DELETE", confirm: "Are you sure?"}) %></li>
-                            <% end %>
-                          </ul>
+                          <a data-toggle="dropdown"><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span></a>
                         <div class="clearfix"></div>
                     </div>
                 </a>
