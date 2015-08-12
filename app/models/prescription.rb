@@ -18,16 +18,6 @@ class Prescription < ActiveRecord::Base
     self.recurrence
   end
 
-  def recurrence_is_scheduled?
-    self.schedule.rrules.any?
-  end
-
-  def build_scheduled_doses
-    self.schedule.occurrences(self.end_datetime).each do |occurrence|
-      self.scheduled_doses.build(scheduled_time: occurrence)
-    end
-  end
-
   def add_daily_recurrence_rule(interval)
     self.schedule.add_recurrence_rule IceCube::Rule.daily(interval)
   end
@@ -74,4 +64,15 @@ class Prescription < ActiveRecord::Base
       errors.add(:start, "start date/time should be before end date/time") unless self.start_datetime < self.end_datetime
     end
   end
+
+  def recurrence_is_scheduled?
+    self.schedule.rrules.any?
+  end
+
+  def build_scheduled_doses
+    self.schedule.occurrences(self.end_datetime).each do |occurrence|
+      self.scheduled_doses.build(scheduled_time: occurrence)
+    end
+  end
+
 end
