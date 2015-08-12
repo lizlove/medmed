@@ -49,6 +49,18 @@ describe Patient do
     end
   end
 
+  describe 'scheduled_doses_for_today' do
+    it 'returns the patients scheduled doses for that day' do
+      @patient = create(:patient)
+      @prescription = create(:prescription, patient: @patient)
+      @prescription.add_daily_recurrence_rule(1)
+      @prescription.save
+      @sd = @prescription.scheduled_doses
+
+      expect(@patient.scheduled_doses_for_today.count).to eq(1)
+    end
+  end
+
 
 
 
