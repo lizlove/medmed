@@ -1,10 +1,11 @@
 $(function(){
     //get Patient labels
     // $("#barlabel").on('mousedown', function(){
-           var $patient = $("#barlabel").text().split(", "); 
+           var $patients = $("#barlabel").text().split(", ");
+           var $data = $("#bardata").text().split(", "); 
 
         var data = {
-            labels: $patient,
+            labels: $patients,
             datasets: [
         {
             label: "Current Patient Total Compliance",
@@ -12,7 +13,7 @@ $(function(){
             strokeColor: "rgba(220,220,220,0.8)",
             highlightFill: "rgba(220,220,220,0.75)",
             highlightStroke: "rgba(220,220,220,1)",
-            data: [65, 59, 80, 81]
+            data: $data
             }
         ]
     };

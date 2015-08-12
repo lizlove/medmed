@@ -138,8 +138,12 @@
     </div>
     <!-- panel barchart -->
       <div class="col-lg-6" id="bardiv">
-        <div id="barlabel" style="display: none;">
-        <%= DoctorDash.patients_per_doctor(@doctor.id).join(", ")%></div>
+        <div id="barlabel" style="display: none">
+          <%= DoctorDash.patients_per_doctor(@doctor.id).join(", ")%>
+        </div>
+        <div id="bardata" style="display:none">
+          <%= DoctorDash.total_compliance(@doctor.id).join(", ") %>
+        </div>
         <canvas id="barchart" width="200" height="200"></canvas>
       </div>
     <!-- /panel barchart -->

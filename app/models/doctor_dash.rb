@@ -6,14 +6,16 @@ class DoctorDash
         num = prescription.scheduled_doses.where(was_taken: true).length 
         denom = prescription.scheduled_doses.where(scheduled_time: (100.years.ago)..(Time.now)).length 
         (num.to_f)/(denom.to_f)
+        binding.pry
       end 
       comply_array
-      # comply_array.inject{ |sum, el| sum + el }.to_f / comply_array.size
+      comply_array.inject{ |sum, el| sum + el }.to_f / comply_array.size
   end
 
   def self.total_compliance(doctor_id)
-    DoctorDash.patients_per_doctor(doctor_id)
-
+    @patients.collect do |patient|
+      DoctorDash.compliance_by_patient(patient.id)
+    end 
   end 
 
   def self.timerange(patient_id)
@@ -22,7 +24,8 @@ class DoctorDash
 
   def self.patients_per_doctor(doctor_id)
     doctor = Doctor.find(doctor_id)
-    doctor.patients.collect{|patient| patient.name}
+    @patients = doctor.patients
+    @patients.collect{|patient| patient.name}
   end 
 
   def self.compliance_all_patients
