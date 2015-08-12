@@ -7,7 +7,7 @@ class PillboxWrapper
   end 
 
   def self.request(rxcui)
-    base_url = "http://pillbox.nlm.nih.gov/PHP/pillboxAPIService.php?key=" + PB_KEY + "&rxcui=" \
+    base_url = "http://pillbox.nlm.nih.gov/PHP/pillboxAPIService.php?key=" + PB_KEY + "&rxcui="
     request_url = base_url + rxcui
     api_request = URI(URI.encode(request_url))
     api_response = Net::HTTP.get(api_request)
