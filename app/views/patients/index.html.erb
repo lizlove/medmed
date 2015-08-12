@@ -11,7 +11,7 @@
               <i class="fa fa-comments fa-5x"></i>
             </div>
             <div class="col-xs-9 text-right">
-              <div class="huge"><%= @doctor.mailbox.inbox(unread: true).count %></div>
+              <h1><%= @doctor.mailbox.inbox(unread: true).count %></h1>
               <div>New Messages!</div>
             </div>
           </div>
@@ -26,14 +26,14 @@
       </div>
     </div>
     <div class="col-lg-3 col-md-6">
-      <div class="panel panel-green">
+      <div class="panel panel-success">
         <div class="panel-heading">
           <div class="row">
             <div class="col-xs-3">
               <i class="fa fa-tasks fa-5x"></i>
             </div>
             <div class="col-xs-9 text-right">
-              <div class="huge"><%= @doctor.prescriptions.count %></div>
+              <h1><%= @doctor.prescriptions.count %></h1>
               <div>Prescriptions</div>
             </div>
           </div>
@@ -48,14 +48,14 @@
       </div>
     </div>
     <div class="col-lg-3 col-md-6">
-      <div class="panel panel-yellow">
+      <div class="panel panel-warning">
         <div class="panel-heading">
           <div class="row">
             <div class="col-xs-3">
               <i class="fa fa-user-plus fa-5x"></i>
             </div>
             <div class="col-xs-9 text-right">
-              <div class="huge"><%= @doctor.patients.count %></div>
+              <h1><%= @doctor.patients.count %></h1>
               <div>Add Patient</div>
             </div>
           </div>
@@ -70,14 +70,14 @@
       </div>
     </div>
     <div class="col-lg-3 col-md-6">
-      <div class="panel panel-red">
+      <div class="panel panel-danger">
         <div class="panel-heading">
           <div class="row">
             <div class="col-xs-3">
               <i class="fa fa-exclamation-circle fa-5x"></i>
             </div>
             <div class="col-xs-9 text-right">
-              <div class="huge">-</div>
+              <h1>-</h1>
               <div>Drop Patient</div>
             </div>
           </div>
@@ -115,7 +115,7 @@
         <% @doctor.patients.order(:last_name).each do |patient| %>
           <% (@doctor.prescriptions & patient.prescriptions).each do |prescription| %>
             <tr>
-              <td><%= link_to patient.name, doctor_patient_path(@doctor, patient), class: "btn btn-default btn-xs" %></td>
+              <td><%= link_to patient.name, doctor_patient_path(@doctor, patient), class: "btn btn-default disabled btn-sm" %></td>
               <td><%= link_to("#{prescription.medication_name}", prescription_path(prescription))%></td>
               <td><%= prescription.start_datetime.to_date %></td>
               <td><%= prescription.end_datetime.to_date %></td>
@@ -127,6 +127,10 @@
       </tbody>
     </table>
 
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Compliance Visualization</h1>
+    </div>
   <!-- panel barchart -->
   <div class="col-lg-6" id="bardiv">
     <div class="panel panel-default">
@@ -140,7 +144,7 @@
       <div id="bardata" style="display:none">
         <%= @comply.all_doctor_patients_compliance_array.join(", ") %>
       </div>
-      <canvas id="barchart" width="400" height="400"></canvas>
+      <canvas id="barchart" width="400" height="200"></canvas>
     </div>
   </div>
   <!-- /panel barchart -->
@@ -161,7 +165,7 @@
             <%= 100 - @taken %>
           </div>
           <div id="totaldonut" class="pie-title-center">
-            <canvas id="donut" width="200" height="200"></canvas>
+            <canvas id="donut" width="400" height="200"></canvas>
           </div>
           <!--===================================================-->
           <!-- End Donut Chart -->
@@ -169,14 +173,18 @@
     </div>
   </div>
   <!-- /panel donut -->
+  </div>
 
-  <div class="col-sm-6">
-
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Side Effects</h1>
+    </div>
+  <div class="col-lg-12">
   <!--Danger Panel-->
   <!--===================================================-->
     <div class="panel panel-bordered panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title">Reported Side Effects</h3>
+        <h3 class="panel-title">Reported Side Effects in the Last 7 Days</h3>
       </div>
       <div class="panel-body">
         <div class="table-responsive">
@@ -187,19 +195,23 @@
                 <th>Name</th>
                 <th>Medication</th>
                 <th class="text-center">Effect Reported</th>
+                <th class="text-center">Date Reported</th>
                 <th class="text-right">Contact Patient</th>
               </tr>
             </thead>
             <tbody>
+            <% SideEffect.get_side_effects_last_7_days.each do |effect| %>
               <tr>
                 <td><a href="#" class="btn-link">NY531</a></td>
-                <td>Steve N. Horton</td>
-                <td>$24.98</td>
-                <td class="text-center"><span class="label label-table label-success">Enterprise</span></td>
+                <td><%= effect.patient.name %></td>
+                <td><%= effect.medication_name %></td>
+                <td class="text-center"><%= effect.side_effect %></td>
+                <td class="text-center"><%= effect.taken_time %></td>
                 <td class="text-right">
                   <a class="btn btn-xs btn-default add-tooltip" data-toggle="tooltip" href="<%= new_doctor_message_path(@doctor)%>" data-original-title="Edit" data-container="body"><i class="fa fa-pencil"></i></a>
                 </td>
               </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
@@ -208,6 +220,7 @@
   </div>
   <!--===================================================-->
   <!--End Danger Panel-->
+  </div>
 
 </div>
 <% else %>
