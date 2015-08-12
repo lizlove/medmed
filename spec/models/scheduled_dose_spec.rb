@@ -4,7 +4,7 @@ describe ScheduledDose do
 
   describe 'scheduled_time' do
     it 'returns the scheduled time of the dose in UTC' do
-      @patient = Patient.new
+      @patient = create(:patient)
       @prescription = create(:prescription, patient: @patient)
       @prescription.add_daily_recurrence_rule(1)
       @prescription.save
@@ -14,7 +14,7 @@ describe ScheduledDose do
     end
 
     it 'does not return the scheduled time of the dose in the patients time zone' do
-      @patient = Patient.new
+      @patient = create(:patient)
       @patient.time_zone = "Europe/Minsk"
       @prescription = create(:prescription, patient: @patient)
       @prescription.add_daily_recurrence_rule(1)
@@ -26,9 +26,11 @@ describe ScheduledDose do
 
   end
 
+
+
   describe 'local_scheduled_time' do
     it 'returns the time in the patients time zone' do
-      @patient = Patient.new
+      @patient = create(:patient)
       @patient.time_zone = "Europe/Minsk"
       @prescription = create(:prescription, patient: @patient)
       @prescription.add_daily_recurrence_rule(1)
@@ -44,7 +46,7 @@ describe ScheduledDose do
   describe 'empty_side_effect' do
     it 'does not save side effects if the dose hasnt been taken' do
 
-      @patient = Patient.new
+      @patient = create(:patient)
       @prescription = create(:prescription, patient: @patient)
       @prescription.add_daily_recurrence_rule(1)
       @prescription.save
@@ -59,6 +61,8 @@ describe ScheduledDose do
 
     end
   end
+
+
 
 
 end
