@@ -28,7 +28,7 @@ class SmsWrapper
             response.carrier["type"] == 'mobile' ? true : false
         rescue => e
             if e.code == 20404
-                false
+                return false
             else
                 puts "Something went wrong with the request"
             end

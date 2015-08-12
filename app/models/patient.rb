@@ -36,7 +36,7 @@ class Patient < ActiveRecord::Base
 
   private
   def phone_number_is_valid_mobile
-    unless SmsWrapper.new(self).valid_phone_number?
+    if !(SmsWrapper.new(self).valid_phone_number?)
       errors.add(:phone_number, "please enter a valid cell phone number")
     end
   end
