@@ -1,3 +1,5 @@
+
+
 <% if @doctor %>
 <h1>Hello Dr. <%= @doctor.last_name %> <i class="fa fa-user-md fa-2x"></i></h1>
 <br><br>
@@ -11,14 +13,14 @@
                             <i class="fa fa-comments fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">26</div>
+                            <div class="huge"><%= @doctor.mailbox.inbox(unread: true).count %></div>
                             <div>New Messages!</div>
                         </div>
                     </div>
                 </div>
                 <a href="#">
                     <div class="panel-footer">
-                        <span class="pull-left">View Details</span>
+                        <span class="pull-left"><%= link_to "View Messages",doctor_conversations_path(@doctor) %></span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>
@@ -56,7 +58,7 @@
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge"><%= @doctor.patients.count %></div>
-                            <div>Patients</div>
+                            <div>Add Patient</div>
                         </div>
                     </div>
                 </div>
@@ -78,7 +80,7 @@
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">-</div>
-                            <div>Drop Patients</div>
+                            <div>Drop Patient</div>
                         </div>
                     </div>
                 </div>
@@ -132,22 +134,51 @@
       </tbody>
     </table>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      Patient Compliance
-    </div>
-    <!-- panel barchart -->
-      <div class="col-lg-6" id="bardiv">
-        <div id="barlabel" style="display: none">
-          <%= DoctorDash.patients_per_doctor(@doctor.id).join(", ")%>
-        </div>
-        <div id="bardata" style="display:none">
-          <%= DoctorDash.total_compliance(@doctor.id).join(", ") %>
-        </div>
-        <canvas id="barchart" width="200" height="200"></canvas>
+  <!-- panel barchart -->
+  <div class="col-lg-8" id="bardiv">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Percent Compliance by Patient
       </div>
-    <!-- /panel barchart -->
+          <div id="barlabel" style="display: none">
+            <%= DoctorDash.patients_per_doctor(@doctor.id).join(", ")%>
+          </div>
+          <div id="bardata" style="display:none">
+            <%= DoctorDash.total_compliance(@doctor.id).join(", ") %>
+          </div>
+          <canvas id="barchart" width="200" height="200"></canvas>
+    </div>
   </div>
+  <!-- /panel barchart -->
+
+  <!-- /panel donut -->
+  <div class="col-lg-4" id="donutdiv">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Total Compliance
+      </div>
+        <div class="panel-body text-center">       
+              <!--Start Donut Chart-->
+              <!--===================================================-->
+              <div id="taken" style="display: none">
+                <%= @taken = DoctorDash.compliance_all_patients(@doctor.id)%>
+              </div>
+              <div id="missed" style="display:none">
+                <%= 100 - @taken %>
+              </div>
+              <div id="totaldonut" class="pie-title-center">
+              <canvas id="donut" width="200" height="200"></canvas>
+              </div>
+              <!--===================================================-->
+              <!-- End Donut Chart -->
+        </div>
+    </div>
+  </div>
+  <!-- /panel donut -->
+
+
+
+
 
 
 
