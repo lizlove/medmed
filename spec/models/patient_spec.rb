@@ -10,6 +10,19 @@ describe Patient do
       expect(patient).to_not be_valid
     end
 
+    it 'is invalid without a valid Twilio mobile number' do
+      patient = build(:patient)
+      patient.phone_number = '123-456-7892'
+      expect(patient).to_not be_valid
+    end
+
+    it 'is valid with a valid Twilio mobile number' do
+      patient = build(:patient)
+      patient.phone_number = '55-11-5525-6325'
+      expect(patient).to be_valid
+    end
+
+
   end
 
 
