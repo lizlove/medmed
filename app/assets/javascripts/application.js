@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require Chart
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree ../../../vendor/assets/javascripts/.
