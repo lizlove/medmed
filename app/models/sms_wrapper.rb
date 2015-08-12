@@ -24,12 +24,7 @@ class SmsWrapper
 
     def valid_phone_number?
         response = lookup_client.phone_numbers.get(phone_number, type: 'carrier')
-
-        if response.carrier["type"] == 'mobile'
-            true
-        else
-            false
-        end
+        response.carrier["type"] == 'mobile' ? true : false
     end
 
 end
