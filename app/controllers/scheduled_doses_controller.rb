@@ -7,6 +7,7 @@ class ScheduledDosesController < ApplicationController
 
   def update
     @patient = Prescription.find(dose_params[:prescription_id]).patient
+    @scheduled_dose.taken_time = Time.now
     respond_to do |format|
       if @scheduled_dose.update(dose_params)
         format.html { redirect_to patient_scheduled_doses_path(@patient) }

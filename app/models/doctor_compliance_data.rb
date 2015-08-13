@@ -11,9 +11,13 @@ class DoctorComplianceData
   end
 
   def single_prescription_compliance_percentage_calculator(prescription)
-      num = prescription.scheduled_doses.where(was_taken: true).length 
-      denom = prescription.scheduled_doses.where(scheduled_time: (100.years.ago)..(Time.now)).length 
+    num = prescription.scheduled_doses.where(was_taken: true).length 
+    denom = prescription.scheduled_doses.where(scheduled_time: (100.years.ago)..(Time.now)).length
+    if denom != 0 
       (num.to_f)/(denom.to_f)
+    else
+      1
+    end
   end  
 
   def total_patient_compliance_calculator(patient)
@@ -26,7 +30,11 @@ class DoctorComplianceData
   end
 
   def average_patients_compliance_figure(total_patient_compliance_array)
-    ((total_patient_compliance_array.inject(:+).to_f / total_patient_compliance_array.size) * 100).to_i
+    if total_patient_compliance_array.any?
+      ((total_patient_compliance_array.inject(:+).to_f / total_patient_compliance_array.size) * 100).to_i
+    else
+      100
+    end
   end
 
   def all_doctor_patients_compliance_array

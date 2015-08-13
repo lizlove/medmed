@@ -205,7 +205,6 @@
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th style="width:4ex"></th>
                 <th>Name</th>
                 <th>Medication</th>
                 <th class="text-center">Effect Reported</th>
@@ -214,17 +213,18 @@
               </tr>
             </thead>
             <tbody>
-            <% SideEffect.get_side_effects_last_7_days.each do |effect| %>
-              <tr>
-                <td><a href="#" class="btn-link">NY531</a></td>
-                <td><%= effect.patient.name %></td>
-                <td><%= effect.medication_name %></td>
-                <td class="text-center"><%= effect.side_effect %></td>
-                <td class="text-center"><%= effect.taken_time %></td>
-                <td class="text-right">
-                  <a class="btn btn-xs btn-default add-tooltip" data-toggle="tooltip" href="<%= new_doctor_message_path(@doctor)%>" data-original-title="Edit" data-container="body"><i class="fa fa-pencil"></i></a>
-                </td>
-              </tr>
+              <% @doctor.patients.each do |patient| %>
+                <% patient.get_side_effects_last_7_days.each do |dose| %>
+                  <tr>
+                    <td class="text-center"><%= patient.name %></td>
+                    <td class="text-center"><%= dose.medication_name %></td>
+                    <td class="text-center"><%= dose.side_effect %></td>
+                    <td class="text-center"><%= dose.taken_time %></td>
+                    <td class="text-right">
+                      <a class="btn btn-xs btn-default add-tooltip" data-toggle="tooltip" href="<%= new_doctor_message_path(@doctor)%>" data-original-title="Edit" data-container="body"><i class="fa fa-pencil"></i></a>
+                    </td>
+                  </tr>
+                <% end %>
               <% end %>
             </tbody>
           </table>
