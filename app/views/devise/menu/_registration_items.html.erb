@@ -5,16 +5,9 @@
   <li><%= link_to('', destroy_doctor_session_path, method: :delete, class: "fa fa-sign-out") %></li>
   <li>&nbsp;&nbsp;&nbsp;</li>
 <% elsif patient_signed_in? %>
-    <li><%= link_to('', patient_path(current_patient, class: "fa fa-user")) %></li>
-    <li><%= link_to('', destroy_patient_session_path, method: :delete, class: "fa fa-sign-out") %>        </li>
-<li class="dropdown">
-  <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Hello, <strong><%= current_patient.first_name.capitalize %></strong> <span class="caret"></span></a>
-  <ul class="dropdown-menu">
-    <li><%= link_to('Inbox', patient_conversations_path(current_patient)) %></li>
-    <li><%= link_to('My Account', patient_path(current_patient)) %></li>
-    <li><%= link_to('My Scheduled Doses', patient_scheduled_doses_path(current_patient)) %></li>
-    <li class="divider"></li>
-    <li><%= link_to('Logout', destroy_patient_session_path, method: :delete) %>        </li>
-  </ul>
-</li>
+  <li><%= link_to("Hello, #{current_patient.first_name.capitalize} ", patient_path(current_patient)) %></li>
+  <li><%= link_to('', patient_conversations_path(current_patient), class: "fa fa-envelope-o") %></li>
+    <li><%= link_to('', patient_scheduled_doses_path(current_patient), class: "fa fa-calendar") %></li>
+    <li><%= link_to('', destroy_patient_session_path, method: :delete, class: "fa fa-sign-out") %></li>
+  <li>&nbsp;&nbsp;&nbsp;</li>
 <% end %>
