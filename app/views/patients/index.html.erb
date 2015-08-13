@@ -130,17 +130,14 @@
   <div class="col-lg-12">
     <div class="row">
       <h1 class="page-header">Compliance Visualization</h1>
-      <div class="col-md-6 col-md-offset-10">
-        <div class="btn-group">
-            <a href="#" class="btn btn-default btn-pull-right">By Patient</a>
-            <a href="#" class="btn btn-default btn-pull-right dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <% @doctor.patients.each do |patient| %>
-                  <li><a href="#"><%= patient.name %></a></li>
-              <% end %>
-            </ul>
-        </div>
-      </div>
+        <select class="form-control" id="patient_select">
+          <option>All Patients</option>
+          <% @doctor.patients.each do |patient| %>
+            <option><%= patient.name %></option>
+          <% end %>
+        </select>
+      <br>
+      <br>
     </div>
   </div>
 

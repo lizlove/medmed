@@ -1,11 +1,11 @@
-function toggleBarchart () {
+// function toggleBarchart ("#") {
   
-}
+// }
 
-function setPatient(patient){
-  current_patient = patient;
-  $('#').html(current_patient);
-}
+// function setPatient(patient){
+//   current_patient = patient;
+//   $('#').html(current_patient);
+// }
 
 
 
