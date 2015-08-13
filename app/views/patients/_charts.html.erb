@@ -8,14 +8,14 @@
       <div id="barlabel" style="display: none">
         <% @comply = DoctorComplianceData.new(@doctor) %>
         <% if @patient %>
-          <%= @patient.prescriptions.collect{|prescription| prescription.name}.join(", ") %>
+          <%= @patient.prescriptions.collect{|prescription| prescription.medication_name}.join(", ") %>
         <% else %>
           <%= @comply.patients_labelmaker.join(", ")%>
         <% end %>
       </div>
       <div id="bardata" style="display:none">
         <% if @patient %>
-          <%= @patient.prescriptions.each {|prescription| @comply.single_prescription_compliance_percentage_calculator(prescription)}.join(", ") %>
+          <%= @patient.prescriptions.collect{|prescription| @comply.single_prescription_compliance_percentage_calculator(prescription)}.join(", ") %>
         <% else %>
           <%= @comply.all_doctor_patients_compliance_array.join(", ") %>
         <% end %>

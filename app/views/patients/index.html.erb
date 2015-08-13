@@ -132,7 +132,7 @@
       <h1 class="page-header">Compliance Visualization</h1>
         <%= form_for @doctor, remote:true, url:doctor_patient_compliance_path do |f| %>
           <%= f.collection_select(:id, @doctor.patients.order(:last_name), :id, :name, include_blank: "All Patients", id: "patient_select")%>
-          <%= f.submit "Filter" %>
+          <%= f.submit "Filter", id: "compliance-submit" %>
         <% end %>
       <br>
       <br>

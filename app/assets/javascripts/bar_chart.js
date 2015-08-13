@@ -1,4 +1,6 @@
-$(function(){
+$(document).ready(function(){
+  function barChart() {
+    console.log("Here is bar chart");
     var $patients = $("#barlabel").text().trim().split(",");
     var $datas = $("#bardata").text().trim().split(","); 
 
@@ -14,14 +16,17 @@ $(function(){
       data: $datas
       }
     ]
-  };
-  if ($("#barchart").get(0)){
-    var ctx = $("#barchart").get(0).getContext("2d");
-    var barChart = new Chart(ctx).Bar(data)
-  };
-});// BarChart
+  }; //data
 
-$("#patient_select").change(function(event) {
-  debugger;
-  barChart.update();
+    if ($("#barchart").get(0)){
+      var ctx = $("#barchart").get(0).getContext("2d");
+      var $barChart = new Chart(ctx).Bar(data)
+    };
+
+  }//barChart
+  });
+
 });
+
+
+
