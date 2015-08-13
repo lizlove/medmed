@@ -1,6 +1,6 @@
 <h1>Drop one of your patients</h1>
 
-<%= form_for(@patient, url: doctor_patient_path(id: 0), method:"DELETE") do |f| %>
+<%= form_for(@patient, url: doctor_patient_path(id: 0), html: {id: "delete_patient", method: :delete}) do |f| %>
 
   <div class="field">
     <%= f.label :patient %><br>
@@ -11,5 +11,7 @@
     <%= f.submit "Drop Patient" %>
   </div>
 <% end %>
+
+
 
 <%= link_to 'Back', doctor_patients_path %>

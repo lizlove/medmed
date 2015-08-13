@@ -4,6 +4,7 @@
   <!-- panel row -->
   <div class="row">
     <div class="col-lg-3 col-md-6">
+      <a href="<%= doctor_conversations_path(@doctor) %>">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <div class="row">
@@ -16,38 +17,38 @@
             </div>
           </div>
         </div>
-        <a href="#">
           <div class="panel-footer">
-            <span class="pull-left"><%= link_to "View Messages",doctor_conversations_path(@doctor) %></span>
+            <span class="pull-left">View Messages</span>
             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
             <div class="clearfix"></div>
           </div>
-        </a>
       </div>
+      </a>
     </div>
     <div class="col-lg-3 col-md-6">
-      <div class="panel panel-success">
-        <div class="panel-heading">
-          <div class="row">
-            <div class="col-xs-3">
-              <i class="fa fa-tasks fa-5x"></i>
+      <a href="<%= new_doctor_prescription_path %>">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-3">
+                  <i class="fa fa-tasks fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                  <h1><%= @doctor.prescriptions.count %></h1>
+                  <div>Prescriptions</div>
+                </div>
+              </div>
             </div>
-            <div class="col-xs-9 text-right">
-              <h1><%= @doctor.prescriptions.count %></h1>
-              <div>Prescriptions</div>
-            </div>
+              <div class="panel-footer">
+                <span class="pull-left">Prescribe a medication</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+              </div>
           </div>
-        </div>
-        <a href="#">
-          <div class="panel-footer">
-            <span class="pull-left"><%= link_to "Prescribe a medication",new_doctor_prescription_path %></span>
-            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-            <div class="clearfix"></div>
-          </div>
-        </a>
-      </div>
+      </a>
     </div>
     <div class="col-lg-3 col-md-6">
+      <a href="<%= new_doctor_patient_path %>">
       <div class="panel panel-warning">
         <div class="panel-heading">
           <div class="row">
@@ -60,36 +61,36 @@
             </div>
           </div>
         </div>
-        <a href="#">
+
           <div class="panel-footer">
-            <span class="pull-left"> <%= link_to "Add a patient", new_doctor_patient_path%></span>
+            <span class="pull-left">Add a patient</span>
             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
             <div class="clearfix"></div>
           </div>
-        </a>
       </div>
+      </a>
     </div>
     <div class="col-lg-3 col-md-6">
-      <div class="panel panel-danger">
-        <div class="panel-heading">
-          <div class="row">
-            <div class="col-xs-3">
-              <i class="fa fa-exclamation-circle fa-5x"></i>
+        <a href="<%= doctor_patients_drop_path %>">
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-3">
+                  <i class="fa fa-exclamation-circle fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                  <h1>-</h1>
+                  <div>Drop Patient</div>
+                </div>
+              </div>
             </div>
-            <div class="col-xs-9 text-right">
-              <h1>-</h1>
-              <div>Drop Patient</div>
-            </div>
-          </div>
-        </div>
-        <a href="#">
-          <div class="panel-footer">
-            <span class="pull-left">Drop a patient</span>
-            <a data-toggle="dropdown"><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span></a>
-            <div class="clearfix"></div>
+              <div class="panel-footer">
+                <span class="pull-left">Drop a patient</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+              </div>
           </div>
         </a>
-      </div>
     </div>
   </div>
   <!-- panel row -->
@@ -127,22 +128,7 @@
       </tbody>
     </table>
 
-  <div class="col-lg-12">
-    <div class="row">
-      <h1 class="page-header">Compliance Visualization</h1>
-      <div class="col-md-6 col-md-offset-10">
-        <div class="btn-group">
-            <a href="#" class="btn btn-default btn-pull-right">By Patient</a>
-            <a href="#" class="btn btn-default btn-pull-right dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <% @doctor.patients.each do |patient| %>
-                  <li><a href="#"><%= patient.name %></a></li>
-              <% end %>
-            </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <div class="row">
   <!-- panel barchart -->
