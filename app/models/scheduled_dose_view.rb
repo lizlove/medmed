@@ -20,7 +20,6 @@ class ScheduledDoseView
   end
 
   def formatted_time
-    byebug
     scheduled_dose.local_scheduled_time.strftime("%I:%M %p")
   end
 
