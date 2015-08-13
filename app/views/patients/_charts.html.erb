@@ -1,0 +1,44 @@
+<div class="row">
+  <!-- panel barchart -->
+  <div class="col-lg-6" id="bardiv">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5>Percent Compliance</h5>
+      </div>
+      <div id="barlabel" style="display: none">
+        <% @comply = DoctorComplianceData.new(@doctor) %>
+        <%= @comply.patients_labelmaker.join(", ")%>
+      </div>
+      <div id="bardata" style="display:none">
+        <%= @comply.all_doctor_patients_compliance_array.join(", ") %>
+      </div>
+      <canvas id="barchart" width="400" height="200"></canvas>
+    </div>
+  </div>
+  <!-- /panel barchart -->
+
+  <!-- /panel donut -->
+  <div class="col-lg-6" id="donutdiv">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5>Total Compliance: <%= @taken = @comply.total_doctor_patients_compliance_figure %>% taken within 4 hours of scheduled dose</h5>
+      </div>
+        <div class="panel-body text-center">       
+          <!--Start Donut Chart-->
+          <!--===================================================-->
+          <div id="taken" style="display: none">
+            <%= @taken %>
+          </div>
+          <div id="missed" style="display:none">
+            <%= 100 - @taken %>
+          </div>
+          <div id="totaldonut" class="pie-title-center">
+            <canvas id="donut" width="400" height="200"></canvas>
+          </div>
+          <!--===================================================-->
+          <!-- End Donut Chart -->
+        </div>
+    </div>
+  </div>
+  <!-- /panel donut -->
+  </div>
