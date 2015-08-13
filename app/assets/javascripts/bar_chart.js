@@ -1,5 +1,16 @@
+function toggleBarchart () {
+  
+}
+
+function setPatient(patient){
+  current_patient = patient;
+  $('#').html(current_patient);
+}
+
+
+
+
 $(function(){
-  //get Patient labels, get data for each patient from hidden field
     var $patients = $("#barlabel").text().trim().split(",");
     var $datas = $("#bardata").text().trim().split(","); 
 
