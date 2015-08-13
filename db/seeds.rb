@@ -5,10 +5,16 @@ ScheduledDose.destroy_all
 
 
 # Patients
-@patient1 = Patient.create!(first_name: "Princess", last_name: "Peach", phone_number: "7736002167", email: "peach@nintendo.com", password: "marioh0t", password_confirmation: "marioh0t", time_zone: "Eastern Time (US & Canada)")
-@patient2 = Patient.create!(first_name: "Bowser", last_name: "Koopa", phone_number: "804-596-0952", email: "koopa@nintendo.com", password: "kooparules", password_confirmation: "kooparules", time_zone: "Eastern Time (US & Canada)")
-@patient3 = Patient.create!(first_name: "Kirby", last_name: "PinkPuff", phone_number: "834-596-0952", email: "kirby@nintendo.com", password: "dreamland", password_confirmation: "dreamland", time_zone: "Eastern Time (US & Canada)")
-@patient4 = Patient.create!(first_name: "Link", last_name: "Legend", phone_number: "834-596-0452", email: "link@nintendo.com", password: "findzelda", password_confirmation: "findzelda", time_zone: "Eastern Time (US & Canada)")
+@patient1 = Patient.new(first_name: "Princess", last_name: "Peach", phone_number: "7736002167", email: "peach@nintendo.com", password: "marioh0t", password_confirmation: "marioh0t", time_zone: "Eastern Time (US & Canada)")
+@patient2 = Patient.new(first_name: "Bowser", last_name: "Koopa", phone_number: "804-596-0952", email: "koopa@nintendo.com", password: "kooparules", password_confirmation: "kooparules", time_zone: "Eastern Time (US & Canada)")
+@patient3 = Patient.new(first_name: "Kirby", last_name: "PinkPuff", phone_number: "834-596-0952", email: "kirby@nintendo.com", password: "dreamland", password_confirmation: "dreamland", time_zone: "Eastern Time (US & Canada)")
+@patient4 = Patient.new(first_name: "Link", last_name: "Legend", phone_number: "834-596-0452", email: "link@nintendo.com", password: "findzelda", password_confirmation: "findzelda", time_zone: "Eastern Time (US & Canada)")
+
+
+@patient1.save!(validate: false)
+@patient2.save!(validate: false)
+@patient3.save!(validate: false)
+@patient4.save!(validate: false)
 
 
 # Doctors
