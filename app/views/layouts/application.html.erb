@@ -22,22 +22,26 @@
       </div>
     </nav>
 
-    <div class="container"> 
+    <div class="container" id="wrap">
       <%= yield %>
     </div>
   </body>
 
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <p>Copyright &copy; MedMed 2015</p>
-          <p>Made with <i class="fa fa-heart" style="color:red"></i> at <span style="color:#14b3d9">//</span> Flatiron School </p>
+  <!--<footer>-->
+    <!--<div class="container">-->
+      <!--<div class="row">-->
+        <!--<div class="col-lg-12 center-block">-->
+          <!--<p style="text-align: center;">Copyright &copy; MedMed 2015 | Made with <i class="fa fa-heart" style="color:red"></i> at <span style="color:#14b3d9">//</span> Flatiron School </p>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; /.col-lg-12 &ndash;&gt;-->
+      <!--</div>-->
+      <!--&lt;!&ndash; /.row &ndash;&gt;-->
+    <!--</div>-->
+  <!--</footer>-->
 
-        </div>
-        <!-- /.col-lg-12 -->
-      </div>
-      <!-- /.row -->
+  <div id="footer">
+    <div class="container">
+      <p class="muted credit" style="text-align: center;">Copyright &copy; MedMed 2015 | Made with <i class="fa fa-heart" style="color:red"></i> at <span style="color:#14b3d9">//</span> Flatiron School</p>
     </div>
-  </footer>
+  </div>
 </html>
