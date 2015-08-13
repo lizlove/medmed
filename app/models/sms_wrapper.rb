@@ -28,7 +28,8 @@ class SmsWrapper
             response.carrier["type"] == 'mobile' ? true : false
         rescue => e
             if e.code == 20404
-                return false
+              Rails.logger.error { "#{e.message} #{e.backtrace.join("\n")}" }
+              return false
             else
                 puts "Something went wrong with the request"
             end

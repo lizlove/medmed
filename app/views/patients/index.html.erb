@@ -1,106 +1,104 @@
-
-
 <% if @doctor %>
 <h1>Hello Dr. <%= @doctor.last_name %> <i class="fa fa-user-md fa-2x"></i></h1>
 <br><br>
-    <!-- panel row -->
-    <div class="row">
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-comments fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge"><%= @doctor.mailbox.inbox(unread: true).count %></div>
-                            <div>New Messages!</div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#">
-                    <div class="panel-footer">
-                        <span class="pull-left"><%= link_to "View Messages",doctor_conversations_path(@doctor) %></span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
+  <!-- panel row -->
+  <div class="row">
+    <div class="col-lg-3 col-md-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-3">
+              <i class="fa fa-comments fa-5x"></i>
             </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-green">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-tasks fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge"><%= @doctor.prescriptions.count %></div>
-                            <div>Prescriptions</div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#">
-                    <div class="panel-footer">
-                        <span class="pull-left"><%= link_to "Prescribe a medication",new_doctor_prescription_path %></span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
+            <div class="col-xs-9 text-right">
+              <h1><%= @doctor.mailbox.inbox(unread: true).count %></h1>
+              <div>New Messages!</div>
             </div>
+          </div>
         </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-yellow">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-user-plus fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge"><%= @doctor.patients.count %></div>
-                            <div>Add Patient</div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#">
-                    <div class="panel-footer">
-                        <span class="pull-left"> <%= link_to "Add a patient", new_doctor_patient_path%></span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-red">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-exclamation-circle fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge">-</div>
-                            <div>Drop Patient</div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#">
-                    <div class="panel-footer">
-                        <span class="pull-left">Drop a patient</span>
-                          <a data-toggle="dropdown"><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span></a>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
-            </div>
-        </div>
+        <a href="#">
+          <div class="panel-footer">
+            <span class="pull-left"><%= link_to "View Messages",doctor_conversations_path(@doctor) %></span>
+            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+          </div>
+        </a>
+      </div>
     </div>
-    <!-- panel row -->
+    <div class="col-lg-3 col-md-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-3">
+              <i class="fa fa-tasks fa-5x"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+              <h1><%= @doctor.prescriptions.count %></h1>
+              <div>Prescriptions</div>
+            </div>
+          </div>
+        </div>
+        <a href="#">
+          <div class="panel-footer">
+            <span class="pull-left"><%= link_to "Prescribe a medication",new_doctor_prescription_path %></span>
+            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-3">
+              <i class="fa fa-user-plus fa-5x"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+              <h1><%= @doctor.patients.count %></h1>
+              <div>Add Patient</div>
+            </div>
+          </div>
+        </div>
+        <a href="#">
+          <div class="panel-footer">
+            <span class="pull-left"> <%= link_to "Add a patient", new_doctor_patient_path%></span>
+            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-3">
+              <i class="fa fa-exclamation-circle fa-5x"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+              <h1>-</h1>
+              <div>Drop Patient</div>
+            </div>
+          </div>
+        </div>
+        <a href="#">
+          <div class="panel-footer">
+            <span class="pull-left">Drop a patient</span>
+            <a data-toggle="dropdown"><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span></a>
+            <div class="clearfix"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- panel row -->
 <br><br>
   <div class="row">
-      <div class="col-lg-12">
-          <h1 class="page-header">Active Precriptions</h1>
-      </div>
-      <!-- /.col-lg-12 -->
+    <div class="col-lg-12">
+      <h1 class="page-header">Active Precriptions</h1>
+    </div>
+    <!-- /.col-lg-12 -->
   </div>
     <table class="table table-striped table-hover ">
       <thead>
@@ -117,7 +115,7 @@
         <% @doctor.patients.order(:last_name).each do |patient| %>
           <% (@doctor.prescriptions & patient.prescriptions).each do |prescription| %>
             <tr>
-              <td><%= link_to patient.name, doctor_patient_path(@doctor, patient), class: "btn btn-default btn-xs" %></td>
+              <td><%= link_to patient.name, doctor_patient_path(@doctor, patient), class: "btn btn-default disabled btn-sm" %></td>
               <td><%= link_to("#{prescription.medication_name}", prescription_path(prescription))%></td>
               <td><%= prescription.start_datetime.to_date %></td>
               <td><%= prescription.end_datetime.to_date %></td>
@@ -129,19 +127,38 @@
       </tbody>
     </table>
 
+  <div class="col-lg-12">
+    <div class="row">
+      <h1 class="page-header">Compliance Visualization</h1>
+      <div class="col-md-6 col-md-offset-10">
+        <div class="btn-group">
+            <a href="#" class="btn btn-default btn-pull-right">By Patient</a>
+            <a href="#" class="btn btn-default btn-pull-right dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <% @doctor.patients.each do |patient| %>
+                  <li><a href="#"><%= patient.name %></a></li>
+              <% end %>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
   <!-- panel barchart -->
   <div class="col-lg-6" id="bardiv">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h5>Percent Compliance by Patient</h5>
+        <h5>Percent Compliance</h5>
       </div>
-          <div id="barlabel" style="display: none">
-            <%= DoctorDash.patients_per_doctor(@doctor.id).join(", ")%>
-          </div>
-          <div id="bardata" style="display:none">
-            <%= DoctorDash.total_compliance(@doctor.id).join(", ") %>
-          </div>
-          <canvas id="barchart" width="400" height="400"></canvas>
+      <div id="barlabel" style="display: none">
+        <% @comply = DoctorComplianceData.new(@doctor) %>
+        <%= @comply.patients_labelmaker.join(", ")%>
+      </div>
+      <div id="bardata" style="display:none">
+        <%= @comply.all_doctor_patients_compliance_array.join(", ") %>
+      </div>
+      <canvas id="barchart" width="400" height="200"></canvas>
     </div>
   </div>
   <!-- /panel barchart -->
@@ -150,72 +167,76 @@
   <div class="col-lg-6" id="donutdiv">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h5>Total Compliance: <%= @taken = DoctorDash.compliance_all_patients(@doctor.id)%>% taken within 4 hours of scheduled dose</h5>
+        <h5>Total Compliance: <%= @taken = @comply.total_doctor_patients_compliance_figure %>% taken within 4 hours of scheduled dose</h5>
       </div>
         <div class="panel-body text-center">       
-              <!--Start Donut Chart-->
-              <!--===================================================-->
-              <div id="taken" style="display: none">
-                <%= @taken %>
-              </div>
-              <div id="missed" style="display:none">
-                <%= 100 - @taken %>
-              </div>
-              <div id="totaldonut" class="pie-title-center">
-              <canvas id="donut" width="200" height="200"></canvas>
-              </div>
-              <!--===================================================-->
-              <!-- End Donut Chart -->
+          <!--Start Donut Chart-->
+          <!--===================================================-->
+          <div id="taken" style="display: none">
+            <%= @taken %>
+          </div>
+          <div id="missed" style="display:none">
+            <%= 100 - @taken %>
+          </div>
+          <div id="totaldonut" class="pie-title-center">
+            <canvas id="donut" width="400" height="200"></canvas>
+          </div>
+          <!--===================================================-->
+          <!-- End Donut Chart -->
         </div>
     </div>
   </div>
   <!-- /panel donut -->
+  </div>
 
-  <div class="col-sm-6">
-
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Side Effects</h1>
+    </div>
+  <div class="col-lg-12">
   <!--Danger Panel-->
   <!--===================================================-->
-  <div class="panel panel-bordered panel-danger">
-    <div class="panel-heading">
-      <h3 class="panel-title">Reported Side Effects</h3>
-    </div>
-    <div class="panel-body">
+    <div class="panel panel-bordered panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title">Reported Side Effects in the Last 7 Days</h3>
+      </div>
+      <div class="panel-body">
         <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                      <thead>
-                        <tr>
-                          <th style="width:4ex"></th>
-                          <th>Name</th>
-                          <th>Medication</th>
-                          <th class="text-center">Effect Reported</th>
-                          <th class="text-right">Contact Patient</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><a href="#" class="btn-link">NY531</a></td>
-                          <td>Steve N. Horton</td>
-                          <td>$24.98</td>
-                          <td class="text-center"><span class="label label-table label-success">Enterprise</span></td>
-                          <td class="text-right">
-                            <a class="btn btn-xs btn-default add-tooltip" data-toggle="tooltip" href="<%= new_doctor_message_path(@doctor)%>" data-original-title="Edit" data-container="body"><i class="fa fa-pencil"></i></a>
-
-
-                          </td>
-                        </tr>
-                      </tbody>
-                  </table>
-              </div>
-          </div>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Medication</th>
+                <th class="text-center">Effect Reported</th>
+                <th class="text-center">Date Reported</th>
+                <th class="text-right">Contact Patient</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @doctor.patients.each do |patient| %>
+                <% patient.get_side_effects_last_7_days.each do |dose| %>
+                  <tr>
+                    <td class="text-center"><%= patient.name %></td>
+                    <td class="text-center"><%= dose.medication_name %></td>
+                    <td class="text-center"><%= dose.side_effect %></td>
+                    <td class="text-center"><%= dose.taken_time %></td>
+                    <td class="text-right">
+                      <a class="btn btn-xs btn-default add-tooltip" data-toggle="tooltip" href="<%= new_doctor_message_path(@doctor)%>" data-original-title="Edit" data-container="body"><i class="fa fa-pencil"></i></a>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
   <!--===================================================-->
   <!--End Danger Panel-->
+  </div>
 
 </div>
-
-
-
 <% else %>
 <h4>You're not signed in!</h4>
 <% end %>

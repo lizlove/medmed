@@ -2,7 +2,7 @@
     <div class="alert alert-dismissible alert-warning">
       <button type="button" class="close" data-dismiss="alert">×</button>
       <h4>Warning!</h4>
-      <p>Looks like you missed a scheduled dose yesterday. Please contact <a href="#" class="alert-link">your physician</a>.</p>
+      <p>Looks like you missed a scheduled dose yesterday. Please contact <a href="<%= patient_conversations_path(@patient) %>" class="alert-link">your physician</a>.</p>
     </div>
 <% end %>
 

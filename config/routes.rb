@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :doctors, only: [:show] do
     resources :prescriptions, only: [:new, :create, :destroy]
+    get 'patients/drop', as: "patients_drop"
     resources :patients, only: [:index, :show, :new, :create, :destroy]
     resources :conversations, only: [:index, :show, :destroy] do
       member do

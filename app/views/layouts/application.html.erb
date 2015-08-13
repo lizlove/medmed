@@ -1,49 +1,47 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Medmed</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-  <%= analytics_init if Rails.env.production? %>
-</head>
-<body>
+  <head>
+    <title>Medmed</title>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <%= analytics_init if Rails.env.production? %>
+  </head>
+  <body>
 
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-header">
-      <a class="navbar-brand" href='<%= root_path %>'>MedMed</a>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="navbar-header">
+        <a class="navbar-brand" href='<%= root_path %>'>MedMed</a>
+      </div>
+        <ul class="nav navbar-nav navbar-left">
+          <li><%= link_to('About Page', about_path) %></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <%= render 'devise/menu/registration_items' %>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container" id="wrap">
+      <%= yield %>
     </div>
-      <!-- <ul class="nav navbar-nav">
-        
-      </ul> -->
-      <ul class="nav navbar-nav navbar-left">
-        <li><%= link_to('About Page', about_path) %></li>
-    <li>
+  </body>
 
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <%= render 'devise/menu/registration_items' %>
-      </ul>
+  <!--<footer>-->
+    <!--<div class="container">-->
+      <!--<div class="row">-->
+        <!--<div class="col-lg-12 center-block">-->
+          <!--<p style="text-align: center;">Copyright &copy; MedMed 2015 | Made with <i class="fa fa-heart" style="color:red"></i> at <span style="color:#14b3d9">//</span> Flatiron School </p>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; /.col-lg-12 &ndash;&gt;-->
+      <!--</div>-->
+      <!--&lt;!&ndash; /.row &ndash;&gt;-->
+    <!--</div>-->
+  <!--</footer>-->
+
+  <div id="footer">
+    <div class="container">
+      <p class="muted credit" style="text-align: center;">Copyright &copy; MedMed 2015 | Made with <i class="fa fa-heart" style="color:red"></i> at <span style="color:#14b3d9">//</span> Flatiron School</p>
     </div>
-  </nav>
-
-  <div class="container"> 
-
-  <%= yield %>
-  
   </div>
-
-</body>
-
- <footer>
-  <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; MedMed 2015</p>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-          </div>
-        </footer>
 </html>
