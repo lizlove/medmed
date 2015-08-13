@@ -12,10 +12,10 @@ feature 'Doctor logs in from the homepage and' do
     fill_in 'Email', with: doctor.email
     fill_in 'Password', with: doctor.password
 
-    click_button 'Sign In'
+    click_button 'Log in'
 
     expect(page.current_path).to eq "/doctors/#{doctor.id}/patients"
-    expect(page).to have_content("Hello Dr. #{doctor.last_name}.")
+    expect(page).to have_content("Hello Dr. #{doctor.last_name}")
   end
 
   scenario 'they enter the wrong password' do
@@ -24,7 +24,7 @@ feature 'Doctor logs in from the homepage and' do
     fill_in 'Email', with: doctor.email
     fill_in 'Password', with: 'password1234blah'
 
-    click_button 'Sign In'
+    click_button 'Log in'
 
     expect(page.current_path).to eq new_doctor_session_path
     expect(page).to have_content("Invalid email or password.")
@@ -36,7 +36,7 @@ feature 'Doctor logs in from the homepage and' do
     fill_in 'Email', with: 'doctorwario@nintendo.com'
     fill_in 'Password', with: 'password1234blah'
 
-    click_button 'Sign In'
+    click_button 'Log in'
 
     expect(page.current_path).to eq new_doctor_session_path
     expect(page).to have_content("Invalid email or password.")
@@ -48,9 +48,9 @@ feature 'Doctor logs in from the homepage and' do
     fill_in 'Email', with: patient.email
     fill_in 'Password', with: patient.password
 
-    click_button 'Sign In'
+    click_button 'Log in'
 
-    expect(page.current_path).to e_pathq new_doctor_session_path
+    expect(page.current_path).to eq new_doctor_session_path
     expect(page).to have_content("Invalid email or password.")
   end
 
