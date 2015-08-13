@@ -2,29 +2,35 @@
 
 <% if !current_doctor && !current_patient %>
 
-  <div class="jumbotron">
-    <div> <%= image_tag("medmed", width: "40%", class: "img-responsive img-right") %> </div>
-    <div>
-      <h1>MedMed</h1>
-      <p>Helping doctors and patients manage complicated prescription regimens.</p>
-      <p><%= link_to('Learn more', about_path, class: "btn btn-primary btn-lg")%></a></p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="well">
-      <H3>DOCTOR LOGIN</H3>
-      <%= link_to("Doctor, Please click to login.", new_doctor_session_path) %>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="well">
+          <H3>DOCTOR LOGIN</H3>
+          <%= link_to("Doctor, Please click to login.", new_doctor_session_path) %>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="well">
+          <H3>PATIENT LOGIN</H3>
+          <%= link_to("Patient, please click to login.", new_patient_session_path) %>
+        </div>
       </div>
     </div>
-    <div class="col-lg-6">
-    <div class="well">
-    <H3>PATIENT LOGIN</H3>
-    <%= link_to("Patient, please click to login.", new_patient_session_path) %>
+
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-md-7">
+        <h1>MedMed</h1>
+        <p class="lead">Helping doctors and patients manage complicated prescription regimens.</p>
+        <p><%= link_to('Learn more', about_path, class: "btn btn-primary btn-lg")%></a></p>
+      </div>
+      <div class="col-md-5"> <%= image_tag("medmed", class: "img-responsive img-right") %> </div>
     </div>
-    </div>
+
+
   </div>
+
+
 
 <% end %>
 
