@@ -1,8 +1,8 @@
-# Medmed
+# MedMed
 
 ## Description
 
-Add a short description of your app.
+MedMed is an awesome application that allows doctors and patients to manage complicated prescription regimens. A doctor can add a patient, assign them a prescription, and monitor their patient's compliance. A patient can see what scheduled medication they have to take, report any side effects they might have, and receive text reminders.
 
 ## Screenshots
 
@@ -15,26 +15,33 @@ like?
 
 ## Features
 
-Bullet point some of the key features of your app here.
+- Send messages!
+- Assign/Take prescriptions!
+- Get alerted when you're supposed to take your prescription!
 
 ## Usage
 
-How do users use your app?
+### Doctors
+
+After you and your patients register, you can write them prescriptions that will send them reminders every time they need to take them! All of the links you need are icons in the navigation bar at the top of the screen. You can also message your patients directly from the web app!
+
+### Patients
+
+After you and your doctors register, they can give you your prescriptions, sending you reminders every time you need to take them! All of the links you need are icons in the navigation bar at the top of the screen. You can also message your doctors directly from the web app!
 
 ## Development/Contribution
 
-Explain how people can contribute to your app. How should they write tests?
-Any things in particular you'd like to see in pull requests?
+Anyone can contribute to the app! Writing tests would be helpful, since we have yet to have time for much testing. We were aiming mainly for feature tests.
+Make sure to keep your pull requests descriptive of the work you've done!
 
 ## Future
 
-What features are you currently working on? Only mention things that you
-actually are implementing. No pie-in-the-sky-never-gonna-happen stuff.
+We're not really sure what we're going to implement in the future. If you have any ideas, let us know!
 
-## Author
+## Authors
 
-Link to your blog, twitter, etc!
+Go to the website and view the About page to get to know more about us!
 
 ## License
 
-Medmed is MIT Licensed. See LICENSE for details.
+MedMed is MIT Licensed. See LICENSE for details.
