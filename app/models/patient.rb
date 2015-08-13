@@ -30,6 +30,10 @@ class Patient < ActiveRecord::Base
     self.missed_doses_for_yesterday.any?
   end
 
+   def get_side_effects_last_7_days
+    self.scheduled_doses.select { |m| !!m.taken_time && !!m.side_effect && (m.taken_time > (Time.now - 7.days))}
+  end
+
   private
   def phone_number_is_valid_mobile
     if !(SmsWrapper.new(self).valid_phone_number?)
