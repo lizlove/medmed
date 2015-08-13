@@ -21,7 +21,7 @@ class DoctorComplianceData
       total_patient_compliance_array = patient.prescriptions.collect{|prescription| self.single_prescription_compliance_percentage_calculator(prescription)}
       average_patients_compliance_figure(total_patient_compliance_array)
     else
-      0
+      100
     end
   end
 
@@ -34,7 +34,12 @@ class DoctorComplianceData
   end 
 
   def total_doctor_patients_compliance_figure
+    if doctor.patients.any?
     (all_doctor_patients_compliance_array.inject(:+).to_f / all_doctor_patients_compliance_array.size).to_i
+    else 
+      100
+    end
+
   end 
 
 end 
