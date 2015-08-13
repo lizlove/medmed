@@ -12,7 +12,7 @@ class Prescription < ActiveRecord::Base
 
   def schedule
     if recurrence.nil?
-      self.recurrence = IceCube::Schedule.new(start = self.start_datetime.utc, :end_time => self.end_datetime.utc)
+      self.recurrence = IceCube::Schedule.new(start = translate_time_to_utc(start_datetime), :end_time => translate_time_to_utc(start_datetime))
     end
 
     self.recurrence
@@ -67,6 +67,10 @@ class Prescription < ActiveRecord::Base
 
   def recurrence_is_scheduled?
     self.schedule.rrules.any?
+  end
+
+  def translate_time_to_utc(time)
+    Time.use_zone(self.patient.translated_time_zone) { Time.zone.local_to_utc(time) }.localtime.utc
   end
 
   def build_scheduled_doses

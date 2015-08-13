@@ -54,6 +54,7 @@ class PrescriptionsController < ApplicationController
     patient.prescriptions << @prescription
   end
 
+
   def set_prescription
     @prescription = Prescription.find(params[:id])
   end

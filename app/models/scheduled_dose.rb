@@ -25,9 +25,7 @@ class ScheduledDose < ActiveRecord::Base
   end
 
   def reminder
-    #run only if the patient has a valid phone number
-    @sms = SmsWrapper.new(self.patient)
-    @sms.send_message(ScheduledDoseView.new(self))
+    SmsWrapper.new(self.patient).send_message(ScheduledDoseView.new(self))
   end
 
   def patient_phone_number
@@ -37,7 +35,6 @@ class ScheduledDose < ActiveRecord::Base
   def when_to_remind
     scheduled_time - 15.minutes
   end
-
 
   handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_remind }
 
