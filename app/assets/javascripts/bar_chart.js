@@ -1,15 +1,3 @@
-// function toggleBarchart ("#") {
-  
-// }
-
-// function setPatient(patient){
-//   current_patient = patient;
-//   $('#').html(current_patient);
-// }
-
-
-
-
 $(function(){
     var $patients = $("#barlabel").text().trim().split(",");
     var $datas = $("#bardata").text().trim().split(","); 

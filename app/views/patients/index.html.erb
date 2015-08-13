@@ -131,9 +131,9 @@
     <div class="row">
       <h1 class="page-header">Compliance Visualization</h1>
         <select class="form-control" id="patient_select">
-          <option>All Patients</option>
+          <option value=0>All Patients</option>
           <% @doctor.patients.each do |patient| %>
-            <option><%= patient.name %></option>
+            <option value=<%= patient.id %>><%= patient.name %></option>
           <% end %>
         </select>
       <br>
