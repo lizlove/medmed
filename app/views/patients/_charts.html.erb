@@ -7,10 +7,18 @@
       </div>
       <div id="barlabel" style="display: none">
         <% @comply = DoctorComplianceData.new(@doctor) %>
-        <%= @comply.patients_labelmaker.join(", ")%>
+        <% if @patient %>
+          <%= @patient.prescriptions.collect{|prescription| prescription.name}.join(", ") %>
+        <% else %>
+          <%= @comply.patients_labelmaker.join(", ")%>
+        <% end %>
       </div>
       <div id="bardata" style="display:none">
-        <%= @comply.all_doctor_patients_compliance_array.join(", ") %>
+        <% if @patient %>
+          <%= @patient.prescriptions.each {|prescription| @comply.single_prescription_compliance_percentage_calculator(prescription)}.join(", ") %>
+        <% else %>
+          <%= @comply.all_doctor_patients_compliance_array.join(", ") %>
+        <% end %>
       </div>
       <canvas id="barchart" width="400" height="200"></canvas>
     </div>

@@ -50,6 +50,17 @@ class DoctorsController < ApplicationController
 
   end
 
+  def compliance
+    @doctor = Doctor.find(params[:doctor_id])
+    patient_id = params[:doctor][:id]
+    if patient_id
+      @patient = Patient.find(patient_id)
+    end 
+    respond_to do |format|
+      format.js
+    end 
+  end 
+
   private
 
   def set_doctor

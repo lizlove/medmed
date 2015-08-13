@@ -20,3 +20,8 @@ $(function(){
     var barChart = new Chart(ctx).Bar(data)
   };
 });// BarChart
+
+$("#patient_select").change(function(event) {
+  debugger;
+  barChart.update();
+});
