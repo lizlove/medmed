@@ -12,7 +12,8 @@ class MessagesController < ApplicationController
  
   def create
     umn = user_model_name
-    recipients = "#{umn.capitalize}".constantize.where(id: params['recipients'])
+    rmn = recipient_model_name
+    recipients = "#{rmn.capitalize}".constantize.where(id: params['recipients'])
     conversation = send("current_#{umn}").send_message(recipients, params[:message][:body], params[:message][:subject]).conversation
     conversation.save
     flash[:success] = "Message has been sent!"
@@ -27,6 +28,14 @@ class MessagesController < ApplicationController
       "doctor"
     elsif patient_signed_in?
       "patient"
+    end
+  end
+
+  def recipient_model_name
+    if doctor_signed_in?
+      "patient"
+    elsif patient_signed_in?
+      "doctor"
     end
   end
 end
