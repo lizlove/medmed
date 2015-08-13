@@ -32,12 +32,11 @@ class ScheduledDose < ActiveRecord::Base
     self.patient.phone_number
   end
 
-  # def when_to_remind
-  #   scheduled_time - 15.minutes
-  # end
+  def when_to_remind
+    scheduled_time - 15.minutes
+  end
 
-
-  # handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_remind }
+  handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_remind }
 
   private
 
