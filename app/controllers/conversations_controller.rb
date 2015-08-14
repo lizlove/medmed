@@ -19,6 +19,9 @@ class ConversationsController < ApplicationController
   end
 
   def show
+    umn = user_model_name
+    user = send("current_#{umn}")
+    get_conversation.mark_as_read(user)
   end
  
   def index
