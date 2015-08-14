@@ -13,10 +13,10 @@
 
   <div class="field">
     <%= f.label :patient %><br>
-    <%= f.collection_select :id, Patient.all-Doctor.first.patients, :id, :name %><br>
+    <%= f.collection_select :id, Patient.all-current_doctor.patients, :id, :name, {}, {class: 'form-control'} %><br>
   </div>
 
   <div class="actions">
-    <%= f.submit "Add Patient" %>
+    <%= f.submit "Add Patient", type: 'submit', class: 'btn btn-primary' %>
   </div>
 <% end %>

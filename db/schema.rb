@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810155948) do
+ActiveRecord::Schema.define(version: 20150813213352) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20150810155948) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "time_zone"
   end
 
   add_index "doctors", ["email"], name: "index_doctors_on_email", unique: true

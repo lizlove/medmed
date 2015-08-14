@@ -1,7 +1,10 @@
+
 <form action="/medication_search" method="post" data-remote="true">
   <input name="authenticity_token" value="<%=form_authenticity_token%>" type="hidden">
-  <%= text_field_tag :keyword %>
-  <%= submit_tag "Search Medications"%><br> 
+  <%= text_field_tag :keyword, '', class: 'form-control' %>
+  <br/>
+  <%= button_tag "Search Medications", class: 'btn btn-primary'%><br>
+  <br/>
 </form>
 
 <%= form_for(@prescription, url: doctor_prescriptions_path) do |f| %>
@@ -20,7 +23,7 @@
   </div>
   <div class="field">
     <%= f.label :patient %><br>
-    <%= f.collection_select :patient_id, current_doctor.patients, :id, :name %><br>
+    <%= f.collection_select :patient_id, current_doctor.patients, :id, :name, {}, {class: 'form-control'} %><br>
   </div>
 
   <div class="field">
