@@ -2,7 +2,12 @@ class PillboxWrapper
   PB_KEY = ENV["pb_key"]
 
   def self.nokogiri_parse(xml)
-    image_id = Nokogiri::XML(xml).xpath("//image_id").text
+    image_ids = Nokogiri::XML(xml).xpath("//image_id").select{|image|image.text!=""}
+    if image_ids.any?
+      image_id = image_ids.last.text
+    else
+      image_id = ""
+    end
     self.get_image_uri(image_id)
   end 
 
