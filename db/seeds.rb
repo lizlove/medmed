@@ -18,8 +18,8 @@ ScheduledDose.destroy_all
 
 
 # Doctors
-@doctor1 = Doctor.create!(first_name: "Jumpman", last_name: "Mario", phone_number: "329-324-2343", email: "drmario@nintendo.com", password: "wariosux", password_confirmation: "wariosux")
-@doctor2 = Doctor.create!(first_name: "Toad", last_name: "Mushroom", phone_number: "329-324-2393", email: "toad@nintendo.com", password: "toadrules", password_confirmation: "toadrules")
+@doctor1 = Doctor.create!(first_name: "Jumpman", last_name: "Mario", phone_number: "329-324-2343", email: "drmario@nintendo.com", password: "wariosux", password_confirmation: "wariosux", time_zone: "Eastern Time (US & Canada)")
+@doctor2 = Doctor.create!(first_name: "Toad", last_name: "Mushroom", phone_number: "329-324-2393", email: "toad@nintendo.com", password: "toadrules", password_confirmation: "toadrules", time_zone: "Eastern Time (US & Canada)")
 
 #Prescription
 @prescrip1 = Prescription.new(patient_id: @patient1.id, rxcui: 861007, start_datetime: Time.now - 60.days, end_datetime: Time.now + 12.hours, doctor_id: @doctor1.id, side_effects: nil, image_url: "http://pillbox.nlm.nih.gov/assets/small/00007-4895-20_D218E947.jpg", medication_name: "Requip 3 MG Oral Tablet")
