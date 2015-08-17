@@ -46,8 +46,7 @@ In the future, we would like to implement real-time updates to doctor visualizat
 
 ## Authors
 
-@benbrattain, @lizlove, @lskalkos, @jsutker
-Go to the website and view the About page to get to know more about us!
+[@benbrattain](https://www.github.com/benbrattain), [@lizlove](https://www.github.com/lizlove), [@lskalkos](https://www.github.com/lskalkos), [@jsutker](https://www.github.com/jsutker)
 
 ## License
 
