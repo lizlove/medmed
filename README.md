@@ -9,13 +9,11 @@ MedMed is an awesome application that allows doctors and patients to manage comp
 
 ## Screenshots
 
-![Image of DoctorDashboardTop ](https://github.com/lizlove/medmed/blob/master/app/assets/images/doctordash1.png)
-
-<%= image_tag("doctordash2", class: "img-thumbnail img-responsive img-center") %>
-<%= image_tag("messaging", class: "img-thumbnail img-responsive img-center") %>
-<%= image_tag("new_prescription", class: "img-thumbnail img-responsive img-center") %>
-<%= image_tag("patientview", class: "img-thumbnail img-responsive img-center") %>
-
+![Image of DoctorDashboard Top ](https://github.com/lizlove/medmed/blob/master/app/assets/images/doctordash1.png)
+![Image of DoctorDashboard Bottom ](https://github.com/lizlove/medmed/blob/master/app/assets/images/doctordash2.png)
+![Image of Messaging ](https://github.com/lizlove/medmed/blob/master/app/assets/images/messaging.png)
+![Image of New Prescription ](https://github.com/lizlove/medmed/blob/master/app/assets/images/new_prescription.png)
+![Image of Patient View ](https://github.com/lizlove/medmed/blob/master/app/assets/images/patientview.png)
 
 ## Background
 
@@ -48,6 +46,7 @@ In the future, we would like to implement real-time updates to doctor visualizat
 
 ## Authors
 
+@benbrattain, @lizlove, @lskalkos, @jsutker
 Go to the website and view the About page to get to know more about us!
 
 ## License
