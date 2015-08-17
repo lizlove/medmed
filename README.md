@@ -9,7 +9,8 @@ MedMed is an awesome application that allows doctors and patients to manage comp
 
 ## Screenshots
 
-<%= image_tag("doctordash1", class: "img-thumbnail img-responsive img-center") %>
+![Image of DoctorDashboardTop ](https://github.com/lizlove/medmed/blob/master/app/assets/images/doctordash1.png)
+
 <%= image_tag("doctordash2", class: "img-thumbnail img-responsive img-center") %>
 <%= image_tag("messaging", class: "img-thumbnail img-responsive img-center") %>
 <%= image_tag("new_prescription", class: "img-thumbnail img-responsive img-center") %>
