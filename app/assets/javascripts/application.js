@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require Chart
-//= require favicon.min
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree ../../../vendor/assets/javascripts/.

@@ -31,37 +31,6 @@
     </div>
   </body>
 
-  <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script>
-      $(document).ready(function() {
-        var badge = 0;
-        var favicon = new Favico({
-          animation : 'popFade'
-        });
-        $('#plusOne').bind('click', function() {
-          badge = badge + 1;
-          favicon.badge(badge);
-        });
-        $('#minusOne').bind('click', function() {
-          badge = (badge - 1 < 0) ? 0 : (badge - 1);
-          favicon.badge(badge);
-        });
-        $('#reset').bind('click', function() {
-          favicon.reset();
-        });
-        //intial value
-        favicon.badge(badge);
-      });
-    </script>
-
-
-
-
-
-
-
 
   <div id="footer">
     <div class="container">
