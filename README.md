@@ -11,8 +11,6 @@ MedMed is an awesome application that allows doctors and patients to manage comp
 
 ![Image of DoctorDashboard Top ](https://github.com/lizlove/medmed/blob/master/app/assets/images/doctordash1.png)
 ![Image of DoctorDashboard Bottom ](https://github.com/lizlove/medmed/blob/master/app/assets/images/doctordash2.png)
-![Image of Messaging ](https://github.com/lizlove/medmed/blob/master/app/assets/images/messaging.png)
-![Image of New Prescription ](https://github.com/lizlove/medmed/blob/master/app/assets/images/new_prescription.png)
 ![Image of Patient View ](https://github.com/lizlove/medmed/blob/master/app/assets/images/patientview.png)
 
 ## Background
